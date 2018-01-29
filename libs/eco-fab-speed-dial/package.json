@@ -5,9 +5,9 @@
     "license": "MIT",
     "private": true,
     "peerDependencies": {
-        "@angular/common": "^5.1.0",
-        "@angular/core": "^5.1.0",
-        "@angular/material": "^5.1.0"
+        "@angular/common": "^5.2.0",
+        "@angular/core": "^5.2.0",
+        "@angular/material": "^5.2.0"
     },
     "ngPackage": {
         "lib": {
