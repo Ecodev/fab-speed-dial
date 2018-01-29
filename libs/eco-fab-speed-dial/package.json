@@ -1,0 +1,18 @@
+{
+    "$schema": "../../node_modules/ng-packagr/package.schema.json",
+    "name": "eco-fab-speed-dial",
+    "version": "0.0.1",
+    "license": "MIT",
+    "private": true,
+    "peerDependencies": {
+        "@angular/common": "^5.1.0",
+        "@angular/core": "^5.1.0",
+        "@angular/material": "^5.1.0"
+    },
+    "ngPackage": {
+        "lib": {
+            "entryFile": "public_api.ts"
+        },
+        "dest": "../../eco-fab-speed-dial"
+    }
+}

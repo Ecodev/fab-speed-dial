@@ -17,12 +17,12 @@ import {
   MatToolbarModule,
 } from '@angular/material';
 
-import { NgxTabsLibModule } from 'ngx-tabs-lib';
+import { EcoFabSpeedDialModule } from 'eco-fab-speed-dial';
 
 @NgModule({
   imports: [
     BrowserModule,
-    NgxTabsLibModule,
+    EcoFabSpeedDialModule,
 
     MatIconModule,
     MatButtonModule,

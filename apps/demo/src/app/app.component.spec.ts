@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
-import { NgxTabsLibModule } from 'ngx-tabs-lib';
+import { EcoFabSpeedDialModule } from 'eco-fab-speed-dial';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -10,7 +10,7 @@ describe('AppComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        imports: [NgxTabsLibModule],
+        imports: [EcoFabSpeedDialModule],
         declarations: [AppComponent]
       }).compileComponents();
     })

@@ -16,7 +16,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "ngx-tabs-lib": ["libs/ngx-tabs-lib"]
+      "eco-fab-speed-dial": ["libs/eco-fab-speed-dial"]
     }
   },
   "exclude": [

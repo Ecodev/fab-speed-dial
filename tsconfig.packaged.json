@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "ngx-tabs-lib": ["ngx-tabs-lib"]
+      "eco-fab-speed-dial": ["eco-fab-speed-dial"]
     }
   }
 }

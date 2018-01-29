@@ -96,8 +96,8 @@
       }
     },
     {
-      "name": "ngx-tabs-lib",
-      "root": "libs/ngx-tabs-lib/src",
+      "name": "eco-fab-speed-dial",
+      "root": "libs/eco-fab-speed-dial/src",
       "test": "../../../test.js",
       "appRoot": ""
     }
