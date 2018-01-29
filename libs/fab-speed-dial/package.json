@@ -1,9 +1,7 @@
 {
     "$schema": "../../node_modules/ng-packagr/package.schema.json",
     "name": "@ecodev/fab-speed-dial",
-    "version": "0.0.1",
     "license": "MIT",
-    "private": true,
     "peerDependencies": {
         "@angular/common": "^5.2.0",
         "@angular/core": "^5.2.0",
@@ -13,6 +11,6 @@
         "lib": {
             "entryFile": "public_api.ts"
         },
-        "dest": "../../@ecodev/fab-speed-dial"
+        "dest": "../../dist/fab-speed-dial"
     }
 }

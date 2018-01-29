@@ -4,7 +4,6 @@
 /dist
 /tmp
 /out-tsc
-/@ecodev/fab-speed-dial
 
 # dependencies
 /node_modules

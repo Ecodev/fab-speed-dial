@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "@ecodev/fab-speed-dial": ["@ecodev/fab-speed-dial"]
+      "@ecodev/fab-speed-dial": ["dist/fab-speed-dial"]
     }
   }
 }
