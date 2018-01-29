@@ -1,0 +1,40 @@
+mat-card {
+  margin: 30px;
+
+  &.fab-demo-actions {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+
+    & > div {
+      //min-height: 50px;
+
+      & mat-slide-toggle {
+        display: inline-block;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.container-fab-demo {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+
+  & mat-card {
+    height: 300px;
+    padding: 20px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 300px;
+  }
+
+}

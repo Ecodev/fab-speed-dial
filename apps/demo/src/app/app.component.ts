@@ -1,19 +1,34 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ɵTabsComponent as TabsComponent } from 'ngx-tabs-lib';
-import { Container } from '@angular/compiler/src/i18n/i18n_ast';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  @ViewChild(TabsComponent) tabs: TabsComponent;
+export class AppComponent {
 
-  constructor() {}
-
-  ngOnInit() {
-    console.log(this.tabs);
+  constructor() {
   }
 
+  private _fixed = false;
+
+  public open: boolean = false;
+  public spin: boolean = false;
+  public direction: string = 'up';
+  public animationMode: string = 'fling';
+
+  get fixed(): boolean {
+    return this._fixed;
+  }
+
+  set fixed(fixed: boolean) {
+    this._fixed = fixed;
+    if (this._fixed) {
+      this.open = true;
+    }
+  }
+
+  public doAction(event: any) {
+    console.log(event);
+  }
 }
