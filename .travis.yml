@@ -6,4 +6,4 @@ node_js:
 cache: yarn
 
 script:
-  - yarn run test
+  - ./node_modules/.bin/ng test --progress false --single-run --browsers ChromeHeadless
