@@ -1,10 +1,13 @@
-<mat-toolbar color="accent">
-  FAB Speed Dial
+<mat-toolbar color="accent">  <mat-toolbar-row>
+    <span>FAB Speed Dial</span>
+    <span class="example-spacer"></span>
+    <a mat-button href="https://github.com/ecodev/fab-speed-dial"><img src="assets/github-circle-transparent.svg" class="github-logo"> GitHub</a>
+</mat-toolbar-row>
+
 </mat-toolbar>
 
 <mat-card class="fab-demo-actions">
   <mat-card-title>Options</mat-card-title>
-
   <p>
     Direction:
     <mat-radio-group [(ngModel)]="direction" name="direction">
@@ -28,13 +31,14 @@
     <mat-slide-toggle [(ngModel)]="spin">Enable Spinning</mat-slide-toggle>
   </p>
 </mat-card>
-<div class="container-fab-demo">
 
+<div class="container-fab-demo">
 
   <mat-card>
     <mat-card-title>Click me</mat-card-title>
     <mat-slide-toggle [(ngModel)]="open">Open</mat-slide-toggle>
     <eco-fab-speed-dial [(open)]="open" [direction]="direction" [animationMode]="animationMode" [fixed]="fixed">
+
       <eco-fab-speed-dial-trigger [spin]="spin">
         <button mat-fab (click)="doAction('trigger')">
           <mat-icon>add</mat-icon>
@@ -52,12 +56,14 @@
           <mat-icon>home</mat-icon>
         </button>
       </eco-fab-speed-dial-actions>
+
     </eco-fab-speed-dial>
   </mat-card>
+
   <mat-card>
     <mat-card-title>Hover me</mat-card-title>
-    <eco-fab-speed-dial #myFab [direction]="direction" [animationMode]="animationMode" [fixed]="fixed"
-                        (mouseenter)="myFab.open = true" (mouseleave)="myFab.open = false">
+    <eco-fab-speed-dial #myFab [direction]="direction" [animationMode]="animationMode" [fixed]="fixed" (mouseenter)="myFab.open = true" (mouseleave)="myFab.open = false">
+
       <eco-fab-speed-dial-trigger [spin]="spin">
         <button mat-fab (click)="doAction('trigger')">
           <mat-icon>check</mat-icon>
@@ -75,8 +81,8 @@
           <mat-icon>menu</mat-icon>
         </button>
       </eco-fab-speed-dial-actions>
+
     </eco-fab-speed-dial>
   </mat-card>
-
 
 </div>
