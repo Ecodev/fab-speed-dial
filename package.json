@@ -10,7 +10,7 @@
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "build:lib": "ng-packagr -p libs/eco-fab-speed-dial/package.json"
+        "build:lib": "ng-packagr -p libs/fab-speed-dial/package.json"
     },
     "dependencies": {
         "@angular/animations": "5.2.2",

@@ -16,7 +16,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "eco-fab-speed-dial": ["libs/eco-fab-speed-dial"]
+      "@ecodev/fab-speed-dial": ["libs/fab-speed-dial"]
     }
   },
   "exclude": [

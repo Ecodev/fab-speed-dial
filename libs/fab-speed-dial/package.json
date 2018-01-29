@@ -1,6 +1,6 @@
 {
     "$schema": "../../node_modules/ng-packagr/package.schema.json",
-    "name": "eco-fab-speed-dial",
+    "name": "@ecodev/fab-speed-dial",
     "version": "0.0.1",
     "license": "MIT",
     "private": true,
@@ -13,6 +13,6 @@
         "lib": {
             "entryFile": "public_api.ts"
         },
-        "dest": "../../eco-fab-speed-dial"
+        "dest": "../../@ecodev/fab-speed-dial"
     }
 }

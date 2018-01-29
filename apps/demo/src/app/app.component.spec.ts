@@ -1,28 +1,54 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import {
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatInputModule,
+    MatRadioModule,
+    MatSlideToggleModule,
+    MatToolbarModule,
+    MatTooltipModule,
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { EcoFabSpeedDialModule } from 'eco-fab-speed-dial';
+import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
 
 describe('AppComponent', () => {
-  let component: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
+    let component: AppComponent;
+    let fixture: ComponentFixture<AppComponent>;
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [EcoFabSpeedDialModule],
-        declarations: [AppComponent]
-      }).compileComponents();
-    })
-  );
+    beforeEach(
+        async(() => {
+            TestBed.configureTestingModule({
+                imports: [EcoFabSpeedDialModule,
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AppComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+                    MatIconModule,
+                    MatButtonModule,
+                    MatButtonToggleModule,
+                    MatInputModule,
+                    MatRadioModule,
+                    MatCardModule,
+                    MatCheckboxModule,
+                    MatSlideToggleModule,
+                    MatTooltipModule,
+                    MatToolbarModule,
+                    FormsModule,
+                ],
+                declarations: [AppComponent],
+            }).compileComponents();
+        }),
+    );
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(AppComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

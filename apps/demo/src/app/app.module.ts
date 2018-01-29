@@ -17,7 +17,7 @@ import {
   MatToolbarModule,
 } from '@angular/material';
 
-import { EcoFabSpeedDialModule } from 'eco-fab-speed-dial';
+import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
 
 @NgModule({
   imports: [

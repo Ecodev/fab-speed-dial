@@ -1,5 +1,4 @@
 {
-  "$schema": "./node_modules/@nrwl/schematics/src/schema.json",
   "project": {
     "name": "angular-cli-lib-example",
     "npmScope": "angular-cli-lib-example",
@@ -30,15 +29,7 @@
     }
   },
   "defaults": {
-    "schematics": {
-      "collection": "@nrwl/schematics",
-      "postGenerate": "npm run format",
-      "newProject": [
-        "app",
-        "lib"
-      ]
-    },
-    "styleExt": "css",
+    "styleExt": "scss",
     "component": {}
   },
   "warnings": {
@@ -96,8 +87,8 @@
       }
     },
     {
-      "name": "eco-fab-speed-dial",
-      "root": "libs/eco-fab-speed-dial/src",
+      "name": "fab-speed-dial",
+      "root": "libs/fab-speed-dial/src",
       "test": "../../../test.js",
       "appRoot": ""
     }
