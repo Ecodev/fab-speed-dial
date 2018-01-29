@@ -1,6 +1,12 @@
 # Angular Material FAB speed dial
 
-Angular 5+ FAB Speed Dial based on [AngularJS FAB Speed Dial](https://material.angularjs.org/latest/demo/fabSpeedDial)
+This is a FAB speed dial component for Angular Material (v5+).
+
+## Install
+
+```bash
+yarn add @ecodev/fab-speed-dial
+```
 
 ## Usage
 
@@ -22,18 +28,18 @@ Angular 5+ FAB Speed Dial based on [AngularJS FAB Speed Dial](https://material.a
 
 ### eco-fab-speed-dial
 
-| Property         | Type         | Default             | Description                                     |
-|------------------|--------------|---------------------|-------------------------------------------------|
-| open             | boolean      | false               | Indicates if this FAB Speed Dial is opened      |
-| direction        | up, down, left or right | up       | The direction to open the action buttons        |
-| animationMode    | fling or scale | fling             | The animation to apply when opening the action buttons |
-| fixed            | boolean      | false               | Indicates if this FAB Speed Dial is fixed (user cannot change the open state on click) |
+| Property         | Type                 | Default             | Description                                            |
+|------------------|----------------------|---------------------|--------------------------------------------------------|
+| `open`             | `boolean`          | `false`             | Indicates if this FAB Speed Dial is opened             |
+| `direction`        | `up`, `down`, `left` or `right` | `up`   | The direction to open the action buttons               |
+| `animationMode`    | `fling` or `scale` | `fling`             | The animation to apply when opening the action buttons |
+| `fixed`            | `boolean`          | `false`             | Indicates if this FAB Speed Dial is fixed (user cannot change the open state on click) |
 
 ### eco-fab-speed-dial-trigger
 
 | Property         | Type         | Default             | Description                                     |
 |------------------|--------------|---------------------|-------------------------------------------------|
-| spin             | boolean      | false               | Enables the rotation (360dg) of the trigger action when the speed dial is opening |
+| `spin`           | `boolean`    | `false`             | Enables the rotation (360dg) of the trigger action when the speed dial is opening |
 
 ## TODO List
 
@@ -43,4 +49,6 @@ Angular 5+ FAB Speed Dial based on [AngularJS FAB Speed Dial](https://material.a
 
 ## Prior work
 
-This lib was originally based on [angular-smd](https://github.com/jefersonestevo/angular-smd) and its various forks. 
+This lib was originally based on [angular-smd](https://github.com/jefersonestevo/angular-smd),
+and its various forks, itself based on the based on
+[AngularJS FAB Speed Dial](https://material.angularjs.org/latest/demo/fabSpeedDial).
