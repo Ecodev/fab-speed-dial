@@ -6,7 +6,7 @@ import {
     ViewEncapsulation,
     AfterContentInit,
     ElementRef,
-    Renderer,
+    Renderer2,
     ContentChild,
     HostBinding,
     HostListener, Injector, QueryList, ContentChildren,
@@ -28,7 +28,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
 
     @ContentChildren(MatButton) _buttons: QueryList<MatButton>;
 
-    constructor(injector: Injector, private renderer: Renderer) {
+    constructor(injector: Injector, private renderer: Renderer2) {
         this._parent = injector.get(EcoFabSpeedDialComponent);
     }
 
@@ -43,7 +43,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
 
     private initButtonStates() {
         this._buttons.toArray().forEach((button, i) => {
-            this.renderer.setElementClass(button._getHostElement(), 'eco-fab-action-item', true);
+            this.renderer.addClass(button._getHostElement(), 'eco-fab-action-item');
             this.changeElementStyle(button._getHostElement(), 'z-index', '' + (Z_INDEX_ITEM - i));
         })
     }
@@ -96,7 +96,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
 
     private changeElementStyle(elem: any, style: string, value: string) {
         // FIXME - Find a way to create a "wrapper" around the action button(s) provided by the user, so we don't change it's style tag
-        this.renderer.setElementStyle(elem, style, value);
+        this.renderer.setStyle(elem, style, value);
     }
 }
 
@@ -186,7 +186,7 @@ export class EcoFabSpeedDialComponent implements AfterContentInit {
 
     @ContentChild(EcoFabSpeedDialActionsComponent) _childActions: EcoFabSpeedDialActionsComponent;
 
-    constructor(private elementRef: ElementRef, private renderer: Renderer) {
+    constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     }
 
     ngAfterContentInit(): void {
@@ -219,7 +219,12 @@ export class EcoFabSpeedDialComponent implements AfterContentInit {
     }
 
     private _setElementClass(elemClass: string, isAdd: boolean): void {
-        this.renderer.setElementClass(this.elementRef.nativeElement, `eco-${elemClass}`, isAdd);
+        const finalClass = `eco-${elemClass}`;
+        if (isAdd) {
+            this.renderer.addClass(this.elementRef.nativeElement, finalClass);
+        } else {
+            this.renderer.removeClass(this.elementRef.nativeElement, finalClass);
+        }
     }
 }
 
