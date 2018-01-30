@@ -9,9 +9,9 @@
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "build:lib": "ng-packagr -p libs/fab-speed-dial/package.json && cp -v README.md dist/fab-speed-dial/",
+        "build:lib": "ng-packagr -p libs/fab-speed-dial/package.json && cp -v README.md node_modules/@ecodev/fab-speed-dial/",
         "build:docs": "git rm -rf --ignore-unmatch docs/ && yarn build:lib && ng build -a demo-packaged --prod --aot --output-path docs --base-href /fab-speed-dial/ && cp docs/index.html docs/404.html && git add docs/ && git commit docs/ -m 'Update documentation'",
-        "release": "yarn build:lib && cd dist/fab-speed-dial/ && yarn publish --access public"
+        "release": "yarn build:lib && cd node_modules/@ecodev/fab-speed-dial/ && yarn publish --access public"
     },
     "dependencies": {
         "@angular/animations": "5.2.2",
