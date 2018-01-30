@@ -149,10 +149,10 @@ export class EcoFabSpeedDialComponent implements AfterContentInit {
     }
 
     set direction(direction: Direction) {
-        let previousDir = this._direction;
+        let previousDirection = this._direction;
         this._direction = direction;
-        if (previousDir !== this.direction) {
-            this._setElementClass(previousDir, false);
+        if (previousDirection !== this.direction) {
+            this._setElementClass(previousDirection, false);
             this._setElementClass(this.direction, true);
 
             if (this.isInitialized) {
