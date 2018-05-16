@@ -1,6 +1,6 @@
 # Angular Material FAB speed dial
 
-This is a FAB speed dial component for Angular Material (v5+).
+This is a FAB speed dial component for Angular Material (v6+).
 
 See the component in action on [the demo page](https://ecodev.github.io/fab-speed-dial).
 
