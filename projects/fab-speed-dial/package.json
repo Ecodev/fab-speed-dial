@@ -1,6 +1,6 @@
 {
     "name": "@ecodev/fab-speed-dial",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "license": "MIT",
     "peerDependencies": {
         "@angular/common": "^6.0.0",
