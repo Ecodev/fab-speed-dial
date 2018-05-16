@@ -1,8 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "paths": {
-      "@ecodev/fab-speed-dial": ["node_modules/@ecodev/fab-speed-dial"]
-    }
-  }
-}

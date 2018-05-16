@@ -1,6 +1,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
@@ -14,13 +16,10 @@
       "es2017",
       "dom"
     ],
-    "baseUrl": ".",
     "paths": {
-      "@ecodev/fab-speed-dial": ["libs/fab-speed-dial"]
+      "@ecodev/fab-speed-dial": [
+        "dist/fab-speed-dial"
+      ]
     }
-  },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  }
 }
