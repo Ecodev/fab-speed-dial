@@ -12,10 +12,10 @@ export class AppComponent {
 
     private _fixed = false;
 
-    public open: boolean = false;
-    public spin: boolean = false;
-    public direction: string = 'up';
-    public animationMode: string = 'fling';
+    public open = false;
+    public spin = false;
+    public direction = 'up';
+    public animationMode = 'fling';
 
     get fixed(): boolean {
         return this._fixed;

@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { MatButton } from '@angular/material';
 
-const Z_INDEX_ITEM: number = 23;
+const Z_INDEX_ITEM = 23;
 
 export type Direction = 'up' | 'down' | 'left' | 'right';
 export type AnimationMode = 'fling' | 'scale';
@@ -45,7 +45,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
         this._buttons.toArray().forEach((button, i) => {
             this.renderer.addClass(button._getHostElement(), 'eco-fab-action-item');
             this.changeElementStyle(button._getHostElement(), 'z-index', '' + (Z_INDEX_ITEM - i));
-        })
+        });
     }
 
     show() {
@@ -63,7 +63,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
                 this.changeElementStyle(button._getHostElement(), 'transition-delay', transitionDelay + 'ms');
                 this.changeElementStyle(button._getHostElement(), 'opacity', '1');
                 this.changeElementStyle(button._getHostElement(), 'transform', transform);
-            })
+            });
         }
     }
 
@@ -83,14 +83,15 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
                 this.changeElementStyle(button._getHostElement(), 'transition-delay', transitionDelay + 'ms');
                 this.changeElementStyle(button._getHostElement(), 'opacity', opacity);
                 this.changeElementStyle(button._getHostElement(), 'transform', transform);
-            })
+            });
         }
     }
 
     private getTranslateFunction(value: string) {
-        let dir = this._parent.direction;
-        let translateFn = (dir === 'up' || dir === 'down') ? 'translateY' : 'translateX';
-        let sign = (dir === 'down' || dir === 'right') ? '-' : '';
+        const dir = this._parent.direction;
+        const translateFn = (dir === 'up' || dir === 'down') ? 'translateY' : 'translateX';
+        const sign = (dir === 'down' || dir === 'right') ? '-' : '';
+
         return translateFn + '(' + sign + value + ')';
     }
 
@@ -112,15 +113,15 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     encapsulation: ViewEncapsulation.None,
 })
 export class EcoFabSpeedDialComponent implements AfterContentInit {
-    private isInitialized: boolean = false;
+    private isInitialized = false;
     private _direction: Direction = 'up';
-    private _open: boolean = false;
+    private _open = false;
     private _animationMode: AnimationMode = 'fling';
 
     /**
      * Whether this speed dial is fixed on screen (user cannot change it by clicking)
      */
-    @Input() fixed: boolean = false;
+    @Input() fixed = false;
 
     /**
      * Whether this speed dial is opened
@@ -131,7 +132,7 @@ export class EcoFabSpeedDialComponent implements AfterContentInit {
     }
 
     set open(open: boolean) {
-        let previousOpen = this._open;
+        const previousOpen = this._open;
         this._open = open;
         if (previousOpen !== this._open) {
             this.openChange.emit(this._open);
@@ -149,7 +150,7 @@ export class EcoFabSpeedDialComponent implements AfterContentInit {
     }
 
     set direction(direction: Direction) {
-        let previousDirection = this._direction;
+        const previousDirection = this._direction;
         this._direction = direction;
         if (previousDirection !== this.direction) {
             this._setElementClass(previousDirection, false);
@@ -169,7 +170,7 @@ export class EcoFabSpeedDialComponent implements AfterContentInit {
     }
 
     set animationMode(animationMode: AnimationMode) {
-        let previousAnimationMode = this._animationMode;
+        const previousAnimationMode = this._animationMode;
         this._animationMode = animationMode;
         if (previousAnimationMode !== this._animationMode) {
             this._setElementClass(previousAnimationMode, false);
@@ -245,9 +246,9 @@ export class EcoFabSpeedDialTriggerComponent {
      */
     @HostBinding('class.eco-spin') get sp() {
         return this.spin;
-    };
+    }
 
-    @Input() spin: boolean = false;
+    @Input() spin = false;
 
     constructor(injector: Injector) {
         this._parent = injector.get(EcoFabSpeedDialComponent);

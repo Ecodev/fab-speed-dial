@@ -1,16 +1,17 @@
 {
     "extends": "../../tslint.json",
     "rules": {
+        "no-use-before-declare": false,
         "directive-selector": [
             true,
             "attribute",
-            "lib",
+            "eco",
             "camelCase"
         ],
         "component-selector": [
             true,
             "element",
-            "lib",
+            "eco",
             "kebab-case"
         ]
     }
