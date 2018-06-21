@@ -10,7 +10,7 @@
         "lint": "ng lint",
         "e2e": "ng e2e",
         "build-lib": "ng build fab-speed-dial && cp -v README.md dist/fab-speed-dial/",
-        "build-docs": "git rm -rf --ignore-unmatch docs/ && yarn build-lib && ng build demo --prod --aot --output-path docs --base-href /fab-speed-dial/ && cp docs/index.html docs/404.html && git add docs/ && git commit docs/ -m 'Update documentation'",
+        "build-docs": "yarn build-lib && ng build demo --prod --aot --base-href /fab-speed-dial/ && cp dist/demo/index.html dist/demo/404.html",
         "release": "yarn build-lib && cd dist/fab-speed-dial/ && yarn publish --access public"
     },
     "dependencies": {

@@ -54,7 +54,7 @@ yarn add @ecodev/fab-speed-dial
 The most useful commands for development are:
 
 - `yarn dev` to start a development server
-- `yarn build-docs` to build and commit (but not push) the docs/demo page
+- `yarn build-docs` to build the docs locally (it will be published automatically by Travis)
 - `yarn release` to publish the lib to npm
 
 ## TODO List

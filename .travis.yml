@@ -7,5 +7,16 @@ cache: yarn
 
 script:
   - yarn build-lib
-  - ./node_modules/.bin/ng test demo --progress false --watch=false --browsers ChromeHeadlessCustom
   - ./node_modules/.bin/ng test fab-speed-dial --progress false --watch=false --browsers ChromeHeadlessCustom
+  - ./node_modules/.bin/ng test demo --progress false --watch=false --browsers ChromeHeadlessCustom
+  - yarn build-docs
+  - yarn lint
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  local-dir: dist/demo
+  github-token: $GITHUB_TOKEN
+  on:
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^master|develop$
