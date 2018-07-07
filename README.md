@@ -47,7 +47,11 @@ yarn add @ecodev/fab-speed-dial
 
 | Property         | Type         | Default             | Description                                     |
 |------------------|--------------|---------------------|-------------------------------------------------|
-| `spin`           | `boolean`    | `false`             | Enables the rotation (360dg) of the trigger action when the speed dial is opening |
+| `spin`           | `boolean`    | `false`             | Enables the rotation of the trigger action when the speed dial is opening |
+
+Additionally to spin property, add class "spin180" or "spin360" on html content inside of `eco-fab-speed-dial-trigger` tag to activate rotation on a specific element.
+
+In case of buttons, the icon should rotate not the whole button (box-shadow would rotate too).
 
 ## Development
 

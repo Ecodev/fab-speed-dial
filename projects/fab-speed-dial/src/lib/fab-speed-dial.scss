@@ -16,7 +16,6 @@
     -webkit-box-direction: $box-direction;
     -webkit-flex-direction: $flex-direction;
     flex-direction: $flex-direction;
-
     @include eco-fab-speed-dial-box-order($ordinal-group, $order);
 
     & .eco-fab-action-item {
@@ -29,8 +28,12 @@ eco-fab-speed-dial {
 
     &.eco-opened {
         .eco-fab-speed-dial-container {
-            eco-fab-speed-dial-trigger {
-                &.eco-spin {
+            eco-fab-speed-dial-trigger.eco-spin {
+                .spin180 {
+                    -webkit-transform: rotate(180deg);
+                    transform: rotate(180deg);
+                }
+                .spin360 {
                     -webkit-transform: rotate(360deg);
                     transform: rotate(360deg);
                 }
@@ -53,8 +56,10 @@ eco-fab-speed-dial {
             z-index: 24;
 
             &.eco-spin {
-                -webkit-transition: all .6s cubic-bezier(.4, 0, .2, 1);
-                transition: all .6s cubic-bezier(.4, 0, .2, 1);
+                .spin180, .spin360 {
+                    -webkit-transition: all .6s cubic-bezier(.4, 0, .2, 1);
+                    transition: all .6s cubic-bezier(.4, 0, .2, 1);
+                }
             }
         }
 
@@ -62,9 +67,9 @@ eco-fab-speed-dial {
             display: -webkit-box;
             display: -webkit-flex;
             display: flex;
-            position:absolute;
-            height:0;
-            width:0
+            position: absolute;
+            height: 0;
+            width: 0
         }
     }
 
@@ -99,8 +104,8 @@ eco-fab-speed-dial {
     &.eco-down {
 
         eco-fab-speed-dial-actions {
-            bottom:2px;
-            left:7px;
+            bottom: 2px;
+            left: 7px;
         }
 
         .eco-fab-speed-dial-container {
@@ -118,8 +123,8 @@ eco-fab-speed-dial {
 
     &.eco-up {
         eco-fab-speed-dial-actions {
-            top:2px;
-            left:7px;
+            top: 2px;
+            left: 7px;
         }
 
         .eco-fab-speed-dial-container {
@@ -137,8 +142,8 @@ eco-fab-speed-dial {
 
     &.eco-left {
         eco-fab-speed-dial-actions {
-            top:7px;
-            left:2px;
+            top: 7px;
+            left: 2px;
         }
 
         .eco-fab-speed-dial-container {
@@ -156,8 +161,8 @@ eco-fab-speed-dial {
 
     &.eco-right {
         eco-fab-speed-dial-actions {
-            top:7px;
-            right:2px;
+            top: 7px;
+            right: 2px;
         }
 
         .eco-fab-speed-dial-container {
