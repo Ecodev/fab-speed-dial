@@ -91,7 +91,6 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
         const dir = this._parent.direction;
         const translateFn = (dir === 'up' || dir === 'down') ? 'translateY' : 'translateX';
         const sign = (dir === 'down' || dir === 'right') ? '-' : '';
-
         return translateFn + '(' + sign + value + ')';
     }
 
