@@ -18,7 +18,10 @@
     ],
     "paths": {
       "@ecodev/fab-speed-dial": [
-        "dist/fab-speed-dial"
+        "projects/fab-speed-dial/src/public_api"
+      ],
+      "@ecodev/fab-speed-dial/*": [
+        "dist/fab-speed-dial/*"
       ]
     }
   }
