@@ -58,7 +58,7 @@ In case of buttons, the icon should rotate not the whole button (box-shadow woul
 The most useful commands for development are:
 
 - `yarn dev` to start a development server
-- `yarn build-docs` to build the docs locally (it will be published automatically by Travis)
+- `yarn build-demo` to build the demo locally (it will be published automatically by Travis)
 - `yarn release` to publish the lib to npm
 
 ## TODO List

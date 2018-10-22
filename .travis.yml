@@ -9,7 +9,7 @@ script:
   - yarn build-lib
   - ./node_modules/.bin/ng test fab-speed-dial --progress false --watch=false --browsers ChromeHeadlessCustom
   - ./node_modules/.bin/ng test demo --progress false --watch=false --browsers ChromeHeadlessCustom
-  - yarn build-docs
+  - yarn build-demo
   - yarn lint
 
 deploy:
