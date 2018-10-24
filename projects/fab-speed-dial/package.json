@@ -1,6 +1,6 @@
 {
     "name": "@ecodev/fab-speed-dial",
-    "version": "1.0.0",
+    "version": "3.0.0",
     "license": "MIT",
     "repository": "github:Ecodev/fab-speed-dial",
     "peerDependencies": {
