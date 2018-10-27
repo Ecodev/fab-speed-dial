@@ -12,22 +12,30 @@ See the component in action on [the demo page](https://ecodev.github.io/fab-spee
 
 ## Install
 
-```bash
-yarn add @ecodev/fab-speed-dial
-```
+1. Install the library:
+    ```bash
+    yarn add @ecodev/fab-speed-dial
+    ```
+2. In `app.module.ts` add the following modules to the `imports` array:
+    - `MatButtonModule`
+    - `MatIconModule`
+    - `EcoFabSpeedDialModule`
 
 ## Usage
 
+The following is an example of a minimal template. Either implement a `doAction()`,
+or adapt the bindings to your needs:
+
 ```html
-<eco-fab-speed-dial [(open)]="open" [direction]="direction" [animationMode]="animationMode" [fixed]="fixed">
+<eco-fab-speed-dial>
     <eco-fab-speed-dial-trigger>
-        <button mat-fab (click)="actionX()"><mat-icon>check</mat-icon></button>
+        <button mat-fab (click)="doAction('trigger')"><mat-icon>menu</mat-icon></button>
     </eco-fab-speed-dial-trigger>
 
     <eco-fab-speed-dial-actions>
-        <button mat-mini-fab (click)="action1()"><mat-icon>add</mat-icon></button>
-        <button mat-mini-fab (click)="action2()"><mat-icon>edit</mat-icon></button>
-        <button mat-mini-fab (click)="action3()"><mat-icon>menu</mat-icon></button>
+        <button mat-mini-fab (click)="doAction('action1')"><mat-icon>add</mat-icon></button>
+        <button mat-mini-fab (click)="doAction('action2')"><mat-icon>edit</mat-icon></button>
+        <button mat-mini-fab (click)="doAction('action3')"><mat-icon>search</mat-icon></button>
     </eco-fab-speed-dial-actions>
 </eco-fab-speed-dial>
 ```
