@@ -13,7 +13,7 @@ describe('FabSpeedDial', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [],
-            declarations: [EcoFabSpeedDialComponent, EcoFabSpeedDialTriggerComponent, EcoFabSpeedDialActionsComponent, TestAppComponent],
+            declarations: [EcoFabSpeedDialComponent, EcoFabSpeedDialTriggerComponent, EcoFabSpeedDialActionsComponent, TestAppComponent]
         });
 
     }));
@@ -103,22 +103,48 @@ describe('FabSpeedDial', () => {
         expect(fixture.componentInstance.fabActions.show).toHaveBeenCalled();
     });
 
+    it('should click on document testElement to hide all fabActions', () => {
+        const fixture = TestBed.createComponent(TestAppComponent);
+        const testComponent = fixture.debugElement.componentInstance;
+
+        const actionsSpy = spyOn(fixture.componentInstance.fabSpeedDial, 'setActionsVisibility').and.callThrough();
+        spyOn(fixture.componentInstance.fabActions, 'show').and.callThrough();
+        spyOn(fixture.componentInstance.fabActions, 'hide').and.callThrough();
+
+        testComponent.open = true;
+        fixture.detectChanges();
+
+        expect(fixture.componentInstance.fabSpeedDial.setActionsVisibility).toHaveBeenCalled();
+        expect(fixture.componentInstance.fabActions.show).toHaveBeenCalled();
+        actionsSpy.calls.reset();
+
+        const actionButton = fixture.debugElement.query(By.css('.testElement'));
+        actionButton.nativeElement.click();
+        fixture.detectChanges();
+
+        expect(fixture.componentInstance.fabSpeedDial.setActionsVisibility).toHaveBeenCalled();
+        expect(fixture.componentInstance.fabActions.hide).toHaveBeenCalled();
+    });
+
 });
 
 /** Test component that contains an fab speed dial buttons */
 @Component({
     template: `
-        <eco-fab-speed-dial [direction]="direction" [(open)]="open" #fabSpeedDial>
-            <eco-fab-speed-dial-trigger>
-                <button mat-fab>check</button>
-            </eco-fab-speed-dial-trigger>
-
-            <eco-fab-speed-dial-actions #fabActions>
-                <button mat-mini-fab>add</button>
-                <button mat-mini-fab>edit</button>
-                <button mat-mini-fab>menu</button>
-            </eco-fab-speed-dial-actions>
-        </eco-fab-speed-dial>
+        <div>
+            <eco-fab-speed-dial [direction]="direction" [(open)]="open" #fabSpeedDial>
+                <eco-fab-speed-dial-trigger>
+                    <button mat-fab>check</button>
+                </eco-fab-speed-dial-trigger>
+    
+                <eco-fab-speed-dial-actions #fabActions>
+                    <button mat-mini-fab>add</button>
+                    <button mat-mini-fab>edit</button>
+                    <button mat-mini-fab>menu</button>
+                </eco-fab-speed-dial-actions>
+            </eco-fab-speed-dial>
+            <div class="testElement">Test element</div>
+        </div>
     `,
 })
 class TestAppComponent {
@@ -128,6 +154,7 @@ class TestAppComponent {
     public fabSpeedDial: EcoFabSpeedDialComponent;
     public direction = 'up';
     public open: boolean;
+
     clickCount = 0;
     isDisabled = false;
     rippleDisabled = false;

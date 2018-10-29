@@ -1,17 +1,23 @@
 import {
-    Component,
-    Input,
-    Output,
-    EventEmitter,
-    ViewEncapsulation,
     AfterContentInit,
-    ElementRef,
-    Renderer2,
+    Component,
     ContentChild,
+    ContentChildren,
+    ElementRef,
+    EventEmitter,
     HostBinding,
-    HostListener, Injector, QueryList, ContentChildren,
+    HostListener,
+    Inject,
+    Injector,
+    Input,
+    OnDestroy,
+    Output,
+    QueryList,
+    Renderer2,
+    ViewEncapsulation,
 } from '@angular/core';
 import { MatButton } from '@angular/material';
+import { DOCUMENT } from '@angular/common';
 
 const Z_INDEX_ITEM = 23;
 
@@ -100,6 +106,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     }
 }
 
+/** @dynamic @see https://github.com/angular/angular/issues/20351#issuecomment-344009887 */
 @Component({
     selector: 'eco-fab-speed-dial',
     template: `
@@ -111,16 +118,25 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     styleUrls: ['fab-speed-dial.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class EcoFabSpeedDialComponent implements AfterContentInit {
+export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
     private isInitialized = false;
     private _direction: Direction = 'up';
     private _open = false;
     private _animationMode: AnimationMode = 'fling';
+    private _fixed = false;
+    private _documentClickUnlistener: (() => void) | null = null;
 
     /**
      * Whether this speed dial is fixed on screen (user cannot change it by clicking)
      */
-    @Input() fixed = false;
+    @Input() get fixed(): boolean {
+        return this._fixed;
+    }
+
+    set fixed(fixed: boolean) {
+        this._fixed = fixed;
+        this._processOutsideClickState();
+    }
 
     /**
      * Whether this speed dial is opened
@@ -186,7 +202,7 @@ export class EcoFabSpeedDialComponent implements AfterContentInit {
 
     @ContentChild(EcoFabSpeedDialActionsComponent) _childActions: EcoFabSpeedDialActionsComponent;
 
-    constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+    constructor(private elementRef: ElementRef, private renderer: Renderer2, @Inject(DOCUMENT) private document: Document) {
     }
 
     ngAfterContentInit(): void {
@@ -194,6 +210,10 @@ export class EcoFabSpeedDialComponent implements AfterContentInit {
         this.setActionsVisibility();
         this._setElementClass(this.direction, true);
         this._setElementClass(this.animationMode, true);
+    }
+
+    ngOnDestroy() {
+        this._unsetDocumentClickListener();
     }
 
     /**
@@ -220,6 +240,7 @@ export class EcoFabSpeedDialComponent implements AfterContentInit {
         } else {
             this._childActions.hide();
         }
+        this._processOutsideClickState();
     }
 
     private _setElementClass(elemClass: string, isAdd: boolean): void {
@@ -230,6 +251,30 @@ export class EcoFabSpeedDialComponent implements AfterContentInit {
             this.renderer.removeClass(this.elementRef.nativeElement, finalClass);
         }
     }
+
+    private _processOutsideClickState() {
+        if (!this.fixed && this.open) {
+            this._setDocumentClickListener();
+        } else {
+            this._unsetDocumentClickListener();
+        }
+    }
+
+    private _setDocumentClickListener() {
+        if (!this._documentClickUnlistener) {
+            this._documentClickUnlistener = this.renderer.listen(this.document, 'click', () => {
+                this.open = false;
+            });
+        }
+    }
+
+    private _unsetDocumentClickListener() {
+        if (this._documentClickUnlistener) {
+            this._documentClickUnlistener();
+            this._documentClickUnlistener = null;
+        }
+    }
+
 }
 
 @Component({
