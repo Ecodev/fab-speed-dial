@@ -9,9 +9,10 @@ import {
     Renderer2,
     ContentChild,
     HostBinding,
-    HostListener, Injector, QueryList, ContentChildren,
+    HostListener, Injector, QueryList, ContentChildren, Inject, OnDestroy,
 } from '@angular/core';
 import { MatButton } from '@angular/material';
+import { DOCUMENT } from '@angular/common';
 
 const Z_INDEX_ITEM = 23;
 
@@ -111,16 +112,24 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     styleUrls: ['fab-speed-dial.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class EcoFabSpeedDialComponent implements AfterContentInit {
+export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
     private isInitialized = false;
     private _direction: Direction = 'up';
     private _open = false;
     private _animationMode: AnimationMode = 'fling';
+    private _fixed = false;
+    private _documentListener: (() => void) | null;
 
     /**
      * Whether this speed dial is fixed on screen (user cannot change it by clicking)
      */
-    @Input() fixed = false;
+    @Input() get fixed(): boolean {
+        return this._fixed;
+    }
+    set fixed(fixed: boolean) {
+        this._fixed = fixed;
+        this._processOutsideClickState();
+    }
 
     /**
      * Whether this speed dial is opened
@@ -186,7 +195,7 @@ export class EcoFabSpeedDialComponent implements AfterContentInit {
 
     @ContentChild(EcoFabSpeedDialActionsComponent) _childActions: EcoFabSpeedDialActionsComponent;
 
-    constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+    constructor(private elementRef: ElementRef, private renderer: Renderer2, @Inject(DOCUMENT) private document: any) {
     }
 
     ngAfterContentInit(): void {
@@ -194,6 +203,10 @@ export class EcoFabSpeedDialComponent implements AfterContentInit {
         this.setActionsVisibility();
         this._setElementClass(this.direction, true);
         this._setElementClass(this.animationMode, true);
+    }
+
+    ngOnDestroy() {
+        this._unsetDocumentClickBindings();
     }
 
     /**
@@ -220,6 +233,7 @@ export class EcoFabSpeedDialComponent implements AfterContentInit {
         } else {
             this._childActions.hide();
         }
+        this._processOutsideClickState();
     }
 
     private _setElementClass(elemClass: string, isAdd: boolean): void {
@@ -230,6 +244,36 @@ export class EcoFabSpeedDialComponent implements AfterContentInit {
             this.renderer.removeClass(this.elementRef.nativeElement, finalClass);
         }
     }
+
+    private _processOutsideClickState() {
+        if (this.fixed) {
+            this._unsetDocumentClickBindings();
+            return;
+        }
+        if (this.open) {
+            this._setDocumentClickBindings();
+        } else {
+            this._unsetDocumentClickBindings();
+        }
+    }
+
+    private _setDocumentClickBindings() {
+        if (!this._documentListener) {
+            this._documentListener = this.renderer.listen(this.document, 'click', () => {
+                if (!this.fixed && this.open) {
+                    this.open = false;
+                }
+            });
+        }
+    }
+
+    private _unsetDocumentClickBindings() {
+        if (this._documentListener) {
+            this._documentListener();
+            this._documentListener = null;
+        }
+    }
+
 }
 
 @Component({
