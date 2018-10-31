@@ -136,7 +136,7 @@ describe('FabSpeedDial', () => {
                 <eco-fab-speed-dial-trigger>
                     <button mat-fab>check</button>
                 </eco-fab-speed-dial-trigger>
-    
+
                 <eco-fab-speed-dial-actions #fabActions>
                     <button mat-mini-fab>add</button>
                     <button mat-mini-fab>edit</button>

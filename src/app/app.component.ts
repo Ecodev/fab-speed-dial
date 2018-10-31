@@ -28,7 +28,7 @@ export class AppComponent {
         }
     }
 
-    public stopPropagation(event: Event):void {
+    public stopPropagation(event: Event): void {
         // Prevent the click to propagate to document and trigger
         // the FAB to be closed automatically right before we toggle it ourselves
         event.stopPropagation();
