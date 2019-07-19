@@ -1,6 +1,6 @@
 # Angular Material FAB speed dial
 
-[![Build Status](https://travis-ci.org/Ecodev/fab-speed-dial.svg?branch=master)](https://travis-ci.org/Ecodev/fab-speed-dial)
+[![Build Status](https://travis-ci.com/Ecodev/fab-speed-dial.svg?branch=master)](https://travis-ci.com/Ecodev/fab-speed-dial)
 [![Total Downloads](https://img.shields.io/npm/dt/@ecodev/fab-speed-dial.svg)](https://www.npmjs.com/package/@ecodev/fab-speed-dial)
 [![Latest Stable Version](https://img.shields.io/npm/v/@ecodev/fab-speed-dial.svg)](https://www.npmjs.com/package/@ecodev/fab-speed-dial)
 [![License](https://img.shields.io/npm/l/@ecodev/fab-speed-dial.svg)](https://www.npmjs.com/package/@ecodev/fab-speed-dial)
