@@ -39,7 +39,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     /**
      * Whether the min-fab button exist in DOM
      */
-    private miniFabVisible = false;
+    public miniFabVisible = false;
 
     /**
      * The timeout ID for the callback to show the mini-fab buttons
