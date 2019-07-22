@@ -18,6 +18,8 @@ import {
 } from '@angular/core';
 import { MatButton } from '@angular/material';
 import { DOCUMENT } from '@angular/common';
+import { forkJoin, fromEvent, Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 const Z_INDEX_ITEM = 23;
 
@@ -27,12 +29,27 @@ export type AnimationMode = 'fling' | 'scale';
 @Component({
     selector: 'eco-fab-speed-dial-actions',
     template: `
-        <ng-content select="[mat-mini-fab]"></ng-content>`,
+        <ng-content select="[mat-mini-fab]" *ngIf="miniFabVisible"></ng-content>`,
 })
 export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     private _parent: EcoFabSpeedDialComponent;
 
     @ContentChildren(MatButton) _buttons: QueryList<MatButton>;
+
+    /**
+     * Whether the min-fab button exist in DOM
+     */
+    private miniFabVisible = false;
+
+    /**
+     * The timeout ID for the callback to show the mini-fab buttons
+     */
+    private showMiniFabAnimation: number;
+
+    /**
+     * When we will remove mini-fab buttons from DOM, after the animation is complete
+     */
+    private hideMiniFab: Subscription | null;
 
     constructor(injector: Injector, private renderer: Renderer2) {
         this._parent = injector.get(EcoFabSpeedDialComponent);
@@ -47,16 +64,23 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
         this.initButtonStates();
     }
 
-    private initButtonStates() {
-        this._buttons.toArray().forEach((button, i) => {
+    private initButtonStates(): void {
+        this._buttons.forEach((button, i) => {
             this.renderer.addClass(button._getHostElement(), 'eco-fab-action-item');
             this.changeElementStyle(button._getHostElement(), 'z-index', '' + (Z_INDEX_ITEM - i));
         });
     }
 
-    show() {
-        if (this._buttons) {
-            this._buttons.toArray().forEach((button, i) => {
+    show(): void {
+        if (!this._buttons) {
+            return;
+        }
+
+        this.resetAnimationState();
+        this.miniFabVisible = true;
+
+        this.showMiniFabAnimation = setTimeout(() => {
+            this._buttons.forEach((button, i) => {
                 let transitionDelay = 0;
                 let transform;
                 if (this._parent.animationMode === 'scale') {
@@ -66,37 +90,62 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
                 } else {
                     transform = this.getTranslateFunction('0');
                 }
-                this.changeElementStyle(button._getHostElement(), 'transition-delay', transitionDelay + 'ms');
-                this.changeElementStyle(button._getHostElement(), 'opacity', '1');
-                this.changeElementStyle(button._getHostElement(), 'transform', transform);
+
+                const hostElement = button._getHostElement();
+                this.changeElementStyle(hostElement, 'transition-delay', transitionDelay + 'ms');
+                this.changeElementStyle(hostElement, 'opacity', '1');
+                this.changeElementStyle(hostElement, 'transform', transform);
             });
+        }, 50); // Be sure that *ngIf can show elements before trying to animate them
+    }
+
+    private resetAnimationState(): void {
+        clearTimeout(this.showMiniFabAnimation);
+        if (this.hideMiniFab) {
+            this.hideMiniFab.unsubscribe();
+            this.hideMiniFab = null;
         }
     }
 
-    hide() {
-        if (this._buttons) {
-            this._buttons.toArray().forEach((button, i) => {
-                let opacity = '1';
-                let transitionDelay = 0;
-                let transform;
-                if (this._parent.animationMode === 'scale') {
-                    transitionDelay = 3 - (65 * i);
-                    transform = 'scale(0)';
-                    opacity = '0';
-                } else {
-                    transform = this.getTranslateFunction((55 * (i + 1) - (i * 5)) + 'px');
-                }
-                this.changeElementStyle(button._getHostElement(), 'transition-delay', transitionDelay + 'ms');
-                this.changeElementStyle(button._getHostElement(), 'opacity', opacity);
-                this.changeElementStyle(button._getHostElement(), 'transform', transform);
-            });
+    hide(): void {
+        if (!this._buttons) {
+            return;
         }
+
+        this.resetAnimationState();
+
+        const obs = this._buttons.map((button, i) => {
+            let opacity = '1';
+            let transitionDelay = 0;
+            let transform;
+
+            if (this._parent.animationMode === 'scale') {
+                transitionDelay = 3 - (65 * i);
+                transform = 'scale(0)';
+                opacity = '0';
+            } else {
+                transform = this.getTranslateFunction((55 * (i + 1) - (i * 5)) + 'px');
+            }
+
+            const hostElement = button._getHostElement();
+
+            this.changeElementStyle(hostElement, 'transition-delay', transitionDelay + 'ms');
+            this.changeElementStyle(hostElement, 'opacity', opacity);
+            this.changeElementStyle(hostElement, 'transform', transform);
+
+            return fromEvent(hostElement, 'transitionend').pipe(take(1));
+        });
+
+        // Wait for all animation to finish, then destroy their elements
+        this.hideMiniFab = forkJoin(obs).subscribe(() => this.miniFabVisible = false);
+
     }
 
-    private getTranslateFunction(value: string) {
+    private getTranslateFunction(value: string): string {
         const dir = this._parent.direction;
         const translateFn = (dir === 'up' || dir === 'down') ? 'translateY' : 'translateX';
         const sign = (dir === 'down' || dir === 'right') ? '-' : '';
+
         return translateFn + '(' + sign + value + ')';
     }
 
@@ -299,7 +348,7 @@ export class EcoFabSpeedDialTriggerComponent {
     }
 
     @HostListener('click', ['$event'])
-    _onClick(event: any) {
+    _onClick(event: Event): void {
         if (!this._parent.fixed) {
             this._parent.toggle();
             event.stopPropagation();
