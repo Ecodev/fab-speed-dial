@@ -4,18 +4,41 @@ node_js:
 
 cache: yarn
 
-script:
-  - yarn build-lib
-  - ./node_modules/.bin/ng test fab-speed-dial --progress false --watch=false --browsers ChromeHeadlessCustom
-  - ./node_modules/.bin/ng test demo --progress false --watch=false --browsers ChromeHeadlessCustom
-  - yarn build-demo
-  - yarn lint
+jobs:
+  include:
+    - stage: test
+      script:
+        - yarn build-lib
+        - ./node_modules/.bin/ng test fab-speed-dial --progress false --watch=false --browsers ChromeHeadlessCustom
+        - ./node_modules/.bin/ng test demo --progress false --watch=false --browsers ChromeHeadlessCustom
+        - yarn build-demo
+        - yarn lint
 
-deploy:
-  provider: pages
-  skip-cleanup: true
-  local-dir: dist/demo
-  github-token: $GITHUB_TOKEN
-  on:
-    all_branches: true
-    condition: $TRAVIS_BRANCH =~ ^master|develop$
+    - stage: publish docs
+      if: branch IN (master, develop)
+      script:
+        - yarn build-docs
+      deploy:
+        provider: pages
+        skip-cleanup: true
+        local-dir: dist/demo
+        github-token: $GITHUB_TOKEN
+        on:
+          all_branches: true
+
+    - stage: publish npm package
+      if: tag is present
+      script:
+        - yarn build-lib
+      before_deploy:
+        - rm .gitignore
+        - cd dist/fab-speed-dial
+      deploy:
+        provider: npm
+        skip-cleanup: true
+        email:
+          secure: XWYIcUYSjTyDCR9WKraRY5g7jDBasZLbNnJGn6dh/5sqkCXBrLjhQNVz3Dt4Yf/yRBkskfIV9fGGFNXewNtH6mAqLV4IIWmA3lnQ8dMm/3gGW/cQ9EnCeUkH7mWt4EV27tCOkFpLeuCNRVwrRQhjEpGWdD9gwFR/FkFK4d/5jwzopXh0lxa0IjxWAxXnv/mIZcjlPm14VyZqZ4jzD0jlqQn4UIS32ysEbKOmI+VF2UkpMY9Ye5T6lAXPJWCkIcqrUVGk/Bjty4gq76P/hGTTiglTHuSF/7ayie+X3++PZ/hu5DAGWDzreOrmiHX8zpjeZATq0085u4jPfxN2RhKXhs4wRIaQ7dFEuKpyipLS4vlChdJQ6F6GvLjVYYL7qwfGyu+ejTuCNbCfBKrzhbvLN3TrGtBCprwDPrsfj7HkTNde+KNDbL4/hXLI9oY4f9X/eslsj8wgeRehv5O62plPTb/hAIBl3WMEe/ixNidiKlXOz2Qfl2GlKILtg4WAWEi9lHxpbAk31JlKRegK1h9eOnf3twXJ9uUv/RieuDnPVlF7ps0GFG2Ol46GfqW+fWvlwmPSuf9k+IgnTSV5Ah8wgdijMJgKJcJSaTaE9wpFmyKLzNSwn59EjvHGBlNP1H9okWQFxjbZWanOO/A+Ac7ZwZ5Nlx/7qH/FEVqsW1U5QTM=
+        api_key:
+          secure: TJdIs/lyQiKEjNGFkcsRg/jYTX54xhVkT7K4VX6XvRnk4KGA3IJEJ+1ttuCy+Ts6YXhP4GXWoT9fAISFF7pJ9/S/FCS/+tvJXaRAvFuRVcEUIrt6WX4hBc29TmAlOdEQgEEwD1fYpgyEaxCqNNJFJUxGLKnCcw1OwT8MiUQE21PCzKFiYBh408NRvGjrgZIJfZi19Wg2YjyjdtvsWlozZfe+mOaZ2A6vOgl77G1soOZXAy/cUEbjVaorAfczOJANtVROJlwiu37Ggp/4Fl7wIrZaI/NN8qGQMURyj0m7KYIAfJCICnEs4LDPbT6W6DZvXlwktwdSYiI+BtqjSeO3fKeL4I0xuwShr0bUdjb/qsSQxTOLbFDytmXYhJYmlWC2lTfieDmqqSoyV9o8bD3fG00HsaTqMMVxeAp4txk8nta0mMWRi5LCDZIkBU2FDqsT7/hftjWncGGCOKjHyknn7T1kMhYseMVirYnkG7+BozUMToktyRyJuyubZLegErVmuN3iL3gZR7P2YxelLi7fNX/8cUMMj0GvXERH8qyqtQNotMIt1DsYQoCDCIuTZ2oaoGM0Jz+G5jFCpDL5wWiF2rNKvgUBAWELUHKdwj/6oc7EZ8SCHDqnsdT5sRxPBa3ejE+ye5UaE3wLnrKRJFOZjpAdui7MGoL8qn0ohKhArmU=
+        on:
+          tags: true

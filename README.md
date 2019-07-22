@@ -67,7 +67,7 @@ The most useful commands for development are:
 
 - `yarn dev` to start a development server
 - `yarn build-demo` to build the demo locally (it will be published automatically by Travis)
-- `yarn release` to publish the lib to npm
+- `git -a 1.2.3 && git push` to publish the lib to npm (via Travis deploy mechanism)
 
 ## TODO List
 
