@@ -29,7 +29,7 @@ export type AnimationMode = 'fling' | 'scale';
 @Component({
     selector: 'eco-fab-speed-dial-actions',
     template: `
-        <ng-content select="[mat-mini-fab]" *ngIf="miniFabVisible"></ng-content>`,
+        <ng-content select="button" *ngIf="miniFabVisible"></ng-content>`,
 })
 export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     private _parent: EcoFabSpeedDialComponent;
@@ -329,7 +329,7 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
 @Component({
     selector: 'eco-fab-speed-dial-trigger',
     template: `
-        <ng-content select="[mat-fab]"></ng-content>`,
+        <ng-content select="button"></ng-content>`,
 })
 export class EcoFabSpeedDialTriggerComponent {
     private _parent: EcoFabSpeedDialComponent;
