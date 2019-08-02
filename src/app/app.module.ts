@@ -4,20 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import 'hammerjs';
 
-import {
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatIconModule,
-    MatInputModule,
-    MatRadioModule,
-    MatSlideToggleModule,
-    MatTooltipModule,
-    MatToolbarModule,
-} from '@angular/material';
-
 import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
     declarations: [
