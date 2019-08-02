@@ -17,7 +17,7 @@ jobs:
     - stage: publish docs
       if: branch IN (master, develop)
       script:
-        - yarn build-docs
+        - yarn build-demo
       deploy:
         provider: pages
         skip-cleanup: true
