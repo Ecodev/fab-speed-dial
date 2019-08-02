@@ -4,9 +4,9 @@
     "license": "MIT",
     "repository": "github:Ecodev/fab-speed-dial",
     "peerDependencies": {
-        "@angular/common": "^7.0.0",
-        "@angular/core": "^7.0.0",
-        "@angular/material": "^7.0.1",
-        "rxjs": "^6.3.3"
+        "@angular/common": "^8.2.0",
+        "@angular/core": "^8.2.0",
+        "@angular/material": "^8.1.2",
+        "rxjs": "^6.5.2"
     }
 }

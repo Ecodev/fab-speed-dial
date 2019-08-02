@@ -13,7 +13,7 @@ describe('FabSpeedDial', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [],
-            declarations: [EcoFabSpeedDialComponent, EcoFabSpeedDialTriggerComponent, EcoFabSpeedDialActionsComponent, TestAppComponent]
+            declarations: [EcoFabSpeedDialComponent, EcoFabSpeedDialTriggerComponent, EcoFabSpeedDialActionsComponent, TestAppComponent],
         });
 
     }));
@@ -92,6 +92,7 @@ describe('FabSpeedDial', () => {
     it('should call "show" method of all fabActions', () => {
         const fixture = TestBed.createComponent(TestAppComponent);
         const testComponent = fixture.debugElement.componentInstance;
+        fixture.detectChanges();
 
         spyOn(fixture.componentInstance.fabSpeedDial, 'setActionsVisibility').and.callThrough();
         spyOn(fixture.componentInstance.fabActions, 'show').and.callThrough();
@@ -106,6 +107,7 @@ describe('FabSpeedDial', () => {
     it('should click on document testElement to hide all fabActions', () => {
         const fixture = TestBed.createComponent(TestAppComponent);
         const testComponent = fixture.debugElement.componentInstance;
+        fixture.detectChanges();
 
         const actionsSpy = spyOn(fixture.componentInstance.fabSpeedDial, 'setActionsVisibility').and.callThrough();
         spyOn(fixture.componentInstance.fabActions, 'show').and.callThrough();
@@ -148,9 +150,9 @@ describe('FabSpeedDial', () => {
     `,
 })
 class TestAppComponent {
-    @ViewChild(EcoFabSpeedDialActionsComponent)
+    @ViewChild(EcoFabSpeedDialActionsComponent, {static: false})
     public fabActions: EcoFabSpeedDialActionsComponent;
-    @ViewChild(EcoFabSpeedDialComponent)
+    @ViewChild(EcoFabSpeedDialComponent, {static: false})
     public fabSpeedDial: EcoFabSpeedDialComponent;
     public direction = 'up';
     public open: boolean;

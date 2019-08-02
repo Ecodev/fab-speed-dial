@@ -44,7 +44,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     /**
      * The timeout ID for the callback to show the mini-fab buttons
      */
-    private showMiniFabAnimation: number;
+    private showMiniFabAnimation: ReturnType<typeof setTimeout>;
 
     /**
      * When we will remove mini-fab buttons from DOM, after the animation is complete
@@ -249,7 +249,7 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
 
     @Output() openChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    @ContentChild(EcoFabSpeedDialActionsComponent) _childActions: EcoFabSpeedDialActionsComponent;
+    @ContentChild(EcoFabSpeedDialActionsComponent, {static: false}) _childActions: EcoFabSpeedDialActionsComponent;
 
     constructor(private elementRef: ElementRef, private renderer: Renderer2, @Inject(DOCUMENT) private document: Document) {
     }
