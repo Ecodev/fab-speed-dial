@@ -132,11 +132,6 @@
                         "tsConfig": "projects/fab-speed-dial/tsconfig.lib.json",
                         "project": "projects/fab-speed-dial/ng-package.json"
                     },
-                    "configurations": {
-                        "production": {
-                            "tsConfig": "projects/fab-speed-dial/tsconfig.lib.prod.json"
-                        }
-                    }
                 },
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
