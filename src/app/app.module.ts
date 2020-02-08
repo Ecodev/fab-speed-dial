@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import 'hammerjs';
 
 import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
 import { MatIconModule } from '@angular/material/icon';

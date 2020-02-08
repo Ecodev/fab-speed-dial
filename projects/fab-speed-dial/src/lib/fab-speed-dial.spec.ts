@@ -150,9 +150,9 @@ describe('FabSpeedDial', () => {
     `,
 })
 class TestAppComponent {
-    @ViewChild(EcoFabSpeedDialActionsComponent, {static: false})
+    @ViewChild(EcoFabSpeedDialActionsComponent)
     public fabActions: EcoFabSpeedDialActionsComponent;
-    @ViewChild(EcoFabSpeedDialComponent, {static: false})
+    @ViewChild(EcoFabSpeedDialComponent)
     public fabSpeedDial: EcoFabSpeedDialComponent;
     public direction = 'up';
     public open: boolean;

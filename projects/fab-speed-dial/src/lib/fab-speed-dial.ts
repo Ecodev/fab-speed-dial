@@ -249,7 +249,7 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
 
     @Output() openChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    @ContentChild(EcoFabSpeedDialActionsComponent, {static: false}) _childActions: EcoFabSpeedDialActionsComponent;
+    @ContentChild(EcoFabSpeedDialActionsComponent) _childActions: EcoFabSpeedDialActionsComponent;
 
     constructor(private elementRef: ElementRef, private renderer: Renderer2, @Inject(DOCUMENT) private document: Document) {
     }

@@ -1,7 +1,6 @@
 {
     "extends": "../../tslint.json",
     "rules": {
-        "no-use-before-declare": false,
         "directive-selector": [
             true,
             "attribute",
