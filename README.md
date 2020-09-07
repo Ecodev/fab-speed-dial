@@ -69,12 +69,6 @@ The most useful commands for development are:
 - `yarn build-demo` to build the demo locally (it will be published automatically by Travis)
 - `git tag -a 1.2.3 && git push` to publish the lib to npm (via Travis deploy mechanism)
 
-## TODO List
-
- - Change color of the fab buttons on hover/selection
- - Make the trigger button change icon when the user open the speed dial (configurable)
- - Let the speed dial open a "sheet" of material instead of just mini-fab action buttons
-
 ## Prior work
 
 This lib was originally based on [angular-smd](https://github.com/jefersonestevo/angular-smd),
