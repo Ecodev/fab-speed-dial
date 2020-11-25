@@ -5,19 +5,19 @@
   To learn more about this file see: https://angular.io/config/solution-tsconfig.
 */
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/fab-speed-dial/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/fab-speed-dial/tsconfig.spec.json"
-    }
-  ]
+    "files": [],
+    "references": [
+        {
+            "path": "./tsconfig.app.json"
+        },
+        {
+            "path": "./tsconfig.spec.json"
+        },
+        {
+            "path": "./projects/fab-speed-dial/tsconfig.lib.json"
+        },
+        {
+            "path": "./projects/fab-speed-dial/tsconfig.spec.json"
+        }
+    ]
 }

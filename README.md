@@ -13,13 +13,13 @@ See the component in action on [the demo page](https://ecodev.github.io/fab-spee
 ## Install
 
 1. Install the library:
-    ```bash
-    yarn add @ecodev/fab-speed-dial
-    ```
+   ```bash
+   yarn add @ecodev/fab-speed-dial
+   ```
 2. In `app.module.ts` add the following modules to the `imports` array:
-    - `MatButtonModule`
-    - `MatIconModule`
-    - `EcoFabSpeedDialModule`
+   - `MatButtonModule`
+   - `MatIconModule`
+   - `EcoFabSpeedDialModule`
 
 ## Usage
 
@@ -28,15 +28,15 @@ or adapt the bindings to your needs:
 
 ```html
 <eco-fab-speed-dial>
-    <eco-fab-speed-dial-trigger>
-        <button mat-fab (click)="doAction('trigger')"><mat-icon>menu</mat-icon></button>
-    </eco-fab-speed-dial-trigger>
+  <eco-fab-speed-dial-trigger>
+    <button mat-fab (click)="doAction('trigger')"><mat-icon>menu</mat-icon></button>
+  </eco-fab-speed-dial-trigger>
 
-    <eco-fab-speed-dial-actions>
-        <button mat-mini-fab (click)="doAction('action1')"><mat-icon>add</mat-icon></button>
-        <button mat-mini-fab (click)="doAction('action2')"><mat-icon>edit</mat-icon></button>
-        <button mat-mini-fab (click)="doAction('action3')"><mat-icon>search</mat-icon></button>
-    </eco-fab-speed-dial-actions>
+  <eco-fab-speed-dial-actions>
+    <button mat-mini-fab (click)="doAction('action1')"><mat-icon>add</mat-icon></button>
+    <button mat-mini-fab (click)="doAction('action2')"><mat-icon>edit</mat-icon></button>
+    <button mat-mini-fab (click)="doAction('action3')"><mat-icon>search</mat-icon></button>
+  </eco-fab-speed-dial-actions>
 </eco-fab-speed-dial>
 ```
 
@@ -44,18 +44,18 @@ or adapt the bindings to your needs:
 
 ### eco-fab-speed-dial
 
-| Property         | Type                 | Default             | Description                                            |
-|------------------|----------------------|---------------------|--------------------------------------------------------|
-| `open`             | `boolean`          | `false`             | Indicates if this FAB Speed Dial is opened             |
-| `direction`        | `up`, `down`, `left` or `right` | `up`   | The direction to open the action buttons               |
-| `animationMode`    | `fling` or `scale` | `fling`             | The animation to apply when opening the action buttons |
-| `fixed`            | `boolean`          | `false`             | Indicates if this FAB Speed Dial is fixed (user cannot change the open state on click) |
+| Property        | Type                            | Default | Description                                                                            |
+| --------------- | ------------------------------- | ------- | -------------------------------------------------------------------------------------- |
+| `open`          | `boolean`                       | `false` | Indicates if this FAB Speed Dial is opened                                             |
+| `direction`     | `up`, `down`, `left` or `right` | `up`    | The direction to open the action buttons                                               |
+| `animationMode` | `fling` or `scale`              | `fling` | The animation to apply when opening the action buttons                                 |
+| `fixed`         | `boolean`                       | `false` | Indicates if this FAB Speed Dial is fixed (user cannot change the open state on click) |
 
 ### eco-fab-speed-dial-trigger
 
-| Property         | Type         | Default             | Description                                     |
-|------------------|--------------|---------------------|-------------------------------------------------|
-| `spin`           | `boolean`    | `false`             | Enables the rotation of the trigger action when the speed dial is opening |
+| Property | Type      | Default | Description                                                               |
+| -------- | --------- | ------- | ------------------------------------------------------------------------- |
+| `spin`   | `boolean` | `false` | Enables the rotation of the trigger action when the speed dial is opening |
 
 Additionally to spin property, add class "spin180" or "spin360" on html content inside of `eco-fab-speed-dial-trigger` tag to activate rotation on a specific element.
 

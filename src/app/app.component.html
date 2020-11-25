@@ -2,10 +2,10 @@
     <mat-toolbar-row>
         <span>FAB Speed Dial</span>
         <span class="example-spacer"></span>
-        <a mat-button href="https://github.com/ecodev/fab-speed-dial"><img src="assets/github-circle-transparent.svg"
-                class="github-logo"> GitHub</a>
+        <a mat-button href="https://github.com/ecodev/fab-speed-dial"
+            ><img src="assets/github-circle-transparent.svg" class="github-logo" /> GitHub</a
+        >
     </mat-toolbar-row>
-
 </mat-toolbar>
 
 <mat-card class="fab-demo-actions">
@@ -35,12 +35,10 @@
 </mat-card>
 
 <div class="container-fab-demo">
-
     <mat-card>
         <mat-card-title>Click me</mat-card-title>
         <mat-slide-toggle [(ngModel)]="open" (click)="stopPropagation($event)">Open</mat-slide-toggle>
         <eco-fab-speed-dial [(open)]="open" [direction]="direction" [animationMode]="animationMode" [fixed]="fixed">
-
             <eco-fab-speed-dial-trigger [spin]="spin">
                 <button mat-fab (click)="doAction('trigger')">
                     <mat-icon class="spin180">add</mat-icon>
@@ -58,15 +56,19 @@
                     <mat-icon>home</mat-icon>
                 </button>
             </eco-fab-speed-dial-actions>
-
         </eco-fab-speed-dial>
     </mat-card>
 
     <mat-card>
         <mat-card-title>Hover me</mat-card-title>
-        <eco-fab-speed-dial #myFab [direction]="direction" [animationMode]="animationMode" [fixed]="fixed" (mouseenter)="myFab.open = true"
-            (mouseleave)="myFab.open = false">
-
+        <eco-fab-speed-dial
+            #myFab
+            [direction]="direction"
+            [animationMode]="animationMode"
+            [fixed]="fixed"
+            (mouseenter)="myFab.open = true"
+            (mouseleave)="myFab.open = false"
+        >
             <eco-fab-speed-dial-trigger [spin]="spin">
                 <button mat-fab (click)="doAction('trigger')">
                     <mat-icon class="spin360">check</mat-icon>
@@ -84,8 +86,6 @@
                     <mat-icon>menu</mat-icon>
                 </button>
             </eco-fab-speed-dial-actions>
-
         </eco-fab-speed-dial>
     </mat-card>
-
 </div>

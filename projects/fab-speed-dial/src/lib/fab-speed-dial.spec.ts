@@ -1,21 +1,24 @@
-import { async, TestBed } from '@angular/core/testing';
+import {async, TestBed} from '@angular/core/testing';
 
 import {
     EcoFabSpeedDialActionsComponent,
     EcoFabSpeedDialComponent,
     EcoFabSpeedDialTriggerComponent,
 } from './fab-speed-dial';
-import { By } from '@angular/platform-browser';
-import { Component, ViewChild } from '@angular/core';
+import {By} from '@angular/platform-browser';
+import {Component, ViewChild} from '@angular/core';
 
 describe('FabSpeedDial', () => {
-
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [],
-            declarations: [EcoFabSpeedDialComponent, EcoFabSpeedDialTriggerComponent, EcoFabSpeedDialActionsComponent, TestAppComponent],
+            declarations: [
+                EcoFabSpeedDialComponent,
+                EcoFabSpeedDialTriggerComponent,
+                EcoFabSpeedDialActionsComponent,
+                TestAppComponent,
+            ],
         });
-
     }));
 
     it('should apply direction class based on direction', () => {
@@ -127,7 +130,6 @@ describe('FabSpeedDial', () => {
         expect(fixture.componentInstance.fabSpeedDial.setActionsVisibility).toHaveBeenCalled();
         expect(fixture.componentInstance.fabActions.hide).toHaveBeenCalled();
     });
-
 });
 
 /** Test component that contains an fab speed dial buttons */

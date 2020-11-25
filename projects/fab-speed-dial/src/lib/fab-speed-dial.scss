@@ -11,7 +11,14 @@
     order: $order;
 }
 
-@mixin eco-fab-speed-dial-actions($box-orient, $box-direction, $flex-direction, $ordinal-group, $order, $action-item-margin-direction) {
+@mixin eco-fab-speed-dial-actions(
+    $box-orient,
+    $box-direction,
+    $flex-direction,
+    $ordinal-group,
+    $order,
+    $action-item-margin-direction
+) {
     -webkit-box-orient: $box-orient;
     -webkit-box-direction: $box-direction;
     -webkit-flex-direction: $flex-direction;
@@ -56,9 +63,10 @@ eco-fab-speed-dial {
             z-index: 24;
 
             &.eco-spin {
-                .spin180, .spin360 {
-                    -webkit-transition: all .6s cubic-bezier(.4, 0, .2, 1);
-                    transition: all .6s cubic-bezier(.4, 0, .2, 1);
+                .spin180,
+                .spin360 {
+                    -webkit-transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+                    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
                 }
             }
         }
@@ -69,7 +77,7 @@ eco-fab-speed-dial {
             display: flex;
             position: absolute;
             height: 0;
-            width: 0
+            width: 0;
         }
     }
 
@@ -79,8 +87,8 @@ eco-fab-speed-dial {
                 & .eco-fab-action-item {
                     display: block;
                     opacity: 1;
-                    -webkit-transition: all .3s cubic-bezier(.55, 0, .55, .2);
-                    transition: all .3s cubic-bezier(.55, 0, .55, .2);
+                    -webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+                    transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
                 }
             }
         }
@@ -92,17 +100,16 @@ eco-fab-speed-dial {
                 & .eco-fab-action-item {
                     -webkit-transform: scale(0);
                     transform: scale(0);
-                    -webkit-transition: all .3s cubic-bezier(.55, 0, .55, .2);
-                    transition: all .3s cubic-bezier(.55, 0, .55, .2);
-                    -webkit-transition-duration: .14286s;
-                    transition-duration: .14286s;
+                    -webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+                    transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+                    -webkit-transition-duration: 0.14286s;
+                    transition-duration: 0.14286s;
                 }
             }
         }
     }
 
     &.eco-down {
-
         eco-fab-speed-dial-actions {
             bottom: 2px;
             left: 7px;
@@ -177,6 +184,4 @@ eco-fab-speed-dial {
             }
         }
     }
-
 }
-

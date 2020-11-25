@@ -7,6 +7,4 @@ export {
     EcoFabSpeedDialTriggerComponent,
 } from './lib/fab-speed-dial';
 
-export {
-    EcoFabSpeedDialModule,
-} from './lib/fab-speed-dial.module';
+export {EcoFabSpeedDialModule} from './lib/fab-speed-dial.module';

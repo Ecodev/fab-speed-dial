@@ -1,4 +1,4 @@
-import { EcoFabSpeedDialModule } from './fab-speed-dial.module';
+import {EcoFabSpeedDialModule} from './fab-speed-dial.module';
 
 describe('EcoFabSpeedDialModule', () => {
     it('should work', () => {

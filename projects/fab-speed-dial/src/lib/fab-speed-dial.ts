@@ -16,10 +16,10 @@ import {
     Renderer2,
     ViewEncapsulation,
 } from '@angular/core';
-import { MatButton } from '@angular/material/button';
-import { DOCUMENT } from '@angular/common';
-import { forkJoin, fromEvent, Subscription } from 'rxjs';
-import { take } from 'rxjs/operators';
+import {MatButton} from '@angular/material/button';
+import {DOCUMENT} from '@angular/common';
+import {forkJoin, fromEvent, Subscription} from 'rxjs';
+import {take} from 'rxjs/operators';
 
 const Z_INDEX_ITEM = 23;
 
@@ -28,8 +28,7 @@ export type AnimationMode = 'fling' | 'scale';
 
 @Component({
     selector: 'eco-fab-speed-dial-actions',
-    template: `
-        <ng-content select="[mat-mini-fab]" *ngIf="miniFabVisible"></ng-content>`,
+    template: ` <ng-content select="[mat-mini-fab]" *ngIf="miniFabVisible"></ng-content>`,
 })
 export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     private _parent: EcoFabSpeedDialComponent;
@@ -85,7 +84,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
                 let transform;
                 if (this._parent.animationMode === 'scale') {
                     // Incremental transition delay of 65ms for each action button
-                    transitionDelay = 3 + (65 * i);
+                    transitionDelay = 3 + 65 * i;
                     transform = 'scale(1)';
                 } else {
                     transform = this.getTranslateFunction('0');
@@ -120,11 +119,11 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
             let transform;
 
             if (this._parent.animationMode === 'scale') {
-                transitionDelay = 3 - (65 * i);
+                transitionDelay = 3 - 65 * i;
                 transform = 'scale(0)';
                 opacity = '0';
             } else {
-                transform = this.getTranslateFunction((55 * (i + 1) - (i * 5)) + 'px');
+                transform = this.getTranslateFunction(55 * (i + 1) - i * 5 + 'px');
             }
 
             const hostElement = button._getHostElement();
@@ -137,14 +136,13 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
         });
 
         // Wait for all animation to finish, then destroy their elements
-        this.hideMiniFab = forkJoin(obs).subscribe(() => this.miniFabVisible = false);
-
+        this.hideMiniFab = forkJoin(obs).subscribe(() => (this.miniFabVisible = false));
     }
 
     private getTranslateFunction(value: string): string {
         const dir = this._parent.direction;
-        const translateFn = (dir === 'up' || dir === 'down') ? 'translateY' : 'translateX';
-        const sign = (dir === 'down' || dir === 'right') ? '-' : '';
+        const translateFn = dir === 'up' || dir === 'down' ? 'translateY' : 'translateX';
+        const sign = dir === 'down' || dir === 'right' ? '-' : '';
 
         return translateFn + '(' + sign + value + ')';
     }
@@ -191,7 +189,8 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
      * Whether this speed dial is opened
      */
     @HostBinding('class.eco-opened')
-    @Input() get open(): boolean {
+    @Input()
+    get open(): boolean {
         return this._open;
     }
 
@@ -242,7 +241,7 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
 
             if (this.isInitialized) {
                 // To start another detect lifecycle and force the "close" on the action buttons
-                Promise.resolve(null).then(() => this.open = false);
+                Promise.resolve(null).then(() => (this.open = false));
             }
         }
     }
@@ -251,8 +250,11 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
 
     @ContentChild(EcoFabSpeedDialActionsComponent) _childActions: EcoFabSpeedDialActionsComponent;
 
-    constructor(private elementRef: ElementRef, private renderer: Renderer2, @Inject(DOCUMENT) private document: Document) {
-    }
+    constructor(
+        private elementRef: ElementRef,
+        private renderer: Renderer2,
+        @Inject(DOCUMENT) private document: Document,
+    ) {}
 
     ngAfterContentInit(): void {
         this.isInitialized = true;
@@ -323,13 +325,11 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
             this._documentClickUnlistener = null;
         }
     }
-
 }
 
 @Component({
     selector: 'eco-fab-speed-dial-trigger',
-    template: `
-        <ng-content select="[mat-fab]"></ng-content>`,
+    template: ` <ng-content select="[mat-fab]"></ng-content>`,
 })
 export class EcoFabSpeedDialTriggerComponent {
     private _parent: EcoFabSpeedDialComponent;
@@ -354,5 +354,4 @@ export class EcoFabSpeedDialTriggerComponent {
             event.stopPropagation();
         }
     }
-
 }
