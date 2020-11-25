@@ -1,6 +1,6 @@
 # Angular Material FAB speed dial
 
-[![Build Status](https://travis-ci.com/Ecodev/fab-speed-dial.svg?branch=master)](https://travis-ci.com/Ecodev/fab-speed-dial)
+[![Build Status](https://github.com/Ecodev/fab-speed-dial/workflows/main/badge.svg)](https://github.com/Ecodev/fab-speed-dial/actions)
 [![Total Downloads](https://img.shields.io/npm/dt/@ecodev/fab-speed-dial.svg)](https://www.npmjs.com/package/@ecodev/fab-speed-dial)
 [![Latest Stable Version](https://img.shields.io/npm/v/@ecodev/fab-speed-dial.svg)](https://www.npmjs.com/package/@ecodev/fab-speed-dial)
 [![License](https://img.shields.io/npm/l/@ecodev/fab-speed-dial.svg)](https://www.npmjs.com/package/@ecodev/fab-speed-dial)
@@ -66,8 +66,8 @@ In case of buttons, the icon should rotate not the whole button (box-shadow woul
 The most useful commands for development are:
 
 - `yarn dev` to start a development server
-- `yarn build-demo` to build the demo locally (it will be published automatically by Travis)
-- `git tag -a 1.2.3 && git push` to publish the lib to npm (via Travis deploy mechanism)
+- `yarn build-demo` to build the demo locally (it will be published automatically by GitHub Actions)
+- `git tag -a 1.2.3 && git push` to publish the lib to npm (via GitHub Actions `release` job)
 
 ## Prior work
 

@@ -1,0 +1,104 @@
+name: main
+on: [push, pull_request]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                  fetch-depth: 0 # Need all tags to get a version number in-between tags
+            - uses: actions/setup-node@v2-beta
+            - run: yarn --frozen-lockfile
+            - run: yarn build-demo
+            - uses: actions/upload-artifact@v2
+              with:
+                  name: dist
+                  path: dist/
+
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v2-beta
+            - run: yarn --frozen-lockfile
+            - run: ./node_modules/.bin/ng test fab-speed-dial --progress false --watch=false --browsers ChromeHeadlessCustom
+            - run: ./node_modules/.bin/ng test demo --progress false --watch=false --browsers ChromeHeadlessCustom
+
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v2-beta
+            - run: yarn --frozen-lockfile
+            - run: yarn lint
+
+    prettier:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v2-beta
+            - run: yarn --frozen-lockfile
+            - run: ./node_modules/.bin/prettier --check .
+
+    publish-demo:
+        runs-on: ubuntu-latest
+        needs:
+            - build
+            - test
+        steps:
+            - uses: actions/download-artifact@v2
+              with:
+                  name: dist
+                  path: dist/
+            - uses: crazy-max/ghaction-github-pages@v2
+              with:
+                  build_dir: dist/demo
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    release:
+        runs-on: ubuntu-latest
+        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+        needs:
+            - build
+            - test
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                  ref: ${{ github.ref }} # Otherwise our annotated tag is not fetched and we cannot get correct version
+            - uses: actions/download-artifact@v2
+              with:
+                  name: dist
+                  path: dist/
+            - run: rm .gitignore
+
+            # Publish to npm
+            - uses: actions/setup-node@v2-beta
+              with:
+                  registry-url: 'https://registry.npmjs.org'
+            - run: npm publish --access public dist/fab-speed-dial
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+            # Publish to GitHub Packages
+            - uses: actions/setup-node@v2-beta
+              with:
+                  registry-url: 'https://npm.pkg.github.com'
+            - run: npm publish --access public dist/fab-speed-dial
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            # Create release
+            - name: Get release info
+              id: release-info
+              run: |
+                  echo "::set-output name=subject::$(git tag --format '%(contents:subject)' --points-at)"
+                  git tag --format '%(contents:body)' --points-at > release-body.txt
+            - uses: actions/create-release@v1
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+              with:
+                  tag_name: ${{ github.ref }}
+                  release_name: ${{ steps.release-info.outputs.subject }}
+                  body_path: release-body.txt
