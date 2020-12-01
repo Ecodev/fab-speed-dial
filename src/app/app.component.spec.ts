@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
@@ -18,26 +18,28 @@ describe('AppComponent', () => {
     let component: AppComponent;
     let fixture: ComponentFixture<AppComponent>;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [
-                EcoFabSpeedDialModule,
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [
+                    EcoFabSpeedDialModule,
 
-                MatIconModule,
-                MatButtonModule,
-                MatButtonToggleModule,
-                MatInputModule,
-                MatRadioModule,
-                MatCardModule,
-                MatCheckboxModule,
-                MatSlideToggleModule,
-                MatTooltipModule,
-                MatToolbarModule,
-                FormsModule,
-            ],
-            declarations: [AppComponent],
-        }).compileComponents();
-    }));
+                    MatIconModule,
+                    MatButtonModule,
+                    MatButtonToggleModule,
+                    MatInputModule,
+                    MatRadioModule,
+                    MatCardModule,
+                    MatCheckboxModule,
+                    MatSlideToggleModule,
+                    MatTooltipModule,
+                    MatToolbarModule,
+                    FormsModule,
+                ],
+                declarations: [AppComponent],
+            }).compileComponents();
+        }),
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(AppComponent);
