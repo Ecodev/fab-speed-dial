@@ -18,10 +18,15 @@
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
-                        "aot": true,
                         "assets": ["src/favicon.ico", "src/assets"],
                         "styles": ["src/styles.css"],
-                        "scripts": []
+                        "scripts": [],
+                        "vendorChunk": true,
+                        "extractLicenses": false,
+                        "buildOptimizer": false,
+                        "sourceMap": true,
+                        "optimization": false,
+                        "namedChunks": true
                     },
                     "configurations": {
                         "production": {
@@ -50,19 +55,23 @@
                                     "maximumError": "10kb"
                                 }
                             ]
-                        }
-                    }
+                        },
+                        "development": {}
+                    },
+                    "defaultConfiguration": "production"
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
-                    "options": {
-                        "browserTarget": "demo:build"
-                    },
+                    "options": {},
                     "configurations": {
                         "production": {
                             "browserTarget": "demo:build:production"
+                        },
+                        "development": {
+                            "browserTarget": "demo:build:development"
                         }
-                    }
+                    },
+                    "defaultConfiguration": "development"
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -92,14 +101,17 @@
                 "e2e": {
                     "builder": "@angular-devkit/build-angular:protractor",
                     "options": {
-                        "protractorConfig": "e2e/protractor.conf.js",
-                        "devServerTarget": "demo:serve"
+                        "protractorConfig": "e2e/protractor.conf.js"
                     },
                     "configurations": {
                         "production": {
                             "devServerTarget": "demo:serve:production"
+                        },
+                        "development": {
+                            "devServerTarget": "demo:serve:development"
                         }
-                    }
+                    },
+                    "defaultConfiguration": "development"
                 }
             }
         },
@@ -114,7 +126,8 @@
                     "options": {
                         "tsConfig": "projects/fab-speed-dial/tsconfig.lib.json",
                         "project": "projects/fab-speed-dial/ng-package.json"
-                    }
+                    },
+                    "configurations": {}
                 },
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
