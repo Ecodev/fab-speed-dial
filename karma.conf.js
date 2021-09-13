@@ -36,5 +36,6 @@ module.exports = function (config) {
             },
         },
         singleRun: false,
+        failOnSkippedTests: true,
     });
 };
