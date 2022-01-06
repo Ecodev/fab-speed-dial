@@ -1,8 +1,8 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
-// Use puppeteer to control a headless Chrome
-process.env.CHROME_BIN = require('puppeteer').executablePath();
+// Use Playwright Chromium
+process.env.CHROME_BIN = require('@playwright/test').chromium.executablePath();
 
 module.exports = function (config) {
     config.set({

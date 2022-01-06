@@ -28,6 +28,7 @@ jobs:
             - run: yarn --frozen-lockfile
             - run: ./node_modules/.bin/ng test fab-speed-dial --progress false --watch=false --browsers ChromeHeadlessCustom
             - run: ./node_modules/.bin/ng test demo --progress false --watch=false --browsers ChromeHeadlessCustom
+            - run: yarn e2e
 
     lint:
         runs-on: ubuntu-latest

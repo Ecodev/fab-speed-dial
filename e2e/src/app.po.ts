@@ -1,11 +1,9 @@
-import {browser, by, element} from 'protractor';
+import {Page} from '@playwright/test';
 
 export class AppPage {
-    navigateTo() {
-        return browser.get(browser.baseUrl) as Promise<any>;
-    }
+    constructor(private readonly page: Page) {}
 
-    getParagraphText() {
-        return element(by.css('mat-toolbar-row')).getText() as Promise<string>;
+    public getParagraphText(): Promise<string> {
+        return this.page.innerText('mat-toolbar-row');
     }
 }
