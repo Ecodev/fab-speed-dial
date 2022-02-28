@@ -92,10 +92,9 @@
                     }
                 },
                 "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
+                    "builder": "@angular-eslint/builder:lint",
                     "options": {
-                        "tsConfig": ["tsconfig.app.json", "tsconfig.spec.json", "e2e/tsconfig.json"],
-                        "exclude": ["**/node_modules/**"]
+                        "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
                     }
                 }
             }
@@ -118,7 +117,8 @@
                         "development": {
                             "tsConfig": "projects/fab-speed-dial/tsconfig.lib.json"
                         }
-                    }
+                    },
+                    "defaultConfiguration": "production"
                 },
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
@@ -129,13 +129,9 @@
                     }
                 },
                 "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
+                    "builder": "@angular-eslint/builder:lint",
                     "options": {
-                        "tsConfig": [
-                            "projects/fab-speed-dial/tsconfig.lib.json",
-                            "projects/fab-speed-dial/tsconfig.spec.json"
-                        ],
-                        "exclude": ["**/node_modules/**"]
+                        "lintFilePatterns": ["projects/fab-speed-dial/**/*.ts", "projects/fab-speed-dial/**/*.html"]
                     }
                 }
             }

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {AnimationMode, Direction} from '@ecodev/fab-speed-dial';
 
 @Component({
     selector: 'app-root',
@@ -6,20 +7,20 @@ import {Component} from '@angular/core';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-    constructor() {}
+    public constructor() {}
 
     private _fixed = false;
 
     public open = false;
     public spin = false;
-    public direction = 'up';
-    public animationMode = 'fling';
+    public direction: Direction = 'up';
+    public animationMode: AnimationMode = 'fling';
 
-    get fixed(): boolean {
+    public get fixed(): boolean {
         return this._fixed;
     }
 
-    set fixed(fixed: boolean) {
+    public set fixed(fixed: boolean) {
         this._fixed = fixed;
         if (this._fixed) {
             this.open = true;
@@ -32,7 +33,7 @@ export class AppComponent {
         event.stopPropagation();
     }
 
-    public doAction(event: any) {
+    public doAction(event: string): void {
         console.log(event);
     }
 }

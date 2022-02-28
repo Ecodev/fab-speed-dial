@@ -1,6 +1,7 @@
 import {TestBed, waitForAsync} from '@angular/core/testing';
 
 import {
+    Direction,
     EcoFabSpeedDialActionsComponent,
     EcoFabSpeedDialComponent,
     EcoFabSpeedDialTriggerComponent,
@@ -155,19 +156,9 @@ describe('FabSpeedDial', () => {
 })
 class TestAppComponent {
     @ViewChild(EcoFabSpeedDialActionsComponent)
-    public fabActions: EcoFabSpeedDialActionsComponent;
+    public fabActions!: EcoFabSpeedDialActionsComponent;
     @ViewChild(EcoFabSpeedDialComponent)
-    public fabSpeedDial: EcoFabSpeedDialComponent;
-    public direction = 'up';
-    public open: boolean;
-
-    clickCount = 0;
-    isDisabled = false;
-    rippleDisabled = false;
-
-    tabIndex: number;
-
-    increment() {
-        this.clickCount++;
-    }
+    public fabSpeedDial!: EcoFabSpeedDialComponent;
+    public direction: Direction = 'up';
+    public open: boolean = false;
 }

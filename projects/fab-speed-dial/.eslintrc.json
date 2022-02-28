@@ -1,0 +1,25 @@
+{
+    "overrides": [
+        {
+            "files": ["*.ts"],
+            "rules": {
+                "@angular-eslint/directive-selector": [
+                    "error",
+                    {
+                        "type": "attribute",
+                        "prefix": "eco",
+                        "style": "camelCase"
+                    }
+                ],
+                "@angular-eslint/component-selector": [
+                    "error",
+                    {
+                        "type": "element",
+                        "prefix": "eco",
+                        "style": "kebab-case"
+                    }
+                ]
+            }
+        }
+    ]
+}

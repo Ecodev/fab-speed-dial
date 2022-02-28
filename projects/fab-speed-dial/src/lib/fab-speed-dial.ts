@@ -33,7 +33,7 @@ export type AnimationMode = 'fling' | 'scale';
 export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     private _parent: EcoFabSpeedDialComponent;
 
-    @ContentChildren(MatButton) _buttons: QueryList<MatButton>;
+    @ContentChildren(MatButton) private _buttons!: QueryList<MatButton>;
 
     /**
      * Whether the min-fab button exist in DOM
@@ -43,18 +43,18 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     /**
      * The timeout ID for the callback to show the mini-fab buttons
      */
-    private showMiniFabAnimation: ReturnType<typeof setTimeout>;
+    private showMiniFabAnimation: ReturnType<typeof setTimeout> | undefined;
 
     /**
      * When we will remove mini-fab buttons from DOM, after the animation is complete
      */
-    private hideMiniFab: Subscription | null;
+    private hideMiniFab: Subscription | null = null;
 
-    constructor(injector: Injector, private renderer: Renderer2) {
+    public constructor(injector: Injector, private renderer: Renderer2) {
         this._parent = injector.get(EcoFabSpeedDialComponent);
     }
 
-    ngAfterContentInit(): void {
+    public ngAfterContentInit(): void {
         this._buttons.changes.subscribe(() => {
             this.initButtonStates();
             this._parent.setActionsVisibility();
@@ -70,7 +70,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
         });
     }
 
-    show(): void {
+    public show(): void {
         if (!this._buttons) {
             return;
         }
@@ -106,7 +106,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
         }
     }
 
-    hide(): void {
+    public hide(): void {
         if (!this._buttons) {
             return;
         }
@@ -147,7 +147,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
         return translateFn + '(' + sign + value + ')';
     }
 
-    private changeElementStyle(elem: any, style: string, value: string) {
+    private changeElementStyle(elem: any, style: string, value: string): void {
         // FIXME - Find a way to create a "wrapper" around the action button(s) provided by the user, so we don't change it's style tag
         this.renderer.setStyle(elem, style, value);
     }
@@ -176,11 +176,12 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
     /**
      * Whether this speed dial is fixed on screen (user cannot change it by clicking)
      */
-    @Input() get fixed(): boolean {
+    @Input()
+    public get fixed(): boolean {
         return this._fixed;
     }
 
-    set fixed(fixed: boolean) {
+    public set fixed(fixed: boolean) {
         this._fixed = fixed;
         this._processOutsideClickState();
     }
@@ -190,11 +191,11 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
      */
     @HostBinding('class.eco-opened')
     @Input()
-    get open(): boolean {
+    public get open(): boolean {
         return this._open;
     }
 
-    set open(open: boolean) {
+    public set open(open: boolean) {
         const previousOpen = this._open;
         this._open = open;
         if (previousOpen !== this._open) {
@@ -208,11 +209,12 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
     /**
      * The direction of the speed dial. Can be 'up', 'down', 'left' or 'right'
      */
-    @Input() get direction(): Direction {
+    @Input()
+    public get direction(): Direction {
         return this._direction;
     }
 
-    set direction(direction: Direction) {
+    public set direction(direction: Direction) {
         const previousDirection = this._direction;
         this._direction = direction;
         if (previousDirection !== this.direction) {
@@ -228,11 +230,12 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
     /**
      * The animation mode to open the speed dial. Can be 'fling' or 'scale'
      */
-    @Input() get animationMode(): AnimationMode {
+    @Input()
+    public get animationMode(): AnimationMode {
         return this._animationMode;
     }
 
-    set animationMode(animationMode: AnimationMode) {
+    public set animationMode(animationMode: AnimationMode) {
         const previousAnimationMode = this._animationMode;
         this._animationMode = animationMode;
         if (previousAnimationMode !== this._animationMode) {
@@ -246,24 +249,24 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
         }
     }
 
-    @Output() openChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() public readonly openChange = new EventEmitter<boolean>();
 
-    @ContentChild(EcoFabSpeedDialActionsComponent) _childActions: EcoFabSpeedDialActionsComponent;
+    @ContentChild(EcoFabSpeedDialActionsComponent) private _childActions!: EcoFabSpeedDialActionsComponent;
 
-    constructor(
+    public constructor(
         private elementRef: ElementRef,
         private renderer: Renderer2,
         @Inject(DOCUMENT) private document: Document,
     ) {}
 
-    ngAfterContentInit(): void {
+    public ngAfterContentInit(): void {
         this.isInitialized = true;
         this.setActionsVisibility();
         this._setElementClass(this.direction, true);
         this._setElementClass(this.animationMode, true);
     }
 
-    ngOnDestroy() {
+    public ngOnDestroy(): void {
         this._unsetDocumentClickListener();
     }
 
@@ -275,13 +278,13 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
     }
 
     @HostListener('click')
-    _onClick(): void {
+    public _onClick(): void {
         if (!this.fixed && this.open) {
             this.open = false;
         }
     }
 
-    setActionsVisibility(): void {
+    public setActionsVisibility(): void {
         if (!this._childActions) {
             return;
         }
@@ -303,7 +306,7 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
         }
     }
 
-    private _processOutsideClickState() {
+    private _processOutsideClickState(): void {
         if (!this.fixed && this.open) {
             this._setDocumentClickListener();
         } else {
@@ -311,7 +314,7 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
         }
     }
 
-    private _setDocumentClickListener() {
+    private _setDocumentClickListener(): void {
         if (!this._documentClickUnlistener) {
             this._documentClickUnlistener = this.renderer.listen(this.document, 'click', () => {
                 this.open = false;
@@ -319,7 +322,7 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
         }
     }
 
-    private _unsetDocumentClickListener() {
+    private _unsetDocumentClickListener(): void {
         if (this._documentClickUnlistener) {
             this._documentClickUnlistener();
             this._documentClickUnlistener = null;
@@ -337,18 +340,19 @@ export class EcoFabSpeedDialTriggerComponent {
     /**
      * Whether this trigger should spin (360dg) while opening the speed dial
      */
-    @HostBinding('class.eco-spin') get sp() {
+    @HostBinding('class.eco-spin')
+    public get sp(): boolean {
         return this.spin;
     }
 
-    @Input() spin = false;
+    @Input() public spin = false;
 
-    constructor(injector: Injector) {
+    public constructor(injector: Injector) {
         this._parent = injector.get(EcoFabSpeedDialComponent);
     }
 
     @HostListener('click', ['$event'])
-    _onClick(event: Event): void {
+    public _onClick(event: Event): void {
         if (!this._parent.fixed) {
             this._parent.toggle();
             event.stopPropagation();

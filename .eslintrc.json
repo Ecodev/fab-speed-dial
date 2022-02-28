@@ -1,0 +1,70 @@
+{
+    "root": true,
+    "overrides": [
+        {
+            "files": ["*.ts"],
+            "parserOptions": {
+                "project": ["tsconfig.json"],
+                "createDefaultProgram": true
+            },
+            "extends": [
+                "plugin:@angular-eslint/recommended",
+                "plugin:@angular-eslint/template/process-inline-templates"
+            ],
+            "rules": {
+                "@angular-eslint/directive-selector": [
+                    "error",
+                    {
+                        "type": "attribute",
+                        "prefix": "app",
+                        "style": "camelCase"
+                    }
+                ],
+                "@angular-eslint/component-selector": [
+                    "error",
+                    {
+                        "type": "element",
+                        "prefix": "app",
+                        "style": "kebab-case"
+                    }
+                ],
+                "@typescript-eslint/ban-types": "error",
+                "@typescript-eslint/explicit-function-return-type": [
+                    "error",
+                    {
+                        "allowExpressions": true
+                    }
+                ],
+                "@typescript-eslint/explicit-member-accessibility": "error",
+                "@typescript-eslint/explicit-module-boundary-types": [
+                    "error",
+                    {
+                        "allowArgumentsExplicitlyTypedAsAny": true
+                    }
+                ],
+                "@typescript-eslint/no-non-null-assertion": "error",
+                "@typescript-eslint/prefer-for-of": "error",
+                "no-restricted-globals": [
+                    "error",
+                    "atob",
+                    "bota",
+                    "document",
+                    "event",
+                    "history",
+                    "length",
+                    "localStorage",
+                    "location",
+                    "name",
+                    "navigator",
+                    "sessionStorage",
+                    "window"
+                ]
+            }
+        },
+        {
+            "files": ["*.html"],
+            "extends": ["plugin:@angular-eslint/template/recommended"],
+            "rules": {}
+        }
+    ]
+}

@@ -20,7 +20,6 @@ import {MatCardModule} from '@angular/material/card';
     imports: [
         BrowserModule,
         EcoFabSpeedDialModule,
-
         MatIconModule,
         MatButtonModule,
         MatButtonToggleModule,
