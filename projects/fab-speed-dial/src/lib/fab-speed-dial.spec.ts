@@ -1,4 +1,4 @@
-import {TestBed, waitForAsync} from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
 import {
     Direction,
@@ -10,19 +10,17 @@ import {By} from '@angular/platform-browser';
 import {Component, ViewChild} from '@angular/core';
 
 describe('FabSpeedDial', () => {
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [],
-                declarations: [
-                    EcoFabSpeedDialComponent,
-                    EcoFabSpeedDialTriggerComponent,
-                    EcoFabSpeedDialActionsComponent,
-                    TestAppComponent,
-                ],
-            });
-        }),
-    );
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [],
+            declarations: [
+                EcoFabSpeedDialComponent,
+                EcoFabSpeedDialTriggerComponent,
+                EcoFabSpeedDialActionsComponent,
+                TestAppComponent,
+            ],
+        });
+    });
 
     it('should apply direction class based on direction', () => {
         const fixture = TestBed.createComponent(TestAppComponent);
