@@ -254,7 +254,7 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
     @ContentChild(EcoFabSpeedDialActionsComponent) private _childActions!: EcoFabSpeedDialActionsComponent;
 
     public constructor(
-        private elementRef: ElementRef,
+        private elementRef: ElementRef<HTMLElement>,
         private renderer: Renderer2,
         @Inject(DOCUMENT) private document: Document,
     ) {}
