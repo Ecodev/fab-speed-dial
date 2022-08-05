@@ -1,14 +1,14 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {
     EcoFabSpeedDialActionsComponent,
     EcoFabSpeedDialComponent,
     EcoFabSpeedDialTriggerComponent,
 } from './fab-speed-dial';
 
+const components = [EcoFabSpeedDialActionsComponent, EcoFabSpeedDialComponent, EcoFabSpeedDialTriggerComponent];
+
 @NgModule({
-    imports: [CommonModule],
-    declarations: [EcoFabSpeedDialActionsComponent, EcoFabSpeedDialComponent, EcoFabSpeedDialTriggerComponent],
-    exports: [EcoFabSpeedDialActionsComponent, EcoFabSpeedDialComponent, EcoFabSpeedDialTriggerComponent],
+    imports: components,
+    exports: components,
 })
 export class EcoFabSpeedDialModule {}

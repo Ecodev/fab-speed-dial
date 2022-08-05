@@ -17,7 +17,7 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import {MatButton} from '@angular/material/button';
-import {DOCUMENT} from '@angular/common';
+import {CommonModule, DOCUMENT} from '@angular/common';
 import {forkJoin, fromEvent, Subscription} from 'rxjs';
 import {take} from 'rxjs/operators';
 
@@ -29,6 +29,8 @@ export type AnimationMode = 'fling' | 'scale';
 @Component({
     selector: 'eco-fab-speed-dial-actions',
     template: ` <ng-content select="[mat-mini-fab]" *ngIf="miniFabVisible"></ng-content>`,
+    standalone: true,
+    imports: [CommonModule],
 })
 export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     private _parent: EcoFabSpeedDialComponent;
@@ -164,6 +166,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     `,
     styleUrls: ['fab-speed-dial.scss'],
     encapsulation: ViewEncapsulation.None,
+    standalone: true,
 })
 export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
     private isInitialized = false;
@@ -333,6 +336,7 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
 @Component({
     selector: 'eco-fab-speed-dial-trigger',
     template: ` <ng-content select="[mat-fab]"></ng-content>`,
+    standalone: true,
 })
 export class EcoFabSpeedDialTriggerComponent {
     private _parent: EcoFabSpeedDialComponent;

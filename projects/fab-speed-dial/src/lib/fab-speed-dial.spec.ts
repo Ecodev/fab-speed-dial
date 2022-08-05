@@ -1,27 +1,11 @@
 import {TestBed} from '@angular/core/testing';
 
-import {
-    Direction,
-    EcoFabSpeedDialActionsComponent,
-    EcoFabSpeedDialComponent,
-    EcoFabSpeedDialTriggerComponent,
-} from './fab-speed-dial';
+import {Direction, EcoFabSpeedDialActionsComponent, EcoFabSpeedDialComponent} from './fab-speed-dial';
 import {By} from '@angular/platform-browser';
 import {Component, ViewChild} from '@angular/core';
+import {EcoFabSpeedDialModule} from '@ecodev/fab-speed-dial';
 
 describe('FabSpeedDial', () => {
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [],
-            declarations: [
-                EcoFabSpeedDialComponent,
-                EcoFabSpeedDialTriggerComponent,
-                EcoFabSpeedDialActionsComponent,
-                TestAppComponent,
-            ],
-        });
-    });
-
     it('should apply direction class based on direction', () => {
         const fixture = TestBed.createComponent(TestAppComponent);
 
@@ -151,6 +135,8 @@ describe('FabSpeedDial', () => {
             <div class="testElement">Test element</div>
         </div>
     `,
+    standalone: true,
+    imports: [EcoFabSpeedDialModule],
 })
 class TestAppComponent {
     @ViewChild(EcoFabSpeedDialActionsComponent)
