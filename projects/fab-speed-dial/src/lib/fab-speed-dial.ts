@@ -17,6 +17,7 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import {MatButton} from '@angular/material/button';
+import {MatTooltip} from '@angular/material/tooltip';
 import {CommonModule, DOCUMENT} from '@angular/common';
 import {forkJoin, fromEvent, Subscription} from 'rxjs';
 import {take} from 'rxjs/operators';
@@ -36,6 +37,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     private _parent: EcoFabSpeedDialComponent;
 
     @ContentChildren(MatButton) private _buttons!: QueryList<MatButton>;
+    @ContentChildren(MatTooltip) private _tooltips!: QueryList<MatTooltip>;
 
     /**
      * Whether the min-fab button exist in DOM
@@ -97,15 +99,15 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
                 this.changeElementStyle(hostElement, 'opacity', '1');
                 this.changeElementStyle(hostElement, 'transform', transform);
             });
-        }, 50); // Be sure that *ngIf can show elements before trying to animate them
-    }
 
-    private resetAnimationState(): void {
-        clearTimeout(this.showMiniFabAnimation);
-        if (this.hideMiniFab) {
-            this.hideMiniFab.unsubscribe();
-            this.hideMiniFab = null;
-        }
+            setTimeout(() => {
+                this._tooltips.forEach(tooltip => {
+                    if (this.miniFabVisible) {
+                        tooltip.show();
+                    }
+                });
+            }, 500);
+        }, 50); // Be sure that *ngIf can show elements before trying to animate them
     }
 
     public hide(): void {
@@ -114,6 +116,8 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
         }
 
         this.resetAnimationState();
+
+        this._tooltips.map(tooltip => tooltip.hide());
 
         const obs = this._buttons.map((button, i) => {
             let opacity = '1';
@@ -139,6 +143,14 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
 
         // Wait for all animation to finish, then destroy their elements
         this.hideMiniFab = forkJoin(obs).subscribe(() => (this.miniFabVisible = false));
+    }
+
+    private resetAnimationState(): void {
+        clearTimeout(this.showMiniFabAnimation);
+        if (this.hideMiniFab) {
+            this.hideMiniFab.unsubscribe();
+            this.hideMiniFab = null;
+        }
     }
 
     private getTranslateFunction(value: string): string {

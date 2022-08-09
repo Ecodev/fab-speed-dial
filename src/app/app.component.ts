@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {TooltipPosition} from '@angular/material/tooltip';
 import {AnimationMode, Direction} from '@ecodev/fab-speed-dial';
 
 @Component({
@@ -15,6 +16,7 @@ export class AppComponent {
     public spin = false;
     public direction: Direction = 'up';
     public animationMode: AnimationMode = 'fling';
+    public tooltipPosition: TooltipPosition = 'after';
 
     public get fixed(): boolean {
         return this._fixed;

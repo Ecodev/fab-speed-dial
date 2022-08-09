@@ -20,6 +20,15 @@
         </mat-radio-group>
     </p>
     <p>
+        Tooltip position:
+        <mat-radio-group [(ngModel)]="tooltipPosition" name="tooltipPosition">
+            <mat-radio-button value="after">After</mat-radio-button>
+            <mat-radio-button value="before">Before</mat-radio-button>
+            <mat-radio-button value="above">Above</mat-radio-button>
+            <mat-radio-button value="below">Below</mat-radio-button>
+        </mat-radio-group>
+    </p>
+    <p>
         Animation Mode:
         <mat-radio-group [(ngModel)]="animationMode" name="animationMode">
             <mat-radio-button value="fling">fling</mat-radio-button>
@@ -46,13 +55,28 @@
             </eco-fab-speed-dial-trigger>
 
             <eco-fab-speed-dial-actions>
-                <button mat-mini-fab (click)="doAction('action1')">
+                <button
+                    mat-mini-fab
+                    matTooltip="Search"
+                    [matTooltipPosition]="tooltipPosition"
+                    (click)="doAction('action1')"
+                >
                     <mat-icon>search</mat-icon>
                 </button>
-                <button mat-mini-fab (click)="doAction('action2')">
+                <button
+                    mat-mini-fab
+                    matTooltip="Edit"
+                    [matTooltipPosition]="tooltipPosition"
+                    (click)="doAction('action2')"
+                >
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-mini-fab (click)="doAction('action3')">
+                <button
+                    mat-mini-fab
+                    matTooltip="Home"
+                    [matTooltipPosition]="tooltipPosition"
+                    (click)="doAction('action3')"
+                >
                     <mat-icon>home</mat-icon>
                 </button>
             </eco-fab-speed-dial-actions>
@@ -76,13 +100,28 @@
             </eco-fab-speed-dial-trigger>
 
             <eco-fab-speed-dial-actions>
-                <button mat-mini-fab (click)="doAction('action1')">
+                <button
+                    mat-mini-fab
+                    matTooltip="Search"
+                    [matTooltipPosition]="tooltipPosition"
+                    (click)="doAction('action1')"
+                >
                     <mat-icon>add</mat-icon>
                 </button>
-                <button mat-mini-fab (click)="doAction('action2')">
+                <button
+                    mat-mini-fab
+                    matTooltip="Edit"
+                    [matTooltipPosition]="tooltipPosition"
+                    (click)="doAction('action2')"
+                >
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-mini-fab (click)="doAction('action3')">
+                <button
+                    mat-mini-fab
+                    matTooltip="Menu"
+                    [matTooltipPosition]="tooltipPosition"
+                    (click)="doAction('action3')"
+                >
                     <mat-icon>menu</mat-icon>
                 </button>
             </eco-fab-speed-dial-actions>
