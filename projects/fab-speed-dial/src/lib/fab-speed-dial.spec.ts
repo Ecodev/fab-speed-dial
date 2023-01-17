@@ -144,5 +144,5 @@ class TestAppComponent {
     @ViewChild(EcoFabSpeedDialComponent)
     public fabSpeedDial!: EcoFabSpeedDialComponent;
     public direction: Direction = 'up';
-    public open: boolean = false;
+    public open = false;
 }

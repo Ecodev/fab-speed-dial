@@ -7,8 +7,6 @@ import {AnimationMode, Direction} from '@ecodev/fab-speed-dial';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-    public constructor() {}
-
     private _fixed = false;
 
     public open = false;

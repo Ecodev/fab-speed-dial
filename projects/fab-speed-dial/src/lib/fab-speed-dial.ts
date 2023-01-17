@@ -149,6 +149,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
         return translateFn + '(' + sign + value + ')';
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private changeElementStyle(elem: any, style: string, value: string): void {
         // FIXME - Find a way to create a "wrapper" around the action button(s) provided by the user, so we don't change it's style tag
         this.renderer.setStyle(elem, style, value);
