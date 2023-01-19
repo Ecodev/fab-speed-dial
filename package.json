@@ -9,7 +9,7 @@
         "dev": "ng serve",
         "test-lib": "ng test fab-speed-dial",
         "test-demo": "ng test demo",
-        "lint": "ng lint",
+        "lint": "ng lint --max-warnings 0",
         "e2e": "playwright test",
         "build-lib": "ng build fab-speed-dial && cp -v README.md dist/fab-speed-dial/ && cd dist/fab-speed-dial && yarn version --no-git-tag-version --new-version `git describe --tags --always`",
         "build-demo": "yarn build-lib && ng build demo --aot --base-href /fab-speed-dial/ && cp dist/demo/index.html dist/demo/404.html"
