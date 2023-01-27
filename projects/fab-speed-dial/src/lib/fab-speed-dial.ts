@@ -16,7 +16,7 @@ import {
     Renderer2,
     ViewEncapsulation,
 } from '@angular/core';
-import {MatButton} from '@angular/material/button';
+import {MatLegacyButton as MatButton} from '@angular/material/legacy-button';
 import {CommonModule, DOCUMENT} from '@angular/common';
 import {forkJoin, fromEvent, Subscription} from 'rxjs';
 import {take} from 'rxjs/operators';
