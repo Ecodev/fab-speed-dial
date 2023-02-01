@@ -8,7 +8,7 @@
     </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-card class="fab-demo-actions">
+<mat-card appearance="outlined" class="fab-demo-actions">
     <mat-card-title>Options</mat-card-title>
     <p>
         Direction:
@@ -35,7 +35,7 @@
 </mat-card>
 
 <div class="container-fab-demo">
-    <mat-card>
+    <mat-card appearance="outlined">
         <mat-card-title>Click me</mat-card-title>
         <mat-slide-toggle [(ngModel)]="open" (click)="stopPropagation($event)">Open</mat-slide-toggle>
         <eco-fab-speed-dial [(open)]="open" [direction]="direction" [animationMode]="animationMode" [fixed]="fixed">
@@ -59,7 +59,7 @@
         </eco-fab-speed-dial>
     </mat-card>
 
-    <mat-card>
+    <mat-card appearance="outlined">
         <mat-card-title>Hover me</mat-card-title>
         <eco-fab-speed-dial
             #myFab
