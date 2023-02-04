@@ -16,7 +16,7 @@ import {
     Renderer2,
     ViewEncapsulation,
 } from '@angular/core';
-import {MatButton} from '@angular/material/button';
+import {MatMiniFabButton} from '@angular/material/button';
 import {CommonModule, DOCUMENT} from '@angular/common';
 import {forkJoin, fromEvent, Subscription} from 'rxjs';
 import {take} from 'rxjs/operators';
@@ -25,6 +25,11 @@ const Z_INDEX_ITEM = 23;
 
 export type Direction = 'up' | 'down' | 'left' | 'right';
 export type AnimationMode = 'fling' | 'scale';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getHostElement(button: MatMiniFabButton): any {
+    return button._elementRef.nativeElement;
+}
 
 @Component({
     selector: 'eco-fab-speed-dial-actions',
@@ -35,7 +40,7 @@ export type AnimationMode = 'fling' | 'scale';
 export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     private _parent: EcoFabSpeedDialComponent;
 
-    @ContentChildren(MatButton) private _buttons!: QueryList<MatButton>;
+    @ContentChildren(MatMiniFabButton) private _buttons!: QueryList<MatMiniFabButton>;
 
     /**
      * Whether the min-fab button exist in DOM
@@ -67,8 +72,8 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
 
     private initButtonStates(): void {
         this._buttons.forEach((button, i) => {
-            this.renderer.addClass(button._getHostElement(), 'eco-fab-action-item');
-            this.changeElementStyle(button._getHostElement(), 'z-index', '' + (Z_INDEX_ITEM - i));
+            this.renderer.addClass(getHostElement(button), 'eco-fab-action-item');
+            this.changeElementStyle(getHostElement(button), 'z-index', '' + (Z_INDEX_ITEM - i));
         });
     }
 
@@ -92,7 +97,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
                     transform = this.getTranslateFunction('0');
                 }
 
-                const hostElement = button._getHostElement();
+                const hostElement = getHostElement(button);
                 this.changeElementStyle(hostElement, 'transition-delay', transitionDelay + 'ms');
                 this.changeElementStyle(hostElement, 'opacity', '1');
                 this.changeElementStyle(hostElement, 'transform', transform);
@@ -128,7 +133,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
                 transform = this.getTranslateFunction(55 * (i + 1) - i * 5 + 'px');
             }
 
-            const hostElement = button._getHostElement();
+            const hostElement = getHostElement(button);
 
             this.changeElementStyle(hostElement, 'transition-delay', transitionDelay + 'ms');
             this.changeElementStyle(hostElement, 'opacity', opacity);

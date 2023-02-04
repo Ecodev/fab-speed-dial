@@ -8,84 +8,99 @@
     </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-card appearance="outlined" class="fab-demo-actions">
-    <mat-card-title>Options</mat-card-title>
-    <p>
-        Direction:
-        <mat-radio-group [(ngModel)]="direction" name="direction">
-            <mat-radio-button value="up">Up</mat-radio-button>
-            <mat-radio-button value="down">Down</mat-radio-button>
-            <mat-radio-button value="left">Left</mat-radio-button>
-            <mat-radio-button value="right">Right</mat-radio-button>
-        </mat-radio-group>
-    </p>
-    <p>
-        Animation Mode:
-        <mat-radio-group [(ngModel)]="animationMode" name="animationMode">
-            <mat-radio-button value="fling">fling</mat-radio-button>
-            <mat-radio-button value="scale">scale</mat-radio-button>
-        </mat-radio-group>
-    </p>
-    <p>
-        <mat-slide-toggle [(ngModel)]="fixed">Fixed</mat-slide-toggle>
-    </p>
-    <p>
-        <mat-slide-toggle [(ngModel)]="spin">Enable Spinning</mat-slide-toggle>
-    </p>
+<mat-card class="fab-demo-actions">
+    <mat-card-header>
+        <mat-card-title>Options</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="mat-body-1">
+        <p>
+            Direction:
+            <mat-radio-group [(ngModel)]="direction" name="direction">
+                <mat-radio-button value="up">Up</mat-radio-button>
+                <mat-radio-button value="down">Down</mat-radio-button>
+                <mat-radio-button value="left">Left</mat-radio-button>
+                <mat-radio-button value="right">Right</mat-radio-button>
+            </mat-radio-group>
+        </p>
+        <p>
+            Animation Mode:
+            <mat-radio-group [(ngModel)]="animationMode" name="animationMode">
+                <mat-radio-button value="fling">fling</mat-radio-button>
+                <mat-radio-button value="scale">scale</mat-radio-button>
+            </mat-radio-group>
+        </p>
+        <p>
+            <mat-slide-toggle [(ngModel)]="fixed">Fixed</mat-slide-toggle>
+        </p>
+        <p>
+            <mat-slide-toggle [(ngModel)]="spin">Enable Spinning</mat-slide-toggle>
+        </p>
+    </mat-card-content>
 </mat-card>
 
 <div class="container-fab-demo">
-    <mat-card appearance="outlined">
-        <mat-card-title>Click me</mat-card-title>
-        <mat-slide-toggle [(ngModel)]="open" (click)="stopPropagation($event)">Open</mat-slide-toggle>
-        <eco-fab-speed-dial [(open)]="open" [direction]="direction" [animationMode]="animationMode" [fixed]="fixed">
-            <eco-fab-speed-dial-trigger [spin]="spin">
-                <button mat-fab (click)="doAction('trigger')">
-                    <mat-icon class="spin180">add</mat-icon>
-                </button>
-            </eco-fab-speed-dial-trigger>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Click me</mat-card-title>
+        </mat-card-header>
 
-            <eco-fab-speed-dial-actions>
-                <button mat-mini-fab (click)="doAction('action1')">
-                    <mat-icon>search</mat-icon>
-                </button>
-                <button mat-mini-fab (click)="doAction('action2')">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-mini-fab (click)="doAction('action3')">
-                    <mat-icon>home</mat-icon>
-                </button>
-            </eco-fab-speed-dial-actions>
-        </eco-fab-speed-dial>
+        <mat-card-content class="mat-body-1">
+            <mat-slide-toggle [(ngModel)]="open" (click)="stopPropagation($event)">Open</mat-slide-toggle>
+            <eco-fab-speed-dial [(open)]="open" [direction]="direction" [animationMode]="animationMode" [fixed]="fixed">
+                <eco-fab-speed-dial-trigger [spin]="spin">
+                    <button mat-fab (click)="doAction('trigger')">
+                        <mat-icon class="spin180">add</mat-icon>
+                    </button>
+                </eco-fab-speed-dial-trigger>
+
+                <eco-fab-speed-dial-actions>
+                    <button mat-mini-fab (click)="doAction('action1')">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                    <button mat-mini-fab (click)="doAction('action2')">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-mini-fab (click)="doAction('action3')">
+                        <mat-icon>home</mat-icon>
+                    </button>
+                </eco-fab-speed-dial-actions>
+            </eco-fab-speed-dial>
+        </mat-card-content>
     </mat-card>
 
-    <mat-card appearance="outlined">
-        <mat-card-title>Hover me</mat-card-title>
-        <eco-fab-speed-dial
-            #myFab
-            [direction]="direction"
-            [animationMode]="animationMode"
-            [fixed]="fixed"
-            (mouseenter)="myFab.open = true"
-            (mouseleave)="myFab.open = false"
-        >
-            <eco-fab-speed-dial-trigger [spin]="spin">
-                <button mat-fab (click)="doAction('trigger')">
-                    <mat-icon class="spin360">check</mat-icon>
-                </button>
-            </eco-fab-speed-dial-trigger>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Hover me</mat-card-title>
+        </mat-card-header>
 
-            <eco-fab-speed-dial-actions>
-                <button mat-mini-fab (click)="doAction('action1')">
-                    <mat-icon>add</mat-icon>
-                </button>
-                <button mat-mini-fab (click)="doAction('action2')">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-mini-fab (click)="doAction('action3')">
-                    <mat-icon>menu</mat-icon>
-                </button>
-            </eco-fab-speed-dial-actions>
-        </eco-fab-speed-dial>
+        <mat-card-content class="mat-body-1">
+            <eco-fab-speed-dial
+                #myFab
+                [direction]="direction"
+                [animationMode]="animationMode"
+                [fixed]="fixed"
+                (mouseenter)="myFab.open = true"
+                (mouseleave)="myFab.open = false"
+            >
+                <eco-fab-speed-dial-trigger [spin]="spin">
+                    <button mat-fab (click)="doAction('trigger')">
+                        <mat-icon class="spin360">check</mat-icon>
+                    </button>
+                </eco-fab-speed-dial-trigger>
+
+                <eco-fab-speed-dial-actions>
+                    <button mat-mini-fab (click)="doAction('action1')">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <button mat-mini-fab (click)="doAction('action2')">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-mini-fab (click)="doAction('action3')">
+                        <mat-icon>menu</mat-icon>
+                    </button>
+                </eco-fab-speed-dial-actions>
+            </eco-fab-speed-dial>
+        </mat-card-content>
     </mat-card>
 </div>
