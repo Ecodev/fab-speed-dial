@@ -29,13 +29,13 @@ or adapt the bindings to your needs:
 ```html
 <eco-fab-speed-dial>
   <eco-fab-speed-dial-trigger>
-    <button mat-fab (click)="doAction('trigger')"><mat-icon>menu</mat-icon></button>
+    <button mat-fab (click)="doAction('trigger')"><mat-icon fontIcon="menu"></mat-icon></button>
   </eco-fab-speed-dial-trigger>
 
   <eco-fab-speed-dial-actions>
-    <button mat-mini-fab (click)="doAction('action1')"><mat-icon>add</mat-icon></button>
-    <button mat-mini-fab (click)="doAction('action2')"><mat-icon>edit</mat-icon></button>
-    <button mat-mini-fab (click)="doAction('action3')"><mat-icon>search</mat-icon></button>
+    <button mat-mini-fab (click)="doAction('action1')"><mat-icon fontIcon="add"></mat-icon></button>
+    <button mat-mini-fab (click)="doAction('action2')"><mat-icon fontIcon="edit"></mat-icon></button>
+    <button mat-mini-fab (click)="doAction('action3')"><mat-icon fontIcon="search"></mat-icon></button>
   </eco-fab-speed-dial-actions>
 </eco-fab-speed-dial>
 ```
