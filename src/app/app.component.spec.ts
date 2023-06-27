@@ -12,7 +12,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatCardModule} from '@angular/material/card';
 
 import {AppComponent} from './app.component';
-import {EcoFabSpeedDialModule} from '@ecodev/fab-speed-dial';
 
 describe('AppComponent', () => {
     let component: AppComponent;
@@ -21,8 +20,6 @@ describe('AppComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [
-                EcoFabSpeedDialModule,
-
                 MatIconModule,
                 MatButtonModule,
                 MatButtonToggleModule,
@@ -34,8 +31,8 @@ describe('AppComponent', () => {
                 MatTooltipModule,
                 MatToolbarModule,
                 FormsModule,
+                AppComponent,
             ],
-            declarations: [AppComponent],
         }).compileComponents();
         fixture = TestBed.createComponent(AppComponent);
         component = fixture.componentInstance;

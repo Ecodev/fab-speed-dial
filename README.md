@@ -16,10 +16,10 @@ See the component in action on [the demo page](https://ecodev.github.io/fab-spee
    ```bash
    yarn add @ecodev/fab-speed-dial
    ```
-2. In `app.module.ts` add the following modules to the `imports` array:
-   - `MatButtonModule`
-   - `MatIconModule`
-   - `EcoFabSpeedDialModule`
+2. In your standalone components add the following to the `imports` array:
+   - `EcoFabSpeedDialComponent`
+   - `EcoFabSpeedDialTriggerComponent`
+   - `EcoFabSpeedDialActionsComponent`
 
 ## Usage
 

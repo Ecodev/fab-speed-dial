@@ -1,9 +1,12 @@
 import {TestBed} from '@angular/core/testing';
-
-import {Direction, EcoFabSpeedDialActionsComponent, EcoFabSpeedDialComponent} from './fab-speed-dial';
+import {
+    Direction,
+    EcoFabSpeedDialActionsComponent,
+    EcoFabSpeedDialComponent,
+    EcoFabSpeedDialTriggerComponent,
+} from './fab-speed-dial';
 import {By} from '@angular/platform-browser';
 import {Component, ViewChild} from '@angular/core';
-import {EcoFabSpeedDialModule} from '@ecodev/fab-speed-dial';
 
 describe('FabSpeedDial', () => {
     it('should apply direction class based on direction', () => {
@@ -136,7 +139,7 @@ describe('FabSpeedDial', () => {
         </div>
     `,
     standalone: true,
-    imports: [EcoFabSpeedDialModule],
+    imports: [EcoFabSpeedDialActionsComponent, EcoFabSpeedDialTriggerComponent, EcoFabSpeedDialComponent],
 })
 class TestAppComponent {
     @ViewChild(EcoFabSpeedDialActionsComponent)

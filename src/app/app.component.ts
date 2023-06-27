@@ -1,10 +1,36 @@
 import {Component} from '@angular/core';
-import {AnimationMode, Direction} from '@ecodev/fab-speed-dial';
+import {
+    AnimationMode,
+    Direction,
+    EcoFabSpeedDialActionsComponent,
+    EcoFabSpeedDialComponent,
+    EcoFabSpeedDialTriggerComponent,
+} from '@ecodev/fab-speed-dial';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {FormsModule} from '@angular/forms';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
+    standalone: true,
+    imports: [
+        MatToolbarModule,
+        MatButtonModule,
+        MatCardModule,
+        MatRadioModule,
+        FormsModule,
+        MatSlideToggleModule,
+        MatIconModule,
+        EcoFabSpeedDialComponent,
+        EcoFabSpeedDialTriggerComponent,
+        EcoFabSpeedDialActionsComponent,
+    ],
 })
 export class AppComponent {
     private _fixed = false;

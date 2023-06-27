@@ -8,5 +8,3 @@ export {
     Direction,
     AnimationMode,
 } from './lib/fab-speed-dial';
-
-export {EcoFabSpeedDialModule} from './lib/fab-speed-dial.module';
