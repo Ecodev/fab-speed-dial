@@ -62,7 +62,7 @@ jobs:
                   path: dist/
             - uses: crazy-max/ghaction-github-pages@v3
               with:
-                  build_dir: dist/demo
+                  build_dir: dist/demo/browser
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
