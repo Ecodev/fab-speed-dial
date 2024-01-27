@@ -57,7 +57,10 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
      */
     private hideMiniFab: Subscription | null = null;
 
-    public constructor(injector: Injector, private renderer: Renderer2) {
+    public constructor(
+        injector: Injector,
+        private renderer: Renderer2,
+    ) {
         this._parent = injector.get(EcoFabSpeedDialComponent);
     }
 
