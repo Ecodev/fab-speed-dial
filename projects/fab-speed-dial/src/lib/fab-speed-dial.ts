@@ -17,7 +17,7 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import {MatMiniFabButton} from '@angular/material/button';
-import {CommonModule, DOCUMENT} from '@angular/common';
+import {DOCUMENT} from '@angular/common';
 import {forkJoin, fromEvent, Subscription} from 'rxjs';
 import {take} from 'rxjs/operators';
 
@@ -33,9 +33,10 @@ function getHostElement(button: MatMiniFabButton): any {
 
 @Component({
     selector: 'eco-fab-speed-dial-actions',
-    template: ` <ng-content select="[mat-mini-fab]" *ngIf="miniFabVisible"></ng-content>`,
+    template: `@if (miniFabVisible) {
+        <ng-content select="[mat-mini-fab]"></ng-content>
+    }`,
     standalone: true,
-    imports: [CommonModule],
 })
 export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     private _parent: EcoFabSpeedDialComponent;
