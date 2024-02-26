@@ -13,7 +13,7 @@
         "sourceMap": true,
         "paths": {
             "@ecodev/fab-speed-dial": ["projects/fab-speed-dial/src/public-api"],
-            "@ecodev/fab-speed-dial/*": ["dist/fab-speed-dial/*"],
+            "@ecodev/fab-speed-dial/*": ["dist/fab-speed-dial/*"]
         },
         "declaration": false,
         "downlevelIteration": true,
@@ -23,12 +23,12 @@
         "target": "ES2022",
         "module": "es2020",
         "lib": ["es2020", "dom"],
-        "useDefineForClassFields": false,
+        "useDefineForClassFields": false
     },
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,
         "strictInjectionParameters": true,
         "strictInputAccessModifiers": true,
-        "strictTemplates": true,
-    },
+        "strictTemplates": true
+    }
 }
