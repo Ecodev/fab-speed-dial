@@ -106,7 +106,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
                 this.changeElementStyle(hostElement, 'opacity', '1');
                 this.changeElementStyle(hostElement, 'transform', transform);
             });
-        }, 50); // Be sure that *ngIf can show elements before trying to animate them
+        }, 50); // Be sure that @if can show elements before trying to animate them
     }
 
     private resetAnimationState(): void {
