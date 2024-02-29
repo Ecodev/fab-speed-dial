@@ -34,7 +34,7 @@ function getHostElement(button: MatMiniFabButton): any {
 @Component({
     selector: 'eco-fab-speed-dial-actions',
     template: `@if (miniFabVisible) {
-        <ng-content select="[mat-mini-fab]"></ng-content>
+        <ng-content select="[mat-mini-fab]" />
     }`,
     standalone: true,
 })
@@ -82,10 +82,6 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     }
 
     public show(): void {
-        if (!this._buttons) {
-            return;
-        }
-
         this.resetAnimationState();
         this.miniFabVisible = true;
 
@@ -118,10 +114,6 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     }
 
     public hide(): void {
-        if (!this._buttons) {
-            return;
-        }
-
         this.resetAnimationState();
 
         const obs = this._buttons.map((button, i) => {
@@ -170,11 +162,12 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     selector: 'eco-fab-speed-dial',
     template: `
         <div class="eco-fab-speed-dial-container">
-            <ng-content select="eco-fab-speed-dial-trigger"></ng-content>
-            <ng-content select="eco-fab-speed-dial-actions"></ng-content>
+            <ng-content select="eco-fab-speed-dial-trigger" />
+            <ng-content select="eco-fab-speed-dial-actions" />
         </div>
     `,
-    styleUrls: ['fab-speed-dial.scss'],
+    styleUrls: ['./fab-speed-dial.scss'],
+    // eslint-disable-next-line @angular-eslint/use-component-view-encapsulation
     encapsulation: ViewEncapsulation.None,
     standalone: true,
 })
@@ -298,10 +291,6 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
     }
 
     public setActionsVisibility(): void {
-        if (!this._childActions) {
-            return;
-        }
-
         if (this.open) {
             this._childActions.show();
         } else {
@@ -345,7 +334,7 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
 
 @Component({
     selector: 'eco-fab-speed-dial-trigger',
-    template: ` <ng-content select="[mat-fab]"></ng-content>`,
+    template: ` <ng-content select="[mat-fab]" />`,
     standalone: true,
 })
 export class EcoFabSpeedDialTriggerComponent {
