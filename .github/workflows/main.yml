@@ -68,6 +68,9 @@ jobs:
 
     release:
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            id-token: write
         if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
         needs:
             - build
@@ -86,7 +89,7 @@ jobs:
             - uses: actions/setup-node@v3
               with:
                   registry-url: 'https://registry.npmjs.org'
-            - run: npm publish --access public dist/fab-speed-dial/
+            - run: npm publish --provenance --access public dist/fab-speed-dial/
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -94,7 +97,7 @@ jobs:
             - uses: actions/setup-node@v3
               with:
                   registry-url: 'https://npm.pkg.github.com'
-            - run: npm publish --access public dist/fab-speed-dial/
+            - run: npm publish --provenance --access public dist/fab-speed-dial/
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
