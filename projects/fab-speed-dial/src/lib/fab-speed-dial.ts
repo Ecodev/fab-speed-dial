@@ -166,7 +166,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
             <ng-content select="eco-fab-speed-dial-actions" />
         </div>
     `,
-    styleUrls: ['./fab-speed-dial.scss'],
+    styleUrl: './fab-speed-dial.scss',
     // eslint-disable-next-line @angular-eslint/use-component-view-encapsulation
     encapsulation: ViewEncapsulation.None,
     standalone: true,
