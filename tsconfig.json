@@ -5,6 +5,7 @@
         "baseUrl": "./",
         "outDir": "./dist/out-tsc",
         "forceConsistentCasingInFileNames": true,
+        "esModuleInterop": true,
         "strict": true,
         "noImplicitOverride": true,
         "noPropertyAccessFromIndexSignature": true,
@@ -16,7 +17,6 @@
             "@ecodev/fab-speed-dial/*": ["dist/fab-speed-dial/*"]
         },
         "declaration": false,
-        "downlevelIteration": true,
         "experimentalDecorators": true,
         "moduleResolution": "node",
         "importHelpers": true,

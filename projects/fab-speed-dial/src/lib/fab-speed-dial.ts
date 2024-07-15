@@ -77,7 +77,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     private initButtonStates(): void {
         this._buttons.forEach((button, i) => {
             this.renderer.addClass(getHostElement(button), 'eco-fab-action-item');
-            this.changeElementStyle(getHostElement(button), 'z-index', '' + (Z_INDEX_ITEM - i));
+            this.changeElementStyle(getHostElement(button), 'z-index', '' + (Z_INDEX_ITEM - i).toString());
         });
     }
 
@@ -98,7 +98,7 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
                 }
 
                 const hostElement = getHostElement(button);
-                this.changeElementStyle(hostElement, 'transition-delay', transitionDelay + 'ms');
+                this.changeElementStyle(hostElement, 'transition-delay', transitionDelay.toString() + 'ms');
                 this.changeElementStyle(hostElement, 'opacity', '1');
                 this.changeElementStyle(hostElement, 'transform', transform);
             });
@@ -126,12 +126,12 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
                 transform = 'scale(0)';
                 opacity = '0';
             } else {
-                transform = this.getTranslateFunction(55 * (i + 1) - i * 5 + 'px');
+                transform = this.getTranslateFunction((55 * (i + 1) - i * 5).toString() + 'px');
             }
 
             const hostElement = getHostElement(button);
 
-            this.changeElementStyle(hostElement, 'transition-delay', transitionDelay + 'ms');
+            this.changeElementStyle(hostElement, 'transition-delay', transitionDelay.toString() + 'ms');
             this.changeElementStyle(hostElement, 'opacity', opacity);
             this.changeElementStyle(hostElement, 'transform', transform);
 
