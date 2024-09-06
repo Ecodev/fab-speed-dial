@@ -5,15 +5,15 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
               with:
                   fetch-depth: 0 # Need all tags to get a version number in-between tags
-            - uses: actions/setup-node@v3
+            - uses: actions/setup-node@v4
               with:
                   cache: 'yarn'
             - run: yarn --frozen-lockfile
             - run: yarn build-demo
-            - uses: actions/upload-artifact@v3
+            - uses: actions/upload-artifact@v4
               with:
                   name: dist
                   path: dist/
@@ -21,8 +21,8 @@ jobs:
     test:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
               with:
                   cache: 'yarn'
             - run: yarn --frozen-lockfile
@@ -33,8 +33,8 @@ jobs:
     lint:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
               with:
                   cache: 'yarn'
             - run: yarn --frozen-lockfile
@@ -43,8 +43,8 @@ jobs:
     prettier:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
               with:
                   cache: 'yarn'
             - run: yarn --frozen-lockfile
@@ -56,7 +56,7 @@ jobs:
             - build
             - test
         steps:
-            - uses: actions/download-artifact@v3
+            - uses: actions/download-artifact@v4
               with:
                   name: dist
                   path: dist/
@@ -77,17 +77,17 @@ jobs:
             - build
             - test
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
               with:
                   ref: ${{ github.ref }} # Otherwise our annotated tag is not fetched and we cannot get correct version
-            - uses: actions/download-artifact@v3
+            - uses: actions/download-artifact@v4
               with:
                   name: dist
                   path: dist/
             - run: rm .gitignore
 
             # Publish to npm
-            - uses: actions/setup-node@v3
+            - uses: actions/setup-node@v4
               with:
                   registry-url: 'https://registry.npmjs.org'
             - run: npm publish --provenance --access public dist/fab-speed-dial/
@@ -95,7 +95,7 @@ jobs:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
             # Publish to GitHub Packages
-            - uses: actions/setup-node@v3
+            - uses: actions/setup-node@v4
               with:
                   registry-url: 'https://npm.pkg.github.com'
             - run: npm publish --provenance --access public dist/fab-speed-dial/
