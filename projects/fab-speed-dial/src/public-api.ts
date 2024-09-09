@@ -5,6 +5,6 @@ export {
     EcoFabSpeedDialActionsComponent,
     EcoFabSpeedDialComponent,
     EcoFabSpeedDialTriggerComponent,
-    Direction,
-    AnimationMode,
 } from './lib/fab-speed-dial';
+
+export type {Direction, AnimationMode} from './lib/fab-speed-dial';
