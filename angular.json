@@ -58,7 +58,9 @@
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
-                    "options": {},
+                    "options": {
+                        "port": 4212
+                    },
                     "configurations": {
                         "production": {
                             "buildTarget": "demo:build:production"
