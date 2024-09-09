@@ -7,8 +7,7 @@ import {
     EventEmitter,
     HostBinding,
     HostListener,
-    Inject,
-    Injector,
+    inject,
     Input,
     OnDestroy,
     Output,
@@ -39,7 +38,9 @@ function getHostElement(button: MatMiniFabButton): any {
     standalone: true,
 })
 export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
-    private _parent: EcoFabSpeedDialComponent;
+    private readonly renderer = inject(Renderer2);
+
+    private readonly _parent = inject(EcoFabSpeedDialComponent);
 
     @ContentChildren(MatMiniFabButton) private _buttons!: QueryList<MatMiniFabButton>;
 
@@ -57,13 +58,6 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
      * When we will remove mini-fab buttons from DOM, after the animation is complete
      */
     private hideMiniFab: Subscription | null = null;
-
-    public constructor(
-        injector: Injector,
-        private renderer: Renderer2,
-    ) {
-        this._parent = injector.get(EcoFabSpeedDialComponent);
-    }
 
     public ngAfterContentInit(): void {
         this._buttons.changes.subscribe(() => {
@@ -172,6 +166,10 @@ export class EcoFabSpeedDialActionsComponent implements AfterContentInit {
     standalone: true,
 })
 export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
+    private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+    private readonly renderer = inject(Renderer2);
+    private readonly document = inject(DOCUMENT);
+
     private isInitialized = false;
     private _direction: Direction = 'up';
     private _open = false;
@@ -259,12 +257,6 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
 
     @ContentChild(EcoFabSpeedDialActionsComponent) private _childActions!: EcoFabSpeedDialActionsComponent;
 
-    public constructor(
-        private elementRef: ElementRef<HTMLElement>,
-        private renderer: Renderer2,
-        @Inject(DOCUMENT) private document: Document,
-    ) {}
-
     public ngAfterContentInit(): void {
         this.isInitialized = true;
         this.setActionsVisibility();
@@ -338,7 +330,7 @@ export class EcoFabSpeedDialComponent implements OnDestroy, AfterContentInit {
     standalone: true,
 })
 export class EcoFabSpeedDialTriggerComponent {
-    private _parent: EcoFabSpeedDialComponent;
+    private readonly _parent = inject(EcoFabSpeedDialComponent);
 
     /**
      * Whether this trigger should spin (360dg) while opening the speed dial
@@ -349,10 +341,6 @@ export class EcoFabSpeedDialTriggerComponent {
     }
 
     @Input() public spin = false;
-
-    public constructor(injector: Injector) {
-        this._parent = injector.get(EcoFabSpeedDialComponent);
-    }
 
     @HostListener('click', ['$event'])
     public _onClick(event: Event): void {
