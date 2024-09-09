@@ -11,6 +11,8 @@
         "noPropertyAccessFromIndexSignature": true,
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
+        "skipLibCheck": true,
+        "isolatedModules": true,
         "sourceMap": true,
         "paths": {
             "@ecodev/fab-speed-dial": ["projects/fab-speed-dial/src/public-api"],
@@ -22,8 +24,7 @@
         "importHelpers": true,
         "target": "ES2022",
         "module": "es2020",
-        "lib": ["es2020", "dom"],
-        "useDefineForClassFields": false
+        "lib": ["es2020", "dom"]
     },
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,
