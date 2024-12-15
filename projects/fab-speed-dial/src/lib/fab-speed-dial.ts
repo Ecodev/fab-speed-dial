@@ -35,23 +35,23 @@ function getHostElement(button: MatMiniFabButton): any {
 export class EcoFabSpeedDialActionsComponent {
     private readonly renderer = inject(Renderer2);
 
-    private readonly _parent = inject(EcoFabSpeedDialComponent);
+    private readonly parent = inject(EcoFabSpeedDialComponent);
 
-    private readonly _buttons = contentChildren(MatMiniFabButton);
+    private readonly buttons = contentChildren(MatMiniFabButton);
 
     private readonly initButtonStates = effect(() => {
-        this._buttons().forEach((button, i) => {
+        this.buttons().forEach((button, i) => {
             this.renderer.addClass(getHostElement(button), 'eco-fab-action-item');
             this.changeElementStyle(getHostElement(button), 'z-index', '' + (Z_INDEX_ITEM - i).toString());
         });
 
-        this._parent.setActionsVisibility();
+        this.parent.setActionsVisibility();
     });
 
     /**
      * Whether the min-fab button exist in DOM
      */
-    public miniFabVisible = false;
+    protected miniFabVisible = false;
 
     /**
      * The timeout ID for the callback to show the mini-fab buttons
@@ -68,10 +68,10 @@ export class EcoFabSpeedDialActionsComponent {
         this.miniFabVisible = true;
 
         this.showMiniFabAnimation = setTimeout(() => {
-            this._buttons().forEach((button, i) => {
+            this.buttons().forEach((button, i) => {
                 let transitionDelay = 0;
                 let transform;
-                if (this._parent.animationMode() === 'scale') {
+                if (this.parent.animationMode() === 'scale') {
                     // Incremental transition delay of 65ms for each action button
                     transitionDelay = 3 + 65 * i;
                     transform = 'scale(1)';
@@ -98,12 +98,12 @@ export class EcoFabSpeedDialActionsComponent {
     public hide(): void {
         this.resetAnimationState();
 
-        const obs = this._buttons().map((button, i) => {
+        const obs = this.buttons().map((button, i) => {
             let opacity = '1';
             let transitionDelay = 0;
             let transform;
 
-            if (this._parent.animationMode() === 'scale') {
+            if (this.parent.animationMode() === 'scale') {
                 transitionDelay = 3 - 65 * i;
                 transform = 'scale(0)';
                 opacity = '0';
@@ -125,7 +125,7 @@ export class EcoFabSpeedDialActionsComponent {
     }
 
     private getTranslateFunction(value: string): string {
-        const dir = this._parent.direction();
+        const dir = this.parent.direction();
         const translateFn = dir === 'up' || dir === 'down' ? 'translateY' : 'translateX';
         const sign = dir === 'down' || dir === 'right' ? '-' : '';
 
@@ -152,7 +152,7 @@ export class EcoFabSpeedDialActionsComponent {
     encapsulation: ViewEncapsulation.None,
     host: {
         '[class.eco-opened]': 'open()',
-        '(click)': '_onClick()',
+        '(click)': 'onClick()',
     },
 })
 export class EcoFabSpeedDialComponent implements OnDestroy {
@@ -160,14 +160,14 @@ export class EcoFabSpeedDialComponent implements OnDestroy {
     private readonly renderer = inject(Renderer2);
     private readonly document = inject(DOCUMENT);
 
-    private _documentClickUnlistener: (() => void) | null = null;
+    private documentClickUnlistener: (() => void) | null = null;
 
     /**
      * Whether this speed dial is fixed on screen (user cannot change it by clicking)
      */
     public readonly fixed = input(false);
     private readonly processFixed = effect(() => {
-        this._processOutsideClickState();
+        this.processOutsideClickState();
     });
 
     /**
@@ -185,8 +185,8 @@ export class EcoFabSpeedDialComponent implements OnDestroy {
     public readonly direction = input<Direction>('up');
     private previousDirection: Direction = this.direction();
     private readonly processDirection = effect(() => {
-        this._setElementClass(this.previousDirection, false);
-        this._setElementClass(this.direction(), true);
+        this.setElementClass(this.previousDirection, false);
+        this.setElementClass(this.direction(), true);
         this.previousDirection = this.direction();
 
         this.setActionsVisibility();
@@ -198,17 +198,17 @@ export class EcoFabSpeedDialComponent implements OnDestroy {
     public readonly animationMode = input<AnimationMode>('fling');
     private previousAnimationMode: AnimationMode = this.animationMode();
     private processAnimationMode = effect(() => {
-        this._setElementClass(this.previousAnimationMode, false);
-        this._setElementClass(this.animationMode(), true);
+        this.setElementClass(this.previousAnimationMode, false);
+        this.setElementClass(this.animationMode(), true);
         this.previousAnimationMode = this.animationMode();
     });
 
     public readonly openChange = output<boolean>();
 
-    private readonly _childActions = contentChild.required(EcoFabSpeedDialActionsComponent);
+    private readonly childActions = contentChild.required(EcoFabSpeedDialActionsComponent);
 
     public ngOnDestroy(): void {
-        this._unsetDocumentClickListener();
+        this.unsetDocumentClickListener();
     }
 
     /**
@@ -218,7 +218,7 @@ export class EcoFabSpeedDialComponent implements OnDestroy {
         this.open.update(open => !open);
     }
 
-    public _onClick(): void {
+    protected onClick(): void {
         if (!this.fixed() && this.open()) {
             this.open.set(false);
         }
@@ -226,14 +226,14 @@ export class EcoFabSpeedDialComponent implements OnDestroy {
 
     public setActionsVisibility(): void {
         if (this.open()) {
-            this._childActions().show();
+            this.childActions().show();
         } else {
-            this._childActions().hide();
+            this.childActions().hide();
         }
-        this._processOutsideClickState();
+        this.processOutsideClickState();
     }
 
-    private _setElementClass(elemClass: string, isAdd: boolean): void {
+    private setElementClass(elemClass: string, isAdd: boolean): void {
         const finalClass = `eco-${elemClass}`;
         if (isAdd) {
             this.renderer.addClass(this.elementRef.nativeElement, finalClass);
@@ -242,26 +242,26 @@ export class EcoFabSpeedDialComponent implements OnDestroy {
         }
     }
 
-    private _processOutsideClickState(): void {
+    private processOutsideClickState(): void {
         if (!this.fixed() && this.open()) {
-            this._setDocumentClickListener();
+            this.setDocumentClickListener();
         } else {
-            this._unsetDocumentClickListener();
+            this.unsetDocumentClickListener();
         }
     }
 
-    private _setDocumentClickListener(): void {
-        if (!this._documentClickUnlistener) {
-            this._documentClickUnlistener = this.renderer.listen(this.document, 'click', () => {
+    private setDocumentClickListener(): void {
+        if (!this.documentClickUnlistener) {
+            this.documentClickUnlistener = this.renderer.listen(this.document, 'click', () => {
                 this.open.set(false);
             });
         }
     }
 
-    private _unsetDocumentClickListener(): void {
-        if (this._documentClickUnlistener) {
-            this._documentClickUnlistener();
-            this._documentClickUnlistener = null;
+    private unsetDocumentClickListener(): void {
+        if (this.documentClickUnlistener) {
+            this.documentClickUnlistener();
+            this.documentClickUnlistener = null;
         }
     }
 }
@@ -270,21 +270,21 @@ export class EcoFabSpeedDialComponent implements OnDestroy {
     selector: 'eco-fab-speed-dial-trigger',
     template: ` <ng-content select="[mat-fab]" />`,
     host: {
-        '(click)': '_onClick($event)',
+        '(click)': 'onClick($event)',
         '[class.eco-spin]': 'spin()',
     },
 })
 export class EcoFabSpeedDialTriggerComponent {
-    private readonly _parent = inject(EcoFabSpeedDialComponent);
+    private readonly parent = inject(EcoFabSpeedDialComponent);
 
     /**
      * Whether this trigger should spin (360dg) while opening the speed dial
      */
     public readonly spin = input(false);
 
-    public _onClick(event: Event): void {
-        if (!this._parent.fixed()) {
-            this._parent.toggle();
+    protected onClick(event: Event): void {
+        if (!this.parent.fixed()) {
+            this.parent.toggle();
             event.stopPropagation();
         }
     }
