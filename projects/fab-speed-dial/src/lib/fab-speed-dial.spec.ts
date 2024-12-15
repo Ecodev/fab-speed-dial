@@ -6,7 +6,7 @@ import {
     EcoFabSpeedDialTriggerComponent,
 } from './fab-speed-dial';
 import {By} from '@angular/platform-browser';
-import {Component, ViewChild} from '@angular/core';
+import {Component, viewChild} from '@angular/core';
 
 describe('FabSpeedDial', () => {
     it('should apply direction class based on direction', () => {
@@ -37,6 +37,7 @@ describe('FabSpeedDial', () => {
         const fixture = TestBed.createComponent(TestAppComponent);
         const speedDialDebugElement = fixture.debugElement.query(By.css('eco-fab-speed-dial'));
         const triggerButtonDebugElement = fixture.debugElement.query(By.css('eco-fab-speed-dial-trigger button'));
+        fixture.detectChanges();
 
         triggerButtonDebugElement.nativeElement.click();
         fixture.detectChanges();
@@ -85,14 +86,14 @@ describe('FabSpeedDial', () => {
         const testComponent = fixture.debugElement.componentInstance;
         fixture.detectChanges();
 
-        spyOn(fixture.componentInstance.fabSpeedDial, 'setActionsVisibility').and.callThrough();
-        spyOn(fixture.componentInstance.fabActions, 'show').and.callThrough();
+        spyOn(fixture.componentInstance.fabSpeedDial(), 'setActionsVisibility').and.callThrough();
+        spyOn(fixture.componentInstance.fabActions(), 'show').and.callThrough();
 
         testComponent.open = true;
         fixture.detectChanges();
 
-        expect(fixture.componentInstance.fabSpeedDial.setActionsVisibility).toHaveBeenCalled();
-        expect(fixture.componentInstance.fabActions.show).toHaveBeenCalled();
+        expect(fixture.componentInstance.fabSpeedDial().setActionsVisibility).toHaveBeenCalled();
+        expect(fixture.componentInstance.fabActions().show).toHaveBeenCalled();
     });
 
     it('should click on document testElement to hide all fabActions', () => {
@@ -100,23 +101,23 @@ describe('FabSpeedDial', () => {
         const testComponent = fixture.debugElement.componentInstance;
         fixture.detectChanges();
 
-        const actionsSpy = spyOn(fixture.componentInstance.fabSpeedDial, 'setActionsVisibility').and.callThrough();
-        spyOn(fixture.componentInstance.fabActions, 'show').and.callThrough();
-        spyOn(fixture.componentInstance.fabActions, 'hide').and.callThrough();
+        const actionsSpy = spyOn(fixture.componentInstance.fabSpeedDial(), 'setActionsVisibility').and.callThrough();
+        spyOn(fixture.componentInstance.fabActions(), 'show').and.callThrough();
+        spyOn(fixture.componentInstance.fabActions(), 'hide').and.callThrough();
 
         testComponent.open = true;
         fixture.detectChanges();
 
-        expect(fixture.componentInstance.fabSpeedDial.setActionsVisibility).toHaveBeenCalled();
-        expect(fixture.componentInstance.fabActions.show).toHaveBeenCalled();
+        expect(fixture.componentInstance.fabSpeedDial().setActionsVisibility).toHaveBeenCalled();
+        expect(fixture.componentInstance.fabActions().show).toHaveBeenCalled();
         actionsSpy.calls.reset();
 
         const actionButton = fixture.debugElement.query(By.css('.testElement'));
         actionButton.nativeElement.click();
         fixture.detectChanges();
 
-        expect(fixture.componentInstance.fabSpeedDial.setActionsVisibility).toHaveBeenCalled();
-        expect(fixture.componentInstance.fabActions.hide).toHaveBeenCalled();
+        expect(fixture.componentInstance.fabSpeedDial().setActionsVisibility).toHaveBeenCalled();
+        expect(fixture.componentInstance.fabActions().hide).toHaveBeenCalled();
     });
 });
 
@@ -124,12 +125,12 @@ describe('FabSpeedDial', () => {
 @Component({
     template: `
         <div>
-            <eco-fab-speed-dial [direction]="direction" [(open)]="open" #fabSpeedDial>
+            <eco-fab-speed-dial [direction]="direction" [(open)]="open">
                 <eco-fab-speed-dial-trigger>
                     <button mat-fab>check</button>
                 </eco-fab-speed-dial-trigger>
 
-                <eco-fab-speed-dial-actions #fabActions>
+                <eco-fab-speed-dial-actions>
                     <button mat-mini-fab>add</button>
                     <button mat-mini-fab>edit</button>
                     <button mat-mini-fab>menu</button>
@@ -138,14 +139,11 @@ describe('FabSpeedDial', () => {
             <div class="testElement">Test element</div>
         </div>
     `,
-    standalone: true,
     imports: [EcoFabSpeedDialActionsComponent, EcoFabSpeedDialTriggerComponent, EcoFabSpeedDialComponent],
 })
 class TestAppComponent {
-    @ViewChild(EcoFabSpeedDialActionsComponent)
-    public fabActions!: EcoFabSpeedDialActionsComponent;
-    @ViewChild(EcoFabSpeedDialComponent)
-    public fabSpeedDial!: EcoFabSpeedDialComponent;
+    public readonly fabActions = viewChild.required(EcoFabSpeedDialActionsComponent);
+    public readonly fabSpeedDial = viewChild.required(EcoFabSpeedDialComponent);
     public direction: Direction = 'up';
     public open = false;
 }

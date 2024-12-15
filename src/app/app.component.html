@@ -80,8 +80,8 @@
                 [direction]="direction"
                 [animationMode]="animationMode"
                 [fixed]="fixed"
-                (mouseenter)="myFab.open = true"
-                (mouseleave)="myFab.open = false"
+                (mouseenter)="myFab.open.set(true)"
+                (mouseleave)="myFab.open.set(false)"
             >
                 <eco-fab-speed-dial-trigger [spin]="spin">
                     <button mat-fab (click)="doAction('trigger')">
