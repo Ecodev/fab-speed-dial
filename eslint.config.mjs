@@ -28,7 +28,6 @@ function tsFiles(files, extraRules = {}) {
             '@typescript-eslint/explicit-member-accessibility': 'error',
             '@typescript-eslint/no-confusing-void-expression': 'off', // We prefer code tersity
             '@typescript-eslint/no-dynamic-delete': 'off',
-            '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/no-extraneous-class': 'off', // We have component without any logic in TS
             '@typescript-eslint/no-floating-promises': 'off',
             '@typescript-eslint/no-non-null-assertion': 'off',
@@ -161,7 +160,6 @@ export default tseslint.config(
             '@angular-eslint/template/i18n': 'off',
             '@angular-eslint/template/interactive-supports-focus': 'off', // We don't care as much as we should about a11y
             '@angular-eslint/template/label-has-associated-control': 'off', // We don't care as much as we should about a11y
-            '@angular-eslint/template/no-any': 'off', // Unfortunately, some libs force us to use this
             '@angular-eslint/template/no-autofocus': 'off',
             '@angular-eslint/template/no-call-expression': 'off',
             '@angular-eslint/template/no-inline-styles': 'off', // We sometimes use short inlie styles

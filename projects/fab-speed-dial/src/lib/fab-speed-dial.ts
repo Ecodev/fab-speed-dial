@@ -1,5 +1,6 @@
 import {
     Component,
+    computed,
     contentChild,
     contentChildren,
     effect,
@@ -12,7 +13,7 @@ import {
     Renderer2,
     ViewEncapsulation,
 } from '@angular/core';
-import {MatMiniFabButton} from '@angular/material/button';
+import {MatMiniFabAnchor, MatMiniFabButton} from '@angular/material/button';
 import {DOCUMENT} from '@angular/common';
 import {forkJoin, fromEvent, Subscription} from 'rxjs';
 import {take} from 'rxjs/operators';
@@ -22,8 +23,10 @@ const Z_INDEX_ITEM = 23;
 export type Direction = 'up' | 'down' | 'left' | 'right';
 export type AnimationMode = 'fling' | 'scale';
 
-function getHostElement(button: MatMiniFabButton): any {
-    return button._elementRef.nativeElement;
+type MiniFab = MatMiniFabButton | MatMiniFabAnchor;
+
+function getHostElement(miniFab: MiniFab): HTMLButtonElement | HTMLAnchorElement {
+    return miniFab._elementRef.nativeElement;
 }
 
 @Component({
@@ -38,28 +41,31 @@ export class EcoFabSpeedDialActionsComponent {
     private readonly parent = inject(EcoFabSpeedDialComponent);
 
     private readonly buttons = contentChildren(MatMiniFabButton);
+    private readonly anchors = contentChildren(MatMiniFabAnchor);
+    private readonly miniFabs = computed(() => [...this.buttons(), ...this.anchors()]);
 
-    private readonly initButtonStates = effect(() => {
-        this.buttons().forEach((button, i) => {
-            this.renderer.addClass(getHostElement(button), 'eco-fab-action-item');
-            this.changeElementStyle(getHostElement(button), 'z-index', '' + (Z_INDEX_ITEM - i).toString());
+    private readonly initMiniFabStates = effect(() => {
+        this.miniFabs().forEach((matMini, i) => {
+            const hostElement = getHostElement(matMini);
+            this.renderer.addClass(hostElement, 'eco-fab-action-item');
+            this.changeElementStyle(hostElement, 'z-index', '' + (Z_INDEX_ITEM - i).toString());
         });
 
         this.parent.setActionsVisibility();
     });
 
     /**
-     * Whether the min-fab button exist in DOM
+     * Whether the mini-fab exist in DOM
      */
     protected miniFabVisible = false;
 
     /**
-     * The timeout ID for the callback to show the mini-fab buttons
+     * The timeout ID for the callback to show the mini-fabs
      */
     private showMiniFabAnimation: ReturnType<typeof setTimeout> | undefined;
 
     /**
-     * When we will remove mini-fab buttons from DOM, after the animation is complete
+     * When we will remove mini-fab from DOM, after the animation is complete
      */
     private hideMiniFab: Subscription | null = null;
 
@@ -68,18 +74,18 @@ export class EcoFabSpeedDialActionsComponent {
         this.miniFabVisible = true;
 
         this.showMiniFabAnimation = setTimeout(() => {
-            this.buttons().forEach((button, i) => {
+            this.miniFabs().forEach((miniFab, i) => {
                 let transitionDelay = 0;
                 let transform;
                 if (this.parent.animationMode() === 'scale') {
-                    // Incremental transition delay of 65ms for each action button
+                    // Incremental transition delay of 65ms for each action miniFab
                     transitionDelay = 3 + 65 * i;
                     transform = 'scale(1)';
                 } else {
                     transform = this.getTranslateFunction('0');
                 }
 
-                const hostElement = getHostElement(button);
+                const hostElement = getHostElement(miniFab);
                 this.changeElementStyle(hostElement, 'transition-delay', transitionDelay.toString() + 'ms');
                 this.changeElementStyle(hostElement, 'opacity', '1');
                 this.changeElementStyle(hostElement, 'transform', transform);
@@ -98,7 +104,7 @@ export class EcoFabSpeedDialActionsComponent {
     public hide(): void {
         this.resetAnimationState();
 
-        const obs = this.buttons().map((button, i) => {
+        const obs = this.miniFabs().map((miniFab, i) => {
             let opacity = '1';
             let transitionDelay = 0;
             let transform;
@@ -111,7 +117,7 @@ export class EcoFabSpeedDialActionsComponent {
                 transform = this.getTranslateFunction((55 * (i + 1) - i * 5).toString() + 'px');
             }
 
-            const hostElement = getHostElement(button);
+            const hostElement = getHostElement(miniFab);
 
             this.changeElementStyle(hostElement, 'transition-delay', transitionDelay.toString() + 'ms');
             this.changeElementStyle(hostElement, 'opacity', opacity);
@@ -120,7 +126,7 @@ export class EcoFabSpeedDialActionsComponent {
             return fromEvent(hostElement, 'transitionend').pipe(take(1));
         });
 
-        // Wait for all animation to finish, then destroy their elements
+        // Wait for all animations to finish, then destroy their elements
         this.hideMiniFab = forkJoin(obs).subscribe(() => (this.miniFabVisible = false));
     }
 
@@ -132,8 +138,7 @@ export class EcoFabSpeedDialActionsComponent {
         return translateFn + '(' + sign + value + ')';
     }
 
-    private changeElementStyle(elem: any, style: string, value: string): void {
-        // FIXME - Find a way to create a "wrapper" around the action button(s) provided by the user, so we don't change it's style tag
+    private changeElementStyle(elem: HTMLElement, style: string, value: string): void {
         this.renderer.setStyle(elem, style, value);
     }
 }
