@@ -76,10 +76,7 @@ export class EcoFabSpeedDialActionsComponent {
             this.miniFabs().forEach((miniFab, i) => {
                 const hostElement = getHostElement(miniFab);
 
-                // Incremental transition delay of 65ms for each action miniFab
-                const transitionDelay = 3 + 65 * i;
-                this.changeElementStyle(hostElement, 'transition-delay', transitionDelay.toString() + 'ms');
-                this.changeElementStyle(hostElement, 'opacity', '1');
+                this.changeElementStyle(hostElement, 'transition-delay', this.transitionDelay(i));
                 this.changeElementStyle(hostElement, 'transform', 'scale(1)');
             });
         }, 50); // Be sure that @if can show elements before trying to animate them
@@ -96,12 +93,16 @@ export class EcoFabSpeedDialActionsComponent {
     public hide(): void {
         this.resetAnimationState();
 
-        const obs = this.miniFabs().map((miniFab, i) => {
+        const miniFabs = this.miniFabs();
+        if (!miniFabs.length) {
+            this.miniFabVisible = false;
+            return;
+        }
+
+        const obs = [...miniFabs].reverse().map((miniFab, i) => {
             const hostElement = getHostElement(miniFab);
 
-            const transitionDelay = 3 - 65 * i;
-            this.changeElementStyle(hostElement, 'transition-delay', transitionDelay.toString() + 'ms');
-            this.changeElementStyle(hostElement, 'opacity', '0');
+            this.changeElementStyle(hostElement, 'transition-delay', this.transitionDelay(i));
             this.changeElementStyle(hostElement, 'transform', 'scale(0)');
 
             return fromEvent(hostElement, 'transitionend').pipe(take(1));
@@ -109,6 +110,16 @@ export class EcoFabSpeedDialActionsComponent {
 
         // Wait for all animations to finish, then destroy their elements
         this.hideMiniFab = forkJoin(obs).subscribe(() => (this.miniFabVisible = false));
+    }
+
+    private transitionDelay(i: number): string {
+        const total = 100; // Maximum of 100 ms seconds for all cumulated delays
+
+        const length = this.miniFabs().length;
+        const transitionDelayOne = length ? total / length : 0;
+        const transitionDelay = transitionDelayOne * i;
+
+        return transitionDelay.toString() + 'ms';
     }
 
     private changeElementStyle(elem: HTMLElement, style: string, value: string): void {

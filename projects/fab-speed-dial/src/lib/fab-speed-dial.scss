@@ -40,6 +40,7 @@ eco-fab-speed-dial {
                     -webkit-transform: rotate(180deg);
                     transform: rotate(180deg);
                 }
+
                 .spin360 {
                     -webkit-transform: rotate(360deg);
                     transform: rotate(360deg);
@@ -78,32 +79,11 @@ eco-fab-speed-dial {
             position: absolute;
             height: 0;
             width: 0;
-        }
-    }
 
-    &.eco-fling {
-        .eco-fab-speed-dial-container {
-            eco-fab-speed-dial-actions {
-                & .eco-fab-action-item {
-                    opacity: 1;
-                    -webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
-                    transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
-                }
-            }
-        }
-    }
-
-    &.eco-scale {
-        .eco-fab-speed-dial-container {
-            eco-fab-speed-dial-actions {
-                & .eco-fab-action-item {
-                    -webkit-transform: scale(0);
-                    transform: scale(0);
-                    -webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
-                    transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
-                    -webkit-transition-duration: 0.14286s;
-                    transition-duration: 0.14286s;
-                }
+            & .eco-fab-action-item {
+                transform: scale(0);
+                transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+                transition-duration: 0.14286s;
             }
         }
     }
