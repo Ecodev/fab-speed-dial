@@ -136,17 +136,6 @@
                     "options": {
                         "lintFilePatterns": ["projects/fab-speed-dial/**/*.ts", "projects/fab-speed-dial/**/*.html"]
                     }
-                },
-                "e2e": {
-                    "builder": "playwright-ng-schematics:playwright",
-                    "options": {
-                        "devServerTarget": "fab-speed-dial:serve"
-                    },
-                    "configurations": {
-                        "production": {
-                            "devServerTarget": "fab-speed-dial:serve:production"
-                        }
-                    }
                 }
             }
         }
