@@ -4,7 +4,7 @@ import {AppPage} from './app.po';
 test.describe('workspace-project App', () => {
     let app: AppPage;
 
-    test.beforeEach(async ({page}) => {
+    test.beforeEach(({page}) => {
         app = new AppPage(page);
     });
 

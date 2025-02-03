@@ -1,30 +1,25 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "baseUrl": "./",
         "outDir": "./dist/out-tsc",
-        "forceConsistentCasingInFileNames": true,
-        "esModuleInterop": true,
         "strict": true,
+        "paths": {
+            "@ecodev/fab-speed-dial": ["./projects/fab-speed-dial/src/public-api"]
+        },
         "noImplicitOverride": true,
         "noPropertyAccessFromIndexSignature": true,
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         "skipLibCheck": true,
         "isolatedModules": true,
-        "sourceMap": true,
-        "paths": {
-            "@ecodev/fab-speed-dial": ["projects/fab-speed-dial/src/public-api"],
-            "@ecodev/fab-speed-dial/*": ["dist/fab-speed-dial/*"]
-        },
-        "declaration": false,
+        "esModuleInterop": true,
         "experimentalDecorators": true,
         "moduleResolution": "bundler",
         "importHelpers": true,
         "target": "ES2022",
-        "module": "es2020",
-        "lib": ["es2020", "dom"]
+        "module": "ES2022"
     },
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,

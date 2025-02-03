@@ -18,41 +18,36 @@
                         "browser": "src/main.ts",
                         "polyfills": ["zone.js"],
                         "tsConfig": "tsconfig.app.json",
-                        "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": ["src/styles.css"],
-                        "scripts": [],
-                        "extractLicenses": false,
-                        "sourceMap": true,
-                        "optimization": false,
-                        "namedChunks": true
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "public"
+                            }
+                        ],
+                        "styles": ["@angular/material/prebuilt-themes/azure-blue.css", "src/styles.css"],
+                        "scripts": []
                     },
                     "configurations": {
                         "production": {
-                            "fileReplacements": [
-                                {
-                                    "replace": "src/environments/environment.ts",
-                                    "with": "src/environments/environment.prod.ts"
-                                }
-                            ],
-                            "optimization": true,
-                            "outputHashing": "all",
-                            "sourceMap": false,
-                            "namedChunks": false,
-                            "extractLicenses": true,
                             "budgets": [
                                 {
                                     "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
+                                    "maximumWarning": "500kB",
+                                    "maximumError": "1MB"
                                 },
                                 {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "6kb",
-                                    "maximumError": "10kb"
+                                    "maximumWarning": "4kB",
+                                    "maximumError": "8kB"
                                 }
-                            ]
+                            ],
+                            "outputHashing": "all"
                         },
-                        "development": {}
+                        "development": {
+                            "optimization": false,
+                            "extractLicenses": false,
+                            "sourceMap": true
+                        }
                     },
                     "defaultConfiguration": "production"
                 },
@@ -72,20 +67,20 @@
                     "defaultConfiguration": "development"
                 },
                 "extract-i18n": {
-                    "builder": "@angular-devkit/build-angular:extract-i18n",
-                    "options": {
-                        "buildTarget": "demo:build"
-                    }
+                    "builder": "@angular-devkit/build-angular:extract-i18n"
                 },
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "src/test.ts",
                         "polyfills": ["zone.js", "zone.js/testing"],
                         "tsConfig": "tsconfig.spec.json",
-                        "karmaConfig": "karma.conf.js",
-                        "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": ["src/styles.css"],
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "public"
+                            }
+                        ],
+                        "styles": ["@angular/material/prebuilt-themes/azure-blue.css", "src/styles.css"],
                         "scripts": []
                     }
                 },
@@ -93,6 +88,17 @@
                     "builder": "@angular-eslint/builder:lint",
                     "options": {
                         "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+                    }
+                },
+                "e2e": {
+                    "builder": "playwright-ng-schematics:playwright",
+                    "options": {
+                        "devServerTarget": "demo:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "demo:serve:production"
+                        }
                     }
                 }
             }
@@ -121,9 +127,8 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/fab-speed-dial/src/test.ts",
                         "tsConfig": "projects/fab-speed-dial/tsconfig.spec.json",
-                        "karmaConfig": "projects/fab-speed-dial/karma.conf.js"
+                        "polyfills": ["zone.js", "zone.js/testing"]
                     }
                 },
                 "lint": {
@@ -131,16 +136,19 @@
                     "options": {
                         "lintFilePatterns": ["projects/fab-speed-dial/**/*.ts", "projects/fab-speed-dial/**/*.html"]
                     }
+                },
+                "e2e": {
+                    "builder": "playwright-ng-schematics:playwright",
+                    "options": {
+                        "devServerTarget": "fab-speed-dial:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "fab-speed-dial:serve:production"
+                        }
+                    }
                 }
             }
-        }
-    },
-    "schematics": {
-        "@angular-eslint/schematics:application": {
-            "setParserOptionsProject": true
-        },
-        "@angular-eslint/schematics:library": {
-            "setParserOptionsProject": true
         }
     }
 }
