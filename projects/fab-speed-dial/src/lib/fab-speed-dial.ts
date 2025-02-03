@@ -152,14 +152,6 @@ export class EcoFabSpeedDialComponent implements OnDestroy {
     private documentClickUnlistener: (() => void) | null = null;
 
     /**
-     * Whether this speed dial is fixed on screen (user cannot change it by clicking)
-     */
-    public readonly fixed = input(false);
-    private readonly processFixed = effect(() => {
-        this.processOutsideClickState();
-    });
-
-    /**
      * Whether this speed dial is opened
      */
     public readonly open = model(false);
@@ -197,7 +189,7 @@ export class EcoFabSpeedDialComponent implements OnDestroy {
     }
 
     protected onClick(): void {
-        if (!this.fixed() && this.open()) {
+        if (this.open()) {
             this.open.set(false);
         }
     }
@@ -221,7 +213,7 @@ export class EcoFabSpeedDialComponent implements OnDestroy {
     }
 
     private processOutsideClickState(): void {
-        if (!this.fixed() && this.open()) {
+        if (this.open()) {
             this.setDocumentClickListener();
         } else {
             this.unsetDocumentClickListener();
@@ -261,9 +253,7 @@ export class EcoFabSpeedDialTriggerComponent {
     public readonly spin = input(false);
 
     protected onClick(event: Event): void {
-        if (!this.parent.fixed()) {
-            this.parent.toggle();
-            event.stopPropagation();
-        }
+        this.parent.toggle();
+        event.stopPropagation();
     }
 }

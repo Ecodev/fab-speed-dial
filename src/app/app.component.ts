@@ -31,22 +31,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     ],
 })
 export class AppComponent {
-    private _fixed = false;
-
     public open = false;
     public spin = false;
     public direction: Direction = 'up';
-
-    public get fixed(): boolean {
-        return this._fixed;
-    }
-
-    public set fixed(fixed: boolean) {
-        this._fixed = fixed;
-        if (this._fixed) {
-            this.open = true;
-        }
-    }
 
     public stopPropagation(event: Event): void {
         // Prevent the click to propagate to document and trigger
