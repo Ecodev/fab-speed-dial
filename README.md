@@ -44,12 +44,11 @@ or adapt the bindings to your needs:
 
 ### eco-fab-speed-dial
 
-| Property        | Type                            | Default | Description                                                                            |
-| --------------- | ------------------------------- | ------- | -------------------------------------------------------------------------------------- |
-| `open`          | `boolean`                       | `false` | Indicates if this FAB Speed Dial is opened                                             |
-| `direction`     | `up`, `down`, `left` or `right` | `up`    | The direction to open the action buttons                                               |
-| `animationMode` | `fling` or `scale`              | `fling` | The animation to apply when opening the action buttons                                 |
-| `fixed`         | `boolean`                       | `false` | Indicates if this FAB Speed Dial is fixed (user cannot change the open state on click) |
+BREA| Property    | Type                            | Default | Description                                                                            |
+| ----------- | ------------------------------- | ------- | -------------------------------------------------------------------------------------- |
+| `open`      | `boolean`                       | `false` | Indicates if this FAB Speed Dial is opened                                             |
+| `direction` | `up`, `down`, `left` or `right` | `up`    | The direction to open the action buttons                                               |
+| `fixed`     | `boolean`                       | `false` | Indicates if this FAB Speed Dial is fixed (user cannot change the open state on click) |
 
 ### eco-fab-speed-dial-trigger
 

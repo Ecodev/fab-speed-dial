@@ -21,7 +21,6 @@ import {take} from 'rxjs/operators';
 const Z_INDEX_ITEM = 23;
 
 export type Direction = 'up' | 'down' | 'left' | 'right';
-export type AnimationMode = 'fling' | 'scale';
 
 type MiniFab = MatMiniFabButton | MatMiniFabAnchor;
 
@@ -75,20 +74,13 @@ export class EcoFabSpeedDialActionsComponent {
 
         this.showMiniFabAnimation = setTimeout(() => {
             this.miniFabs().forEach((miniFab, i) => {
-                let transitionDelay = 0;
-                let transform;
-                if (this.parent.animationMode() === 'scale') {
-                    // Incremental transition delay of 65ms for each action miniFab
-                    transitionDelay = 3 + 65 * i;
-                    transform = 'scale(1)';
-                } else {
-                    transform = this.getTranslateFunction('0');
-                }
-
                 const hostElement = getHostElement(miniFab);
+
+                // Incremental transition delay of 65ms for each action miniFab
+                const transitionDelay = 3 + 65 * i;
                 this.changeElementStyle(hostElement, 'transition-delay', transitionDelay.toString() + 'ms');
                 this.changeElementStyle(hostElement, 'opacity', '1');
-                this.changeElementStyle(hostElement, 'transform', transform);
+                this.changeElementStyle(hostElement, 'transform', 'scale(1)');
             });
         }, 50); // Be sure that @if can show elements before trying to animate them
     }
@@ -105,37 +97,18 @@ export class EcoFabSpeedDialActionsComponent {
         this.resetAnimationState();
 
         const obs = this.miniFabs().map((miniFab, i) => {
-            let opacity = '1';
-            let transitionDelay = 0;
-            let transform;
-
-            if (this.parent.animationMode() === 'scale') {
-                transitionDelay = 3 - 65 * i;
-                transform = 'scale(0)';
-                opacity = '0';
-            } else {
-                transform = this.getTranslateFunction((55 * (i + 1) - i * 5).toString() + 'px');
-            }
-
             const hostElement = getHostElement(miniFab);
 
+            const transitionDelay = 3 - 65 * i;
             this.changeElementStyle(hostElement, 'transition-delay', transitionDelay.toString() + 'ms');
-            this.changeElementStyle(hostElement, 'opacity', opacity);
-            this.changeElementStyle(hostElement, 'transform', transform);
+            this.changeElementStyle(hostElement, 'opacity', '0');
+            this.changeElementStyle(hostElement, 'transform', 'scale(0)');
 
             return fromEvent(hostElement, 'transitionend').pipe(take(1));
         });
 
         // Wait for all animations to finish, then destroy their elements
         this.hideMiniFab = forkJoin(obs).subscribe(() => (this.miniFabVisible = false));
-    }
-
-    private getTranslateFunction(value: string): string {
-        const dir = this.parent.direction();
-        const translateFn = dir === 'up' || dir === 'down' ? 'translateY' : 'translateX';
-        const sign = dir === 'down' || dir === 'right' ? '-' : '';
-
-        return translateFn + '(' + sign + value + ')';
     }
 
     private changeElementStyle(elem: HTMLElement, style: string, value: string): void {
@@ -195,17 +168,6 @@ export class EcoFabSpeedDialComponent implements OnDestroy {
         this.previousDirection = this.direction();
 
         this.setActionsVisibility();
-    });
-
-    /**
-     * The animation mode to open the speed dial. Can be 'fling' or 'scale'
-     */
-    public readonly animationMode = input<AnimationMode>('fling');
-    private previousAnimationMode: AnimationMode = this.animationMode();
-    private processAnimationMode = effect(() => {
-        this.setElementClass(this.previousAnimationMode, false);
-        this.setElementClass(this.animationMode(), true);
-        this.previousAnimationMode = this.animationMode();
     });
 
     public readonly openChange = output<boolean>();

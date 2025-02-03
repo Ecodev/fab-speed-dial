@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {
-    AnimationMode,
     Direction,
     EcoFabSpeedDialActionsComponent,
     EcoFabSpeedDialComponent,
@@ -37,7 +36,6 @@ export class AppComponent {
     public open = false;
     public spin = false;
     public direction: Direction = 'up';
-    public animationMode: AnimationMode = 'fling';
 
     public get fixed(): boolean {
         return this._fixed;

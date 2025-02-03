@@ -24,13 +24,6 @@
             </mat-radio-group>
         </p>
         <p>
-            Animation Mode:
-            <mat-radio-group [(ngModel)]="animationMode" name="animationMode">
-                <mat-radio-button value="fling">fling</mat-radio-button>
-                <mat-radio-button value="scale">scale</mat-radio-button>
-            </mat-radio-group>
-        </p>
-        <p>
             <mat-slide-toggle [(ngModel)]="fixed">Fixed</mat-slide-toggle>
         </p>
         <p>
@@ -47,7 +40,7 @@
 
         <mat-card-content class="mat-body-1">
             <mat-slide-toggle [(ngModel)]="open" (click)="stopPropagation($event)">Open</mat-slide-toggle>
-            <eco-fab-speed-dial [(open)]="open" [direction]="direction" [animationMode]="animationMode" [fixed]="fixed">
+            <eco-fab-speed-dial [(open)]="open" [direction]="direction" [fixed]="fixed">
                 <eco-fab-speed-dial-trigger [spin]="spin">
                     <button mat-fab (click)="doAction('trigger')">
                         <mat-icon class="spin180" fontIcon="add" />
@@ -81,7 +74,6 @@
             <eco-fab-speed-dial
                 #myFab
                 [direction]="direction"
-                [animationMode]="animationMode"
                 [fixed]="fixed"
                 (mouseenter)="myFab.open.set(true)"
                 (mouseleave)="myFab.open.set(false)"
