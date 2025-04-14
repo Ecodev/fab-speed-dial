@@ -154,7 +154,6 @@ export default tseslint.config(
         extends: [...angular.configs.templateAll],
         rules: {
             '@angular-eslint/template/alt-text': 'off', // We don't care as much as we should about a11y
-            '@angular-eslint/template/attributes-order': 'off', // TODO: We want to enable this, but autofix mess up our code, and it's too much manual changes
             '@angular-eslint/template/button-has-type': 'off',
             '@angular-eslint/template/click-events-have-key-events': 'off', // We don't care as much as we should about a11y
             '@angular-eslint/template/i18n': 'off',
@@ -162,7 +161,7 @@ export default tseslint.config(
             '@angular-eslint/template/label-has-associated-control': 'off', // We don't care as much as we should about a11y
             '@angular-eslint/template/no-autofocus': 'off',
             '@angular-eslint/template/no-call-expression': 'off',
-            '@angular-eslint/template/no-inline-styles': 'off', // We sometimes use short inlie styles
+            '@angular-eslint/template/no-inline-styles': 'off', // We sometimes use short inline styles
             '@angular-eslint/template/prefer-ngsrc': 'off', // TODO: experiment with ngsrc and see if we need to use it or not
             '@angular-eslint/template/eqeqeq': [
                 'error',

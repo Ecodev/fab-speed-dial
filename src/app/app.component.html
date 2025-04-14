@@ -16,7 +16,7 @@
     <mat-card-content class="mat-body-1">
         <p>
             Direction:
-            <mat-radio-group [(ngModel)]="direction" name="direction">
+            <mat-radio-group name="direction" [(ngModel)]="direction">
                 <mat-radio-button value="up">Up</mat-radio-button>
                 <mat-radio-button value="down">Down</mat-radio-button>
                 <mat-radio-button value="left">Left</mat-radio-button>
@@ -37,7 +37,7 @@
 
         <mat-card-content class="mat-body-1">
             <mat-slide-toggle [(ngModel)]="open" (click)="stopPropagation($event)">Open</mat-slide-toggle>
-            <eco-fab-speed-dial [(open)]="open" [direction]="direction">
+            <eco-fab-speed-dial [direction]="direction" [(open)]="open">
                 <eco-fab-speed-dial-trigger [spin]="spin">
                     <button mat-fab (click)="doAction('trigger')">
                         <mat-icon class="spin180" fontIcon="add" />
