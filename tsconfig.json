@@ -25,7 +25,6 @@
         "strictInjectionParameters": true,
         "strictInputAccessModifiers": true,
         "strictTemplates": true,
-        "strictStandalone": true,
         "extendedDiagnostics": {
             "defaultCategory": "error"
         }
