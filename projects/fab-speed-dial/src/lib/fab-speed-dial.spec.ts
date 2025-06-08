@@ -123,6 +123,7 @@ describe('FabSpeedDial', () => {
 
 /** Test component that contains an fab speed dial buttons */
 @Component({
+    imports: [EcoFabSpeedDialActionsComponent, EcoFabSpeedDialTriggerComponent, EcoFabSpeedDialComponent],
     template: `
         <div>
             <eco-fab-speed-dial [direction]="direction" [(open)]="open">
@@ -139,7 +140,6 @@ describe('FabSpeedDial', () => {
             <div class="testElement">Test element</div>
         </div>
     `,
-    imports: [EcoFabSpeedDialActionsComponent, EcoFabSpeedDialTriggerComponent, EcoFabSpeedDialComponent],
 })
 class TestAppComponent {
     public readonly fabActions = viewChild.required(EcoFabSpeedDialActionsComponent);

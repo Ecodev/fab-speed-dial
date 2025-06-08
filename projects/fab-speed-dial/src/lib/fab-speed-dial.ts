@@ -12,9 +12,10 @@ import {
     output,
     Renderer2,
     ViewEncapsulation,
+    DOCUMENT,
 } from '@angular/core';
 import {MatMiniFabAnchor, MatMiniFabButton} from '@angular/material/button';
-import {DOCUMENT} from '@angular/common';
+
 import {forkJoin, fromEvent, Subscription} from 'rxjs';
 import {take} from 'rxjs/operators';
 
@@ -22,9 +23,9 @@ const Z_INDEX_ITEM = 23;
 
 export type Direction = 'up' | 'down' | 'left' | 'right';
 
-type MiniFab = MatMiniFabButton | MatMiniFabAnchor;
+type MiniFab = MatMiniFabButton;
 
-function getHostElement(miniFab: MiniFab): HTMLButtonElement | HTMLAnchorElement {
+function getHostElement(miniFab: MiniFab): HTMLElement {
     return miniFab._elementRef.nativeElement;
 }
 

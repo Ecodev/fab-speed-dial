@@ -15,8 +15,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 
 @Component({
     selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss',
     imports: [
         MatToolbarModule,
         MatButtonModule,
@@ -29,6 +27,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
         EcoFabSpeedDialTriggerComponent,
         EcoFabSpeedDialActionsComponent,
     ],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss',
 })
 export class AppComponent {
     public open = false;
