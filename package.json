@@ -16,7 +16,6 @@
         "serve-demo": "echo '💡 open http://localhost:8000/fab-speed-dial/' && mkdir -p dist/server && ln -fs ../demo/browser dist/server/fab-speed-dial && php -S localhost:8000 -t dist/server/"
     },
     "dependencies": {
-        "@angular/animations": "^20.0.2",
         "@angular/cdk": "20.0.2",
         "@angular/common": "^20.0.2",
         "@angular/compiler": "^20.0.2",
