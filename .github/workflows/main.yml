@@ -48,7 +48,7 @@ jobs:
               with:
                   cache: 'yarn'
             - run: yarn --frozen-lockfile
-            - run: ./node_modules/.bin/prettier --check .
+            - run: ./node_modules/.bin/prettier --experimental-cli --check .
 
     publish-demo:
         runs-on: ubuntu-latest
