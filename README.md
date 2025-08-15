@@ -20,6 +20,7 @@ See the component in action on [the demo page](https://ecodev.github.io/fab-spee
    - `EcoFabSpeedDialComponent`
    - `EcoFabSpeedDialTriggerComponent`
    - `EcoFabSpeedDialActionsComponent`
+   - `MatButtonModule`
 
 ## Usage
 
