@@ -9,6 +9,7 @@
 
 eco-fab-speed-dial {
     display: inline-block;
+    z-index: 500;
 
     &.eco-opened {
         .eco-fab-speed-dial-container {
