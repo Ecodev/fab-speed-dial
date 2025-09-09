@@ -48,7 +48,7 @@ export class EcoFabSpeedDialActionsComponent {
         this.miniFabs().forEach((matMini, i) => {
             const hostElement = getHostElement(matMini);
             this.renderer.addClass(hostElement, 'eco-fab-action-item');
-            this.changeElementStyle(hostElement, 'z-index', '' + (Z_INDEX_ITEM - i).toString());
+            this.changeElementStyle(hostElement, 'z-index', (Z_INDEX_ITEM - i).toString());
         });
 
         this.parent.setActionsVisibility();
