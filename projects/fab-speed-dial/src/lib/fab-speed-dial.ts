@@ -3,6 +3,7 @@ import {
     computed,
     contentChild,
     contentChildren,
+    DOCUMENT,
     effect,
     ElementRef,
     inject,
@@ -12,7 +13,6 @@ import {
     output,
     Renderer2,
     ViewEncapsulation,
-    DOCUMENT,
 } from '@angular/core';
 import {MatMiniFabAnchor, MatMiniFabButton} from '@angular/material/button';
 
