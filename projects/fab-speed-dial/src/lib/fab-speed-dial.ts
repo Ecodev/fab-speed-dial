@@ -15,7 +15,6 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import {MatMiniFabAnchor, MatMiniFabButton} from '@angular/material/button';
-
 import {forkJoin, fromEvent, Subscription} from 'rxjs';
 import {take} from 'rxjs/operators';
 
