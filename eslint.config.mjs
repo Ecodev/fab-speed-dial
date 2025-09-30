@@ -31,7 +31,7 @@ function tsFiles(files, extraRules = {}) {
             '@typescript-eslint/no-extraneous-class': 'off', // We have component without any logic in TS
             '@typescript-eslint/no-floating-promises': 'off',
             '@typescript-eslint/no-non-null-assertion': 'off',
-            '@typescript-eslint/no-unnecessary-condition': 'off', // This is very unfortunate, but there are too many dangerous false-positive, see https://github.com/typescript-eslint/typescript-eslint/issues/1798
+            '@typescript-eslint/no-unnecessary-condition': 'off', // This is very unfortunate, but there are too many dangerous false-positive, see https://github.com/typescript-eslint/typescript-eslint/issues/2128
             '@typescript-eslint/no-unsafe-argument': 'off',
             '@typescript-eslint/no-unsafe-assignment': 'off',
             '@typescript-eslint/no-unsafe-call': 'off',
