@@ -31,7 +31,7 @@ function getHostElement(miniFab: MiniFab): HTMLElement {
 @Component({
     selector: 'eco-fab-speed-dial-actions',
     template: `@if (miniFabVisible) {
-        <ng-content select="[mat-mini-fab]" />
+        <ng-content select="[matMiniFab]" />
     }`,
 })
 export class EcoFabSpeedDialActionsComponent {
@@ -238,7 +238,7 @@ export class EcoFabSpeedDialComponent implements OnDestroy {
 
 @Component({
     selector: 'eco-fab-speed-dial-trigger',
-    template: ` <ng-content select="[mat-fab]" />`,
+    template: ` <ng-content select="[matFab]" />`,
     host: {
         '(click)': 'onClick($event)',
         '[class.eco-spin]': 'spin()',

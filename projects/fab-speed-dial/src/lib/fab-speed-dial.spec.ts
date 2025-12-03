@@ -128,13 +128,13 @@ describe('FabSpeedDial', () => {
         <div>
             <eco-fab-speed-dial [direction]="direction" [(open)]="open">
                 <eco-fab-speed-dial-trigger>
-                    <button mat-fab>check</button>
+                    <button matFab>check</button>
                 </eco-fab-speed-dial-trigger>
 
                 <eco-fab-speed-dial-actions>
-                    <button mat-mini-fab>add</button>
-                    <button mat-mini-fab>edit</button>
-                    <button mat-mini-fab>menu</button>
+                    <button matMiniFab>add</button>
+                    <button matMiniFab>edit</button>
+                    <button matMiniFab>menu</button>
                 </eco-fab-speed-dial-actions>
             </eco-fab-speed-dial>
             <div class="testElement">Test element</div>
