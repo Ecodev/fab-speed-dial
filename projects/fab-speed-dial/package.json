@@ -2,7 +2,10 @@
     "name": "@ecodev/fab-speed-dial",
     "version": "0.0.0",
     "license": "MIT",
-    "repository": "github:Ecodev/fab-speed-dial",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Ecodev/fab-speed-dial.git"
+    },
     "sideEffects": false,
     "dependencies": {
         "tslib": "^2.8.1"
