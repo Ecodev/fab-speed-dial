@@ -4,7 +4,6 @@
 [![Total Downloads](https://img.shields.io/npm/dt/@ecodev/fab-speed-dial.svg)](https://www.npmjs.com/package/@ecodev/fab-speed-dial)
 [![Latest Stable Version](https://img.shields.io/npm/v/@ecodev/fab-speed-dial.svg)](https://www.npmjs.com/package/@ecodev/fab-speed-dial)
 [![License](https://img.shields.io/npm/l/@ecodev/fab-speed-dial.svg)](https://www.npmjs.com/package/@ecodev/fab-speed-dial)
-[![Join the chat at https://gitter.im/Ecodev/fab-speed-dial](https://badges.gitter.im/Ecodev/fab-speed-dial.svg)](https://gitter.im/Ecodev/fab-speed-dial)
 
 This is a FAB speed dial component for Angular Material.
 
