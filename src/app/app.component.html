@@ -39,22 +39,22 @@
             <mat-slide-toggle [(ngModel)]="open" (click)="stopPropagation($event)">Open</mat-slide-toggle>
             <eco-fab-speed-dial [direction]="direction" [(open)]="open">
                 <eco-fab-speed-dial-trigger [spin]="spin">
-                    <button mat-fab (click)="doAction('trigger')">
+                    <button matFab (click)="doAction('trigger')">
                         <mat-icon class="spin180" fontIcon="add" />
                     </button>
                 </eco-fab-speed-dial-trigger>
 
                 <eco-fab-speed-dial-actions>
-                    <button mat-mini-fab (click)="doAction('action1')">
+                    <button matMiniFab (click)="doAction('action1')">
                         <mat-icon fontIcon="search" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action2')">
+                    <button matMiniFab (click)="doAction('action2')">
                         <mat-icon fontIcon="edit" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action3')">
+                    <button matMiniFab (click)="doAction('action3')">
                         <mat-icon fontIcon="home" />
                     </button>
-                    <a href="?param=value" mat-mini-fab>
+                    <a href="?param=value" matMiniFab>
                         <mat-icon fontIcon="link" />
                     </a>
                 </eco-fab-speed-dial-actions>
@@ -73,19 +73,19 @@
         <mat-card-content class="mat-body-1">
             <eco-fab-speed-dial #myFab [direction]="direction">
                 <eco-fab-speed-dial-trigger [spin]="spin">
-                    <button mat-fab (click)="doAction('trigger')">
+                    <button matFab (click)="doAction('trigger')">
                         <mat-icon class="spin360" fontIcon="check" />
                     </button>
                 </eco-fab-speed-dial-trigger>
 
                 <eco-fab-speed-dial-actions>
-                    <button mat-mini-fab (click)="doAction('action1')">
+                    <button matMiniFab (click)="doAction('action1')">
                         <mat-icon fontIcon="add" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action2')">
+                    <button matMiniFab (click)="doAction('action2')">
                         <mat-icon fontIcon="edit" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action3')">
+                    <button matMiniFab (click)="doAction('action3')">
                         <mat-icon fontIcon="menu" />
                     </button>
                 </eco-fab-speed-dial-actions>
@@ -93,25 +93,25 @@
 
             <eco-fab-speed-dial #myFab2 [direction]="direction">
                 <eco-fab-speed-dial-trigger [spin]="spin">
-                    <button mat-fab (click)="doAction('trigger')">
+                    <button matFab (click)="doAction('trigger')">
                         <mat-icon class="spin360" fontIcon="check" />
                     </button>
                 </eco-fab-speed-dial-trigger>
 
                 <eco-fab-speed-dial-actions>
-                    <button mat-mini-fab (click)="doAction('action1')">
+                    <button matMiniFab (click)="doAction('action1')">
                         <mat-icon fontIcon="add" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action2')">
+                    <button matMiniFab (click)="doAction('action2')">
                         <mat-icon fontIcon="edit" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action3')">
+                    <button matMiniFab (click)="doAction('action3')">
                         <mat-icon fontIcon="menu" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action1')">
+                    <button matMiniFab (click)="doAction('action1')">
                         <mat-icon fontIcon="add" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action2')">
+                    <button matMiniFab (click)="doAction('action2')">
                         <mat-icon fontIcon="edit" />
                     </button>
                 </eco-fab-speed-dial-actions>
@@ -119,55 +119,55 @@
 
             <eco-fab-speed-dial #myFab3 [direction]="direction">
                 <eco-fab-speed-dial-trigger [spin]="spin">
-                    <button mat-fab (click)="doAction('trigger')">
+                    <button matFab (click)="doAction('trigger')">
                         <mat-icon class="spin360" fontIcon="check" />
                     </button>
                 </eco-fab-speed-dial-trigger>
 
                 <eco-fab-speed-dial-actions>
-                    <button mat-mini-fab (click)="doAction('action1')">
+                    <button matMiniFab (click)="doAction('action1')">
                         <mat-icon fontIcon="add" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action2')">
+                    <button matMiniFab (click)="doAction('action2')">
                         <mat-icon fontIcon="edit" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action3')">
+                    <button matMiniFab (click)="doAction('action3')">
                         <mat-icon fontIcon="menu" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action1')">
+                    <button matMiniFab (click)="doAction('action1')">
                         <mat-icon fontIcon="add" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action2')">
+                    <button matMiniFab (click)="doAction('action2')">
                         <mat-icon fontIcon="edit" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action3')">
+                    <button matMiniFab (click)="doAction('action3')">
                         <mat-icon fontIcon="menu" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action1')">
+                    <button matMiniFab (click)="doAction('action1')">
                         <mat-icon fontIcon="add" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action2')">
+                    <button matMiniFab (click)="doAction('action2')">
                         <mat-icon fontIcon="edit" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action3')">
+                    <button matMiniFab (click)="doAction('action3')">
                         <mat-icon fontIcon="menu" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action1')">
+                    <button matMiniFab (click)="doAction('action1')">
                         <mat-icon fontIcon="add" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action2')">
+                    <button matMiniFab (click)="doAction('action2')">
                         <mat-icon fontIcon="edit" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action3')">
+                    <button matMiniFab (click)="doAction('action3')">
                         <mat-icon fontIcon="menu" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action1')">
+                    <button matMiniFab (click)="doAction('action1')">
                         <mat-icon fontIcon="add" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action2')">
+                    <button matMiniFab (click)="doAction('action2')">
                         <mat-icon fontIcon="edit" />
                     </button>
-                    <button mat-mini-fab (click)="doAction('action3')">
+                    <button matMiniFab (click)="doAction('action3')">
                         <mat-icon fontIcon="menu" />
                     </button>
                 </eco-fab-speed-dial-actions>
