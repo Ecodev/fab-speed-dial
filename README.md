@@ -13,7 +13,7 @@ See the component in action on [the demo page](https://ecodev.github.io/fab-spee
 
 1. Install the library:
    ```bash
-   yarn add @ecodev/fab-speed-dial
+   pnpm add @ecodev/fab-speed-dial
    ```
 2. In your standalone components add the following to the `imports` array:
    - `EcoFabSpeedDialComponent`
@@ -63,8 +63,8 @@ In case of buttons, the icon should rotate not the whole button (box-shadow woul
 
 The most useful commands for development are:
 
-- `yarn dev` to start a development server
-- `yarn build-demo` to build the demo locally (it will be published automatically by GitHub Actions)
+- `pnpm dev` to start a development server
+- `pnpm build-demo` to build the demo locally (it will be published automatically by GitHub Actions)
 - `git tag -a 1.2.3 && git push` to publish the lib to npm (via GitHub Actions `release` job)
 
 ## Prior work
