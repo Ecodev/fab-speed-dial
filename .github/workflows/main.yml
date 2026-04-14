@@ -98,7 +98,7 @@ jobs:
               with:
                   node-version: '24'
                   registry-url: 'https://registry.npmjs.org'
-            - run: pnpm publish --provenance dist/fab-speed-dial/
+            - run: pnpm publish --provenance --no-git-checks dist/fab-speed-dial/
 
             # Create release
             - name: Get release info
