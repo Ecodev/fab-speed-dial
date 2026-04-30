@@ -11,11 +11,11 @@
         "test-demo": "ng test demo",
         "lint": "ng lint --max-warnings 0",
         "e2e": "ng e2e",
-        "build-lib": "ng build fab-speed-dial && cp -v README.md dist/fab-speed-dial/ && cd dist/fab-speed-dial && pnpm version `git describe --tags --always`",
+        "build-lib": "ng build fab-speed-dial && cp -v README.md dist/fab-speed-dial/ && cd dist/fab-speed-dial && pnpm version --no-git-checks --no-git-tag-version `git describe --tags --always`",
         "build-demo": "pnpm build-lib && ng build demo --aot --base-href /fab-speed-dial/ && cp dist/demo/browser/index.html dist/demo/browser/404.html",
         "serve-demo": "echo '💡 open http://localhost:8000/fab-speed-dial/' && mkdir -p dist/server && ln -fs ../demo/browser dist/server/fab-speed-dial && php -S localhost:8000 -t dist/server/"
     },
-    "packageManager": "pnpm@10.33.0",
+    "packageManager": "pnpm@11.0.1",
     "dependencies": {
         "@angular/cdk": "21.2.0",
         "@angular/common": "^21.2.0",
