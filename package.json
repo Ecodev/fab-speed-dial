@@ -15,7 +15,7 @@
         "build-demo": "pnpm build-lib && ng build demo --aot --base-href /fab-speed-dial/ && cp dist/demo/browser/index.html dist/demo/browser/404.html",
         "serve-demo": "echo '💡 open http://localhost:8000/fab-speed-dial/' && mkdir -p dist/server && ln -fs ../demo/browser dist/server/fab-speed-dial && php -S localhost:8000 -t dist/server/"
     },
-    "packageManager": "pnpm@11.0.1",
+    "packageManager": "pnpm@11.2.2",
     "dependencies": {
         "@angular/cdk": "21.2.0",
         "@angular/common": "^21.2.0",
