@@ -69,6 +69,8 @@ jobs:
 
     publish-demo:
         runs-on: ubuntu-latest
+        permissions:
+            contents: write
         needs:
             - build
             - test
