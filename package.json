@@ -34,7 +34,7 @@
         "@angular/cli": "^21.2.0",
         "@angular/compiler-cli": "^21.2.0",
         "@eslint/js": "^10.0.1",
-        "@playwright/test": "^1.55.0",
+        "@playwright/test": "^1.60.0",
         "@types/jasmine": "~5.1.9",
         "angular-eslint": "^21.1.0",
         "eslint": "^9.24.0",
