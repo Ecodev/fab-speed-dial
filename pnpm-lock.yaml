@@ -88,8 +88,8 @@ importers:
         specifier: ^21.1.0
         version: 21.1.0(@angular/compiler-cli@21.2.17(@angular/compiler@21.2.17)(typescript@5.9.3))(tslib@2.8.1)(typescript@5.9.3)
       playwright-ng-schematics:
-        specifier: 2.1.0
-        version: 2.1.0(@angular-devkit/architect@0.2102.15(chokidar@5.0.0))(@angular-devkit/core@21.2.15(chokidar@5.0.0))(@angular-devkit/schematics@21.2.15(chokidar@5.0.0))
+        specifier: 21.1.0
+        version: 21.1.0(@angular-devkit/architect@0.2102.15(chokidar@5.0.0))(@angular-devkit/core@21.2.15(chokidar@5.0.0))(@angular-devkit/schematics@21.2.15(chokidar@5.0.0))
       prettier:
         specifier: ^3.6.2
         version: 3.8.1
@@ -3042,12 +3042,12 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  playwright-ng-schematics@2.1.0:
-    resolution: {integrity: sha512-NYjnBoVE8RmhBcjG7e7TrQ0ku+RqLj2s31jTjhEBjzttulodFZx55GOFTGBzCcfY6emnOc02uNDzbVE8v9VPfg==}
+  playwright-ng-schematics@21.1.0:
+    resolution: {integrity: sha512-8yD44JAzSFMY5nOrT5VzX7zsAOolbwH2TG8kEa8EYg10bq0CwHRfJeeAAIAwHZisRIVLyUOyd7m4KfSFsYSfFg==}
     peerDependencies:
-      '@angular-devkit/architect': '>= 0.2000.0 < 0.2100.0'
-      '@angular-devkit/core': ^20.0.0
-      '@angular-devkit/schematics': ^20.0.0
+      '@angular-devkit/architect': '>= 0.2100.0 < 0.2200.0'
+      '@angular-devkit/core': ^21.0.0
+      '@angular-devkit/schematics': ^21.0.0
 
   playwright@1.60.0:
     resolution: {integrity: sha512-hheHdokM8cdqCb0lcE3s+zT4t4W+vvjpGxsZlDnikarzx8tSzMebh3UiFtgqwFwnTnjYQcsyMF8ei2mCO/tpeA==}
@@ -6611,7 +6611,7 @@ snapshots:
 
   playwright-core@1.60.0: {}
 
-  playwright-ng-schematics@2.1.0(@angular-devkit/architect@0.2102.15(chokidar@5.0.0))(@angular-devkit/core@21.2.15(chokidar@5.0.0))(@angular-devkit/schematics@21.2.15(chokidar@5.0.0)):
+  playwright-ng-schematics@21.1.0(@angular-devkit/architect@0.2102.15(chokidar@5.0.0))(@angular-devkit/core@21.2.15(chokidar@5.0.0))(@angular-devkit/schematics@21.2.15(chokidar@5.0.0)):
     dependencies:
       '@angular-devkit/architect': 0.2102.15(chokidar@5.0.0)
       '@angular-devkit/core': 21.2.15(chokidar@5.0.0)
