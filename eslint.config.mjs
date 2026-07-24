@@ -25,6 +25,7 @@ function tsFiles(files, extraRules = {}) {
             '@angular-eslint/prefer-on-push-component-change-detection': 'off',
             '@angular-eslint/use-component-selector': 'off', // Some components are not template-able and thus do not need selector
             '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+            '@typescript-eslint/consistent-type-exports': 'error',
             '@typescript-eslint/explicit-member-accessibility': 'error',
             '@typescript-eslint/no-confusing-void-expression': 'off', // We prefer code tersity
             '@typescript-eslint/no-dynamic-delete': 'off',
@@ -53,6 +54,12 @@ function tsFiles(files, extraRules = {}) {
                     type: 'element',
                     prefix: 'app',
                     style: 'kebab-case',
+                },
+            ],
+            '@typescript-eslint/consistent-type-imports': [
+                'error',
+                {
+                    fixStyle: 'inline-type-imports',
                 },
             ],
             '@typescript-eslint/explicit-function-return-type': [
