@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {
-    Direction,
+    type Direction,
     EcoFabSpeedDialActionsComponent,
     EcoFabSpeedDialComponent,
     EcoFabSpeedDialTriggerComponent,

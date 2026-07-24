@@ -1,6 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 import {
-    Direction,
+    type Direction,
     EcoFabSpeedDialActionsComponent,
     EcoFabSpeedDialComponent,
     EcoFabSpeedDialTriggerComponent,

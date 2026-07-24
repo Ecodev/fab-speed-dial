@@ -9,13 +9,13 @@ import {
     inject,
     input,
     model,
-    OnDestroy,
+    type OnDestroy,
     output,
     Renderer2,
     ViewEncapsulation,
 } from '@angular/core';
 import {MatMiniFabAnchor, MatMiniFabButton} from '@angular/material/button';
-import {forkJoin, fromEvent, Subscription} from 'rxjs';
+import {forkJoin, fromEvent, type Subscription} from 'rxjs';
 import {take} from 'rxjs/operators';
 
 const Z_INDEX_ITEM = 23;
