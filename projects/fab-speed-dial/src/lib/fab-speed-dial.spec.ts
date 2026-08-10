@@ -6,7 +6,7 @@ import {
     EcoFabSpeedDialTriggerComponent,
 } from './fab-speed-dial';
 import {By} from '@angular/platform-browser';
-import {Component, viewChild} from '@angular/core';
+import {Component, viewChild, ChangeDetectionStrategy} from '@angular/core';
 
 describe('FabSpeedDial', () => {
     it('should apply direction class based on direction', () => {
@@ -140,6 +140,7 @@ describe('FabSpeedDial', () => {
             <div class="testElement">Test element</div>
         </div>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TestAppComponent {
     public readonly fabActions = viewChild.required(EcoFabSpeedDialActionsComponent);

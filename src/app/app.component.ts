@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
 import {
     type Direction,
     EcoFabSpeedDialActionsComponent,
@@ -29,6 +29,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
+    changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class AppComponent {
     public open = false;

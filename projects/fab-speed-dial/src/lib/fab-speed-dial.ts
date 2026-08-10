@@ -8,11 +8,12 @@ import {
     ElementRef,
     inject,
     input,
-    model,
     type OnDestroy,
     output,
     Renderer2,
     ViewEncapsulation,
+    ChangeDetectionStrategy,
+    linkedSignal,
 } from '@angular/core';
 import {MatMiniFabAnchor, MatMiniFabButton} from '@angular/material/button';
 import {forkJoin, fromEvent, type Subscription} from 'rxjs';
@@ -33,6 +34,7 @@ function getHostElement(miniFab: MiniFab): HTMLElement {
     template: `@if (miniFabVisible) {
         <ng-content select="[matMiniFab]" />
     }`,
+    changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class EcoFabSpeedDialActionsComponent {
     private readonly renderer = inject(Renderer2);
@@ -137,6 +139,7 @@ export class EcoFabSpeedDialActionsComponent {
         </div>
     `,
     styleUrl: './fab-speed-dial.scss',
+    changeDetection: ChangeDetectionStrategy.Eager,
     // eslint-disable-next-line @angular-eslint/use-component-view-encapsulation
     encapsulation: ViewEncapsulation.None,
     host: {
@@ -154,7 +157,9 @@ export class EcoFabSpeedDialComponent implements OnDestroy {
     /**
      * Whether this speed dial is opened
      */
-    public readonly open = model(false);
+    // eslint-disable-next-line @angular-eslint/no-input-rename
+    public readonly openInput = input(false, {alias: 'open'});
+    public readonly open = linkedSignal(this.openInput);
     private readonly processOpen = effect(() => {
         this.openChange.emit(this.open());
         this.setActionsVisibility();
@@ -239,6 +244,7 @@ export class EcoFabSpeedDialComponent implements OnDestroy {
 @Component({
     selector: 'eco-fab-speed-dial-trigger',
     template: ` <ng-content select="[matFab]" />`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     host: {
         '(click)': 'onClick($event)',
         '[class.eco-spin]': 'spin()',
