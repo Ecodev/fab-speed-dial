@@ -6,7 +6,8 @@ import {
     EcoFabSpeedDialTriggerComponent,
 } from './fab-speed-dial';
 import {By} from '@angular/platform-browser';
-import {Component, viewChild, ChangeDetectionStrategy} from '@angular/core';
+import {ChangeDetectionStrategy, Component, viewChild} from '@angular/core';
+import {describe, expect, it, vi} from 'vitest';
 
 describe('FabSpeedDial', () => {
     it('should apply direction class based on direction', () => {
@@ -86,8 +87,8 @@ describe('FabSpeedDial', () => {
         const testComponent = fixture.debugElement.componentInstance;
         fixture.detectChanges();
 
-        spyOn(fixture.componentInstance.fabSpeedDial(), 'setActionsVisibility').and.callThrough();
-        spyOn(fixture.componentInstance.fabActions(), 'show').and.callThrough();
+        vi.spyOn(fixture.componentInstance.fabSpeedDial(), 'setActionsVisibility');
+        vi.spyOn(fixture.componentInstance.fabActions(), 'show');
 
         testComponent.open = true;
         fixture.detectChanges();
@@ -101,16 +102,16 @@ describe('FabSpeedDial', () => {
         const testComponent = fixture.debugElement.componentInstance;
         fixture.detectChanges();
 
-        const actionsSpy = spyOn(fixture.componentInstance.fabSpeedDial(), 'setActionsVisibility').and.callThrough();
-        spyOn(fixture.componentInstance.fabActions(), 'show').and.callThrough();
-        spyOn(fixture.componentInstance.fabActions(), 'hide').and.callThrough();
+        const actionsSpy = vi.spyOn(fixture.componentInstance.fabSpeedDial(), 'setActionsVisibility');
+        vi.spyOn(fixture.componentInstance.fabActions(), 'show');
+        vi.spyOn(fixture.componentInstance.fabActions(), 'hide');
 
         testComponent.open = true;
         fixture.detectChanges();
 
         expect(fixture.componentInstance.fabSpeedDial().setActionsVisibility).toHaveBeenCalled();
         expect(fixture.componentInstance.fabActions().show).toHaveBeenCalled();
-        actionsSpy.calls.reset();
+        actionsSpy.mockClear();
 
         const actionButton = fixture.debugElement.query(By.css('.testElement'));
         actionButton.nativeElement.click();

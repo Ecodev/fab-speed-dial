@@ -47,6 +47,12 @@
                             "optimization": false,
                             "extractLicenses": false,
                             "sourceMap": true
+                        },
+                        "testing": {
+                            "aot": false,
+                            "optimization": false,
+                            "extractLicenses": false,
+                            "polyfills": ["zone.js", "zone.js/testing"]
                         }
                     },
                     "defaultConfiguration": "production"
@@ -70,18 +76,11 @@
                     "builder": "@angular/build:extract-i18n"
                 },
                 "test": {
-                    "builder": "@angular/build:karma",
+                    "builder": "@angular/build:unit-test",
                     "options": {
-                        "polyfills": ["zone.js", "zone.js/testing"],
                         "tsConfig": "tsconfig.spec.json",
-                        "assets": [
-                            {
-                                "glob": "**/*",
-                                "input": "public"
-                            }
-                        ],
-                        "styles": ["@angular/material/prebuilt-themes/azure-blue.css", "src/styles.css"],
-                        "scripts": []
+                        "buildTarget": ":build:testing",
+                        "runner": "vitest"
                     }
                 },
                 "lint": {
@@ -125,10 +124,10 @@
                     "defaultConfiguration": "production"
                 },
                 "test": {
-                    "builder": "@angular/build:karma",
+                    "builder": "@angular/build:unit-test",
                     "options": {
                         "tsConfig": "projects/fab-speed-dial/tsconfig.spec.json",
-                        "polyfills": ["zone.js", "zone.js/testing"]
+                        "runner": "vitest"
                     }
                 },
                 "lint": {

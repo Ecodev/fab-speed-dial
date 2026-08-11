@@ -35,8 +35,8 @@ jobs:
                   node-version: '24'
                   cache: 'pnpm'
             - run: pnpm install --frozen-lockfile
-            - run: ./node_modules/.bin/ng test fab-speed-dial --progress false --watch=false --browsers ChromeHeadless
-            - run: ./node_modules/.bin/ng test demo --progress false --watch=false --browsers ChromeHeadless
+            - run: ./node_modules/.bin/ng test fab-speed-dial --watch=false
+            - run: ./node_modules/.bin/ng test demo --watch=false
             - run: pnpm e2e
 
     lint:
