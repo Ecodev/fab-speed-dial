@@ -8,12 +8,12 @@ import {
     ElementRef,
     inject,
     input,
+    linkedSignal,
     type OnDestroy,
     output,
     Renderer2,
+    signal,
     ViewEncapsulation,
-    ChangeDetectionStrategy,
-    linkedSignal,
 } from '@angular/core';
 import {MatMiniFabAnchor, MatMiniFabButton} from '@angular/material/button';
 import {forkJoin, fromEvent, type Subscription} from 'rxjs';
@@ -31,10 +31,9 @@ function getHostElement(miniFab: MiniFab): HTMLElement {
 
 @Component({
     selector: 'eco-fab-speed-dial-actions',
-    template: `@if (miniFabVisible) {
+    template: `@if (miniFabVisible()) {
         <ng-content select="[matMiniFab]" />
     }`,
-    changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class EcoFabSpeedDialActionsComponent {
     private readonly renderer = inject(Renderer2);
@@ -58,7 +57,7 @@ export class EcoFabSpeedDialActionsComponent {
     /**
      * Whether the mini-fab exist in DOM
      */
-    protected miniFabVisible = false;
+    protected readonly miniFabVisible = signal(false);
 
     /**
      * The timeout ID for the callback to show the mini-fabs
@@ -72,7 +71,7 @@ export class EcoFabSpeedDialActionsComponent {
 
     public show(): void {
         this.resetAnimationState();
-        this.miniFabVisible = true;
+        this.miniFabVisible.set(true);
 
         this.showMiniFabAnimation = setTimeout(() => {
             this.miniFabs().forEach((miniFab, i) => {
@@ -97,7 +96,7 @@ export class EcoFabSpeedDialActionsComponent {
 
         const miniFabs = this.miniFabs();
         if (!miniFabs.length) {
-            this.miniFabVisible = false;
+            this.miniFabVisible.set(false);
             return;
         }
 
@@ -111,7 +110,7 @@ export class EcoFabSpeedDialActionsComponent {
         });
 
         // Wait for all animations to finish, then destroy their elements
-        this.hideMiniFab = forkJoin(obs).subscribe(() => (this.miniFabVisible = false));
+        this.hideMiniFab = forkJoin(obs).subscribe(() => this.miniFabVisible.set(false));
     }
 
     private transitionDelay(i: number): string {
@@ -139,7 +138,6 @@ export class EcoFabSpeedDialActionsComponent {
         </div>
     `,
     styleUrl: './fab-speed-dial.scss',
-    changeDetection: ChangeDetectionStrategy.Eager,
     // eslint-disable-next-line @angular-eslint/use-component-view-encapsulation
     encapsulation: ViewEncapsulation.None,
     host: {
@@ -244,7 +242,6 @@ export class EcoFabSpeedDialComponent implements OnDestroy {
 @Component({
     selector: 'eco-fab-speed-dial-trigger',
     template: ` <ng-content select="[matFab]" />`,
-    changeDetection: ChangeDetectionStrategy.Eager,
     host: {
         '(click)': 'onClick($event)',
         '[class.eco-spin]': 'spin()',

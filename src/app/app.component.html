@@ -37,8 +37,8 @@
 
         <mat-card-content class="mat-body-1">
             <mat-slide-toggle [(ngModel)]="open" (click)="stopPropagation($event)">Open</mat-slide-toggle>
-            <eco-fab-speed-dial [direction]="direction" [(open)]="open">
-                <eco-fab-speed-dial-trigger [spin]="spin">
+            <eco-fab-speed-dial [direction]="direction()" [(open)]="open">
+                <eco-fab-speed-dial-trigger [spin]="spin()">
                     <button matFab (click)="doAction('trigger')">
                         <mat-icon class="spin180" fontIcon="add" />
                     </button>
@@ -71,8 +71,8 @@
         </mat-card-header>
 
         <mat-card-content class="mat-body-1">
-            <eco-fab-speed-dial #myFab [direction]="direction">
-                <eco-fab-speed-dial-trigger [spin]="spin">
+            <eco-fab-speed-dial #myFab [direction]="direction()">
+                <eco-fab-speed-dial-trigger [spin]="spin()">
                     <button matFab (click)="doAction('trigger')">
                         <mat-icon class="spin360" fontIcon="check" />
                     </button>
@@ -91,8 +91,8 @@
                 </eco-fab-speed-dial-actions>
             </eco-fab-speed-dial>
 
-            <eco-fab-speed-dial #myFab2 [direction]="direction">
-                <eco-fab-speed-dial-trigger [spin]="spin">
+            <eco-fab-speed-dial #myFab2 [direction]="direction()">
+                <eco-fab-speed-dial-trigger [spin]="spin()">
                     <button matFab (click)="doAction('trigger')">
                         <mat-icon class="spin360" fontIcon="check" />
                     </button>
@@ -117,8 +117,8 @@
                 </eco-fab-speed-dial-actions>
             </eco-fab-speed-dial>
 
-            <eco-fab-speed-dial #myFab3 [direction]="direction">
-                <eco-fab-speed-dial-trigger [spin]="spin">
+            <eco-fab-speed-dial #myFab3 [direction]="direction()">
+                <eco-fab-speed-dial-trigger [spin]="spin()">
                     <button matFab (click)="doAction('trigger')">
                         <mat-icon class="spin360" fontIcon="check" />
                     </button>

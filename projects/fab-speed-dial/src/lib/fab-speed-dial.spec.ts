@@ -6,116 +6,115 @@ import {
     EcoFabSpeedDialTriggerComponent,
 } from './fab-speed-dial';
 import {By} from '@angular/platform-browser';
-import {ChangeDetectionStrategy, Component, viewChild} from '@angular/core';
+import {Component, model, signal, viewChild} from '@angular/core';
 import {describe, expect, it, vi} from 'vitest';
 
 describe('FabSpeedDial', () => {
-    it('should apply direction class based on direction', () => {
+    it('should apply direction class based on direction', async () => {
         const fixture = TestBed.createComponent(TestAppComponent);
 
         const testComponent = fixture.debugElement.componentInstance;
         const speedDialDebugElement = fixture.debugElement.query(By.css('eco-fab-speed-dial'));
 
-        fixture.detectChanges();
+        await fixture.whenStable();
         expect(speedDialDebugElement.nativeElement.classList.contains('eco-up')).toBeTruthy();
 
-        testComponent.direction = 'down';
-        fixture.detectChanges();
+        testComponent.direction.set('down');
+        await fixture.whenStable();
         expect(speedDialDebugElement.nativeElement.classList.contains('eco-down')).toBeTruthy();
 
-        testComponent.direction = 'right';
-        fixture.detectChanges();
+        testComponent.direction.set('right');
+        await fixture.whenStable();
         expect(speedDialDebugElement.nativeElement.classList.contains('eco-right')).toBeTruthy();
 
-        testComponent.direction = 'left';
-        fixture.detectChanges();
+        testComponent.direction.set('left');
+        await fixture.whenStable();
         expect(speedDialDebugElement.nativeElement.classList.contains('eco-left')).toBeTruthy();
         // also check if the other class from before is removed
         expect(speedDialDebugElement.nativeElement.classList.contains('eco-right')).toBeFalsy();
     });
 
-    it('should apply opened class trigger button clicked', () => {
+    it('should apply opened class trigger button clicked', async () => {
         const fixture = TestBed.createComponent(TestAppComponent);
         const speedDialDebugElement = fixture.debugElement.query(By.css('eco-fab-speed-dial'));
         const triggerButtonDebugElement = fixture.debugElement.query(By.css('eco-fab-speed-dial-trigger button'));
-        fixture.detectChanges();
+        await fixture.whenStable();
 
         triggerButtonDebugElement.nativeElement.click();
-        fixture.detectChanges();
+        await fixture.whenStable();
         expect(speedDialDebugElement.nativeElement.classList.contains('eco-opened')).toBeTruthy();
         triggerButtonDebugElement.nativeElement.click();
 
-        fixture.detectChanges();
+        await fixture.whenStable();
         // check if the class is removed afterwards
         expect(speedDialDebugElement.nativeElement.classList.contains('eco-opened')).toBeFalsy();
     });
 
-    it('should apply opened class when property open is set', () => {
+    it('should apply opened class when property open is set', async () => {
         const fixture = TestBed.createComponent(TestAppComponent);
 
         const testComponent = fixture.debugElement.componentInstance;
         const speedDialDebugElement = fixture.debugElement.query(By.css('eco-fab-speed-dial'));
 
-        testComponent.open = true;
-        fixture.detectChanges();
+        testComponent.open.set(true);
+        await fixture.whenStable();
         expect(speedDialDebugElement.nativeElement.classList.contains('eco-opened')).toBeTruthy();
-        testComponent.open = false;
-        fixture.detectChanges();
+        testComponent.open.set(false);
+        await fixture.whenStable();
         // check if the class is removed afterwards
         expect(speedDialDebugElement.nativeElement.classList.contains('eco-opened')).toBeFalsy();
     });
 
-    it('should close when action button is clicked', () => {
+    it('should close when action button is clicked', async () => {
         const fixture = TestBed.createComponent(TestAppComponent);
 
         const testComponent = fixture.debugElement.componentInstance;
         const speedDialDebugElement = fixture.debugElement.query(By.css('eco-fab-speed-dial'));
 
-        testComponent.open = true;
-        fixture.detectChanges();
+        testComponent.open.set(true);
+        await fixture.whenStable();
         expect(speedDialDebugElement.nativeElement.classList.contains('eco-opened')).toBeTruthy();
 
         const actionButton = fixture.debugElement.query(By.css('eco-fab-speed-dial-actions button:first-child'));
         actionButton.nativeElement.click();
-        fixture.detectChanges();
+        await fixture.whenStable();
         // check if the class is removed after click
         expect(speedDialDebugElement.nativeElement.classList.contains('eco-opened')).toBeFalsy();
     });
 
-    it('should call "show" method of all fabActions', () => {
+    it('should call "show" method of all fabActions', async () => {
         const fixture = TestBed.createComponent(TestAppComponent);
         const testComponent = fixture.debugElement.componentInstance;
-        fixture.detectChanges();
+        await fixture.whenStable();
 
         vi.spyOn(fixture.componentInstance.fabSpeedDial(), 'setActionsVisibility');
         vi.spyOn(fixture.componentInstance.fabActions(), 'show');
 
-        testComponent.open = true;
-        fixture.detectChanges();
+        testComponent.open.set(true);
+        await fixture.whenStable();
 
         expect(fixture.componentInstance.fabSpeedDial().setActionsVisibility).toHaveBeenCalled();
         expect(fixture.componentInstance.fabActions().show).toHaveBeenCalled();
     });
 
-    it('should click on document testElement to hide all fabActions', () => {
+    it('should click on document testElement to hide all fabActions', async () => {
         const fixture = TestBed.createComponent(TestAppComponent);
         const testComponent = fixture.debugElement.componentInstance;
-        fixture.detectChanges();
+        await fixture.whenStable();
 
         const actionsSpy = vi.spyOn(fixture.componentInstance.fabSpeedDial(), 'setActionsVisibility');
         vi.spyOn(fixture.componentInstance.fabActions(), 'show');
         vi.spyOn(fixture.componentInstance.fabActions(), 'hide');
 
-        testComponent.open = true;
-        fixture.detectChanges();
-
+        testComponent.open.set(true);
+        await fixture.whenStable();
         expect(fixture.componentInstance.fabSpeedDial().setActionsVisibility).toHaveBeenCalled();
         expect(fixture.componentInstance.fabActions().show).toHaveBeenCalled();
         actionsSpy.mockClear();
 
         const actionButton = fixture.debugElement.query(By.css('.testElement'));
         actionButton.nativeElement.click();
-        fixture.detectChanges();
+        await fixture.whenStable();
 
         expect(fixture.componentInstance.fabSpeedDial().setActionsVisibility).toHaveBeenCalled();
         expect(fixture.componentInstance.fabActions().hide).toHaveBeenCalled();
@@ -127,7 +126,7 @@ describe('FabSpeedDial', () => {
     imports: [EcoFabSpeedDialActionsComponent, EcoFabSpeedDialTriggerComponent, EcoFabSpeedDialComponent],
     template: `
         <div>
-            <eco-fab-speed-dial [direction]="direction" [(open)]="open">
+            <eco-fab-speed-dial [direction]="direction()" [(open)]="open">
                 <eco-fab-speed-dial-trigger>
                     <button matFab>check</button>
                 </eco-fab-speed-dial-trigger>
@@ -141,11 +140,10 @@ describe('FabSpeedDial', () => {
             <div class="testElement">Test element</div>
         </div>
     `,
-    changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TestAppComponent {
     public readonly fabActions = viewChild.required(EcoFabSpeedDialActionsComponent);
     public readonly fabSpeedDial = viewChild.required(EcoFabSpeedDialComponent);
-    public direction: Direction = 'up';
-    public open = false;
+    public readonly direction = signal<Direction>('up');
+    public readonly open = model(false);
 }

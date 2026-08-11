@@ -1,4 +1,4 @@
-import {Component, ChangeDetectionStrategy} from '@angular/core';
+import {Component, signal} from '@angular/core';
 import {
     type Direction,
     EcoFabSpeedDialActionsComponent,
@@ -29,12 +29,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class AppComponent {
-    public open = false;
-    public spin = false;
-    public direction: Direction = 'up';
+    public readonly open = signal(false);
+    public readonly spin = signal(false);
+    public readonly direction = signal<Direction>('up');
 
     public stopPropagation(event: Event): void {
         // Prevent the click to propagate to document and trigger
